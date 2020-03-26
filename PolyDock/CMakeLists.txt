@@ -44,7 +44,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 # EnTT
 add_subdirectory(ThirdParty/entt)
-set_target_properties (aob PROPERTIES FOLDER "ThirdParty/entt")
+set_target_properties (entt_aob PROPERTIES FOLDER "ThirdParty/entt")
 
 # GSL
 add_subdirectory(ThirdParty/eigen)
