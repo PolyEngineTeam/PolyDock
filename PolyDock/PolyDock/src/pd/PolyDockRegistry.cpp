@@ -103,7 +103,8 @@ TabbedWindowHandle PolyDockRegistry::createWindow()
 {
 	auto windowEntity = m_registry.create();
 	auto header = TabsHeaderHandle(m_registry, windowEntity);
-	auto window = TabbedWindowHandle(header);
+	auto control = TabbedWindowControlHandle(m_registry, windowEntity);
+	auto window = TabbedWindowHandle(header, control);
 
 	m_registry.assign<ecs::cmp::tabbedWindow::TabbedWindowCreateRequestComponent>(windowEntity, 
 		std::vector<entt::entity>{}, std::vector<entt::entity>{}, std::optional<entt::entity>{},
