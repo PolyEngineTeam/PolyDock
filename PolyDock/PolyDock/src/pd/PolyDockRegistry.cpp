@@ -54,6 +54,8 @@ using namespace ::pd;
 // ---------------------------------------------------------------------------------------------------------
 PolyDockRegistry::PolyDockRegistry()
 {
+	Q_INIT_RESOURCE(Resource);
+
 	m_root = m_registry.create();
 	m_registry.assign<ecs::cmp::root::RootComponent>(m_root);
 	m_registry.assign<ecs::cmp::root::InputComponent>(m_root);

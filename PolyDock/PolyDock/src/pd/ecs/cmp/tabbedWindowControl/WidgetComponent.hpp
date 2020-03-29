@@ -16,8 +16,8 @@ namespace pd::ecs::cmp::tabbedWindowControl
 	{
 	public:
 		DefaultWidget()
-			: m_layout(new QHBoxLayout()), m_minimize(new QPushButton("Minimize")), 
-				m_maximize(new QPushButton("Maximize")), m_close(new QPushButton("Close"))
+			: m_layout(new QHBoxLayout()), m_minimize(new QLabel()), 
+				m_maximize(new QLabel()), m_close(new QLabel())
 		{
 			setLayout(m_layout);
 			m_layout->setContentsMargins(0, 0, 0, 0);
@@ -26,29 +26,25 @@ namespace pd::ecs::cmp::tabbedWindowControl
 			m_layout->addWidget(m_maximize);
 			m_layout->addWidget(m_close);
 
-			m_minimize->setStyleSheet(
-				"QpushButton{qproperty-icon:url(:/icons/tabbedWindow/minimize.png);}"
-				"QpushButton:hover{qproperty-icon:url(:/icons/tabbedWindow/minimizeHover.png);}"
-				"QpushButton:press{qproperty-icon:url(:/icons/tabbedWindow/minimizePressed.png);}");
+			m_minimize->setFixedSize(45, 20);
+			m_minimize->setPixmap(QPixmap(":/icons/tabbedWindow/minimize.png"));
 
-			m_maximize->setStyleSheet(
-				"QpushButton{qproperty-icon:url(:/icons/tabbedWindow/maximize.png);}"
-				"QpushButton:hover{qproperty-icon:url(:/icons/tabbedWindow/maximizeHover.png);}"
-				"QpushButton:press{qproperty-icon:url(:/icons/tabbedWindow/maximizePressed.png);}");
+			m_maximize->setFixedSize(45, 20);
+			m_maximize->setPixmap(QPixmap(":/icons/tabbedWindow/maximize.png"));
 
-			m_close->setStyleSheet(
-				"QpushButton{qproperty-icon:url(:/icons/tabbedWindow/close.png);}"
-				"QpushButton:hover{qproperty-icon:url(:/icons/tabbedWindow/closeHover.png);}"
-				"QpushButton:press{qproperty-icon:url(:/icons/tabbedWindow/closePressed.png);}");
+			m_close->setFixedSize(45, 20);
+			m_close->setPixmap(QPixmap(":/icons/tabbedWindow/close.png"));
+
+			QWidget::setFixedSize(145, 20);
 		}
 
 		QWidget* getWidget() override { return this; }
 
 	private:
 		QHBoxLayout* m_layout = nullptr;
-		QPushButton* m_minimize = nullptr;
-		QPushButton* m_maximize = nullptr;
-		QPushButton* m_close = nullptr;
+		QLabel* m_minimize = nullptr;
+		QLabel* m_maximize = nullptr;
+		QLabel* m_close = nullptr;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
@@ -58,3 +54,4 @@ namespace pd::ecs::cmp::tabbedWindowControl
 		IWidget* widget = nullptr;
 	};
 }
+

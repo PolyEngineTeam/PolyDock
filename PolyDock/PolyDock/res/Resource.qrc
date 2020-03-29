@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/icons/tabbedWindow">
+    <qresource prefix="/">
         <file>icons/tabbedWindow/close.png</file>
         <file>icons/tabbedWindow/closeHover.png</file>
         <file>icons/tabbedWindow/closePressed.png</file>
