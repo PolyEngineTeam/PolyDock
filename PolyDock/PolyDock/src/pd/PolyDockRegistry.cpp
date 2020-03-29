@@ -26,6 +26,8 @@
 // tabs drag out
 #include <pd/ecs/sys/tabsHeader/TabsDragOutDetectionSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsDragOutSystem.hpp>
+// tabbed window control widget support
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetInitializationSystem.hpp>
 // tabs header widget support
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWIdgetUpdateSystem.hpp>
@@ -79,6 +81,8 @@ PolyDockRegistry::PolyDockRegistry()
 	// tabs drag out
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutDetectionSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutSystem>());
+	// tabbed window control widget support
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetInitializationSystem>());
 	// tabs header widget support
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>());
