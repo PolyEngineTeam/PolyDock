@@ -24,7 +24,8 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		DirtyTabbedWindowComponent,
 		TabbedWindowComponent,
 		TabbedWindowWidgetComponent,
-		TabsHeaderWidgetComponent>();
+		TabsHeaderWidgetComponent,
+		tabbedWindowControl::WidgetComponent>();
 
 	for (auto entity : view)
 	{
