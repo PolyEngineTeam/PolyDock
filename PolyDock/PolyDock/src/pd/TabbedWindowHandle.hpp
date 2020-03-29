@@ -10,10 +10,10 @@ namespace pd
 	{
 	public:
 		TabbedWindowHandle(TabsHeaderHandle tabsHeader, TabbedWindowControlHandle controlButtons) 
-			: m_tabsHeader(tabsHeader) {}
+			: m_tabsHeader(tabsHeader), m_tabbedWindowControl(controlButtons) {}
 
 		TabsHeaderHandle getTabsHeader() { return m_tabsHeader; }
-		TabsHeaderHandle getTabbedWindowControl() { return m_tabbedWindowControl; }
+		TabbedWindowControlHandle getTabbedWindowControl() { return m_tabbedWindowControl; }
 
 	private:
 		TabsHeaderHandle m_tabsHeader;
