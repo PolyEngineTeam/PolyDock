@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/icons/tabbedWindow">
+        <file>icons/tabbedWindow/close.png</file>
+        <file>icons/tabbedWindow/closeHover.png</file>
+        <file>icons/tabbedWindow/closePressed.png</file>
+        <file>icons/tabbedWindow/maximize.png</file>
+        <file>icons/tabbedWindow/maximizeHover.png</file>
+        <file>icons/tabbedWindow/maximizePressed.png</file>
+        <file>icons/tabbedWindow/minimize.png</file>
+        <file>icons/tabbedWindow/minimizeHover.png</file>
+        <file>icons/tabbedWindow/minimizePressed.png</file>
+        <file>icons/tabbedWindow/restore.png</file>
+        <file>icons/tabbedWindow/restoreHover.png</file>
+        <file>icons/tabbedWindow/restorePressed.png</file>
+    </qresource>
+</RCC>
