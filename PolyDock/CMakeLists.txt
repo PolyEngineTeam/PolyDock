@@ -20,8 +20,8 @@ endfunction()
 project(PolyDock)
 
 set(POLYDOCK_ROOT_DIR ${CMAKE_SOURCE_DIR})
-set(DIST_DIR "${POLYDOCK_ROOT_DIR}/dist")
-set(COMMON_BUILD_DIR "${POLYDOCK_ROOT_DIR}/commonBuild")
+set(DIST_DIR "${POLYDOCK_ROOT_DIR}/../Dist")
+set(COMMON_BUILD_DIR "${POLYDOCK_ROOT_DIR}/../CommonBuild")
 
 # Output dirs
 if (WIN32)
