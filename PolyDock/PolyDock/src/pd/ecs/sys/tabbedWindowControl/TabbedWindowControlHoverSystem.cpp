@@ -1,49 +1,36 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
 
-// in
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-#include <pd/ecs/cmp/tab/TabContentComponent.hpp>
-// out
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
+#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/WidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/HoverComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/WidgetUpdateRequestComponent.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabsHeader;
-using namespace ::pd::ecs::cmp::tab;
+using namespace ::pd::ecs::sys::tabbedWindowControl;
+using namespace ::pd::ecs::cmp::tabbedWindowControl;
+using namespace ::pd::ecs::cmp::root;
 
 // ---------------------------------------------------------------------------------------------------------
-void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::entity root) const
+void TabbedWindowControlHoverSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<
-		DirtyTabbedWindowComponent,
-		TabbedWindowComponent,
-		TabbedWindowWidgetComponent,
-		TabsHeaderWidgetComponent>();
+	auto view = registry.view<Component, WidgetComponent>();
 
-	for (auto entity : view)
+	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
-		auto& window = view.get<TabbedWindowComponent>(entity);
-		auto& widget = view.get<TabbedWindowWidgetComponent>(entity);
-		auto& tabsHeaderWidget = view.get<TabsHeaderWidgetComponent>(entity);
-
-		widget.setPos(window.position);
-		widget.setSize(window.size);
-		widget.setTabsHeaderWidget(tabsHeaderWidget.getTabsHeaderWidget());
-
-		if (auto* activeTabCmp = registry.try_get<ActiveTabComponent>(entity))
+		for (auto entity : view)
 		{
-			if (auto* tabContentCmp = registry.try_get<TabContentComponent>(activeTabCmp->activeTab))
-				widget.setContentWidget(tabContentCmp->contentWidget);
-			else
-				widget.setContentWidget(nullptr);
-		}
-		else
-			widget.setContentWidget(nullptr);
+			const auto& widgetCmp = view.get<WidgetComponent>(entity);
 
-		registry.remove<DirtyTabbedWindowComponent>(entity);
-	}
+			const IWidget::eButton hovered = widgetCmp.widget->getButtonFromPos(inputComponent->getCursorPos());
+
+			if (hovered != IWidget::eButton::NONE)
+			{
+				registry.get_or_assign<HoverComponent>(entity).hovered = hovered;
+				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
+			}
+			else
+				registry.remove_if_exists<HoverComponent>(entity);
+		}
+	}{}
 }

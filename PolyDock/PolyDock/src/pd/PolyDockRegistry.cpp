@@ -10,6 +10,8 @@
 #include <pd/ecs/sys/tabsHeader/TabsSelectionSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsActivationSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderHoverSystem.hpp>
+// tabbed window control no mode
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
 // tabbed window movement
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementStartSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementDetectionSystem.hpp>
@@ -28,6 +30,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsDragOutSystem.hpp>
 // tabbed window control widget support
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetInitializationSystem.hpp>
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetUpdateSystem.hpp>
 // tabs header widget support
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWIdgetUpdateSystem.hpp>
@@ -67,6 +70,8 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsSelectionSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsActivationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderHoverSystem>());
+	// tabbed window control no mode
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlHoverSystem>());
 	// tabbed window movement
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementStartSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementDetectionSystem>());
@@ -85,6 +90,7 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutSystem>());
 	// tabbed window control widget support
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetInitializationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetUpdateSystem>());
 	// tabs header widget support
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>());

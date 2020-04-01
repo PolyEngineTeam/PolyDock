@@ -1,11 +1,13 @@
 #pragma once
 
-namespace pd::ecs::cmp::tabsHeader
+#include <pd/ecs/cmp/tabbedWindowControl/WidgetComponent.hpp>
+
+namespace pd::ecs::cmp::tabbedWindowControl
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsHeaderComponent
+	class HoverComponent
 	{
 	public:
-		std::vector<entt::entity> tabs;
+		IWidget::eButton hovered = IWidget::eButton::NONE;
 	};
 }

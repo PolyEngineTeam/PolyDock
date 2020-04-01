@@ -9,6 +9,6 @@ namespace pd::ecs::cmp::tabbedWindowControl
 	class Component
 	{
 	public:
-		std::vector<entt::entity> tabs;
+		bool maximized = false;
 	};
 }
