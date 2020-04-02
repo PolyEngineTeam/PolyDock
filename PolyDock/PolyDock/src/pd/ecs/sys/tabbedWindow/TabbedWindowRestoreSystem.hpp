@@ -9,6 +9,7 @@ namespace pd::ecs::sys::tabbedWindow
 	// 1. TabbedWindowComponent
 	// 2. TabbedWindowWidgetComponent
 	// 3. TabbedWindowRestoreRequestComponent
+	// 4. tabbedWindowControl/Component
 	//
 	// Removed
 	// 1. TabbedWindowRestoreRequestComponent
