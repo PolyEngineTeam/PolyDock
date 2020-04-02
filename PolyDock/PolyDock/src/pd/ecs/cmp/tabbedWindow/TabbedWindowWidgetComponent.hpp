@@ -53,16 +53,6 @@ namespace pd::ecs::cmp::tabbedWindow
 	class TabbedWindowWidgetComponent
 	{
 	public:
-		TabbedWindowWidgetComponent(ITabbedWindowWidget* window) : m_window(window) {}
-
-		void setPos(Eigen::Vector2i pos) { m_window->setPos(pos); }
-		void setSize(Eigen::Vector2i size) { m_window->setSize(size); }
-
-		void setControlWidget(QWidget* widget) { m_window->setControlWidget(widget); }
-		void setTabsHeaderWidget(QWidget* widget) { m_window->setTabsHeaderWidget(widget); }
-		void setContentWidget(QWidget* widget) { m_window->setContentWidget(widget); }
-
-	private:
-		ITabbedWindowWidget* m_window;
+		ITabbedWindowWidget* window;
 	};
 }

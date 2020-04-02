@@ -38,6 +38,10 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWIdgetUpdateSystem.hpp>
 // tabbed window widget support
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowRestoreSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowMinimizeSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowMaximizeSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowCloseSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowRemovalSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCreationSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitializationSystem.hpp>
@@ -100,6 +104,10 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>());
 	// tabbed window widget support
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRestoreSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMinimizeSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMaximizeSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCloseSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRemovalSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCreationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetInitializationSystem>());

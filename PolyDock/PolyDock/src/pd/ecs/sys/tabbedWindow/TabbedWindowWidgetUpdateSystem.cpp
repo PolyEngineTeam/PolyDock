@@ -34,20 +34,20 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		auto& tabsHeaderWidget = view.get<TabsHeaderWidgetComponent>(entity);
 		auto& controlWidget = view.get<tabbedWindowControl::WidgetComponent>(entity);
 
-		widget.setPos(window.position);
-		widget.setSize(window.size);
-		widget.setTabsHeaderWidget(tabsHeaderWidget.getTabsHeaderWidget());
-		widget.setControlWidget(controlWidget.widget->getWidget());
+		widget.window->setPos(window.position);
+		widget.window->setSize(window.size);
+		widget.window->setTabsHeaderWidget(tabsHeaderWidget.getTabsHeaderWidget());
+		widget.window->setControlWidget(controlWidget.widget->getWidget());
 
 		if (auto* activeTabCmp = registry.try_get<ActiveTabComponent>(entity))
 		{
 			if (auto* tabContentCmp = registry.try_get<TabContentComponent>(activeTabCmp->activeTab))
-				widget.setContentWidget(tabContentCmp->contentWidget);
+				widget.window->setContentWidget(tabContentCmp->contentWidget);
 			else
-				widget.setContentWidget(nullptr);
+				widget.window->setContentWidget(nullptr);
 		}
 		else
-			widget.setContentWidget(nullptr);
+			widget.window->setContentWidget(nullptr);
 
 		registry.remove<DirtyTabbedWindowComponent>(entity);
 	}
