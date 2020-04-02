@@ -14,13 +14,14 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowControlPressSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<Component, HoverComponent>();
+	auto view = registry.view<Component>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			if (inputComponent->isPressed(InputComponent::eMouseButton::LEFT))
+			if (registry.has<HoverComponent>(entity)
+				&& inputComponent->isPressed(InputComponent::eMouseButton::LEFT))
 			{
 				registry.get_or_assign<PressComponent>(entity);
 				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
@@ -31,5 +32,5 @@ void TabbedWindowControlPressSystem::update(entt::registry& registry, entt::enti
 				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
 			}
 		}
-	} {}
+	}
 }

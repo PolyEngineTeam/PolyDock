@@ -8,14 +8,15 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// Required
 	// 1. root/InputComponent
 	// 2. tabbedWindowControl/Component
-	// Optional
-	// 1. tabbedWindowControl/HoverComponent
+	// 3. tabbedWindowControl/PressComponent
+	// 3. tabbedWindowControl/HoverComponent
 	//
-	// Removed/Added/Modified
-	// 1. tabbedWindowControl/PressComponent
 	// Added
-	// 1. tabbedWindowControl/WidgetUpdateRequestComponent
-	class TabbedWindowControlPressSystem : public SystemBase
+	// 1. tabbedWindow/TabbedWindowMinimizeRequestComponent
+	// 2. tabbedWindow/TabbedWindowRestoreRequestComponent
+	// 3. tabbedWindow/TabbedWindowMaximizeRequestComponent
+	// 4. tabbedWindow/TabbedWindowCloseRequestComponent
+	class TabbedWindowControlReleaseSystem : public SystemBase
 	{
 	public:
 		void update(entt::registry& registry, entt::entity root) const final;
