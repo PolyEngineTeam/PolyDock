@@ -23,8 +23,10 @@ void TabbedWindowRemovalSystem::update(entt::registry& registry, entt::entity ro
 		for (auto entity : view)
 		{
 			delete wiodgetsOwner->tabsHeaders.at(entity);
+			delete wiodgetsOwner->windowControls.at(entity);
 			delete wiodgetsOwner->windows.at(entity);
 			wiodgetsOwner->tabsHeaders.erase(entity);
+			wiodgetsOwner->windowControls.erase(entity);
 			wiodgetsOwner->windows.erase(entity);
 			registry.destroy(entity);
 		}
