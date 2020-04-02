@@ -29,8 +29,11 @@ void TabbedWindowControlHoverSystem::update(entt::registry& registry, entt::enti
 				registry.get_or_assign<HoverComponent>(entity).hovered = hovered;
 				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
 			}
-			else
-				registry.remove_if_exists<HoverComponent>(entity);
+			else if (registry.has<HoverComponent>(entity))
+			{
+				registry.remove<HoverComponent>(entity);
+				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
+			}
 		}
 	}{}
 }

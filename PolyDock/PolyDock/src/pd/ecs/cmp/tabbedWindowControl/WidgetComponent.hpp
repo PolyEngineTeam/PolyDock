@@ -114,13 +114,11 @@ namespace pd::ecs::cmp::tabbedWindowControl
 		{
 			eButton result = eButton::NONE;
 
-			const QPoint fromGlobal = QWidget::mapFromGlobal({ pos.x(), pos.y() });
-
-			if (m_minimize->rect().contains(fromGlobal))
+			if (m_minimize->rect().contains(m_minimize->mapFromGlobal({ pos.x(), pos.y() })))
 				return eButton::MINIMIZE;
-			else if (m_maximize->rect().contains(fromGlobal))
+			else if (m_maximize->rect().contains(m_maximize->mapFromGlobal({ pos.x(), pos.y() })))
 				return eButton::MAXIMIZE;
-			else if (m_close->rect().contains(fromGlobal))
+			else if (m_close->rect().contains(m_close->mapFromGlobal({ pos.x(), pos.y() })))
 				return eButton::CLOSE;
 			else
 				return eButton::NONE;
