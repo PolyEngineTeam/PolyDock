@@ -19,7 +19,7 @@ namespace pd::ecs::cmp::tabbedWindowControl
 
 		virtual ~IWidget() = default;
 
-		virtual void update(eButton pressed, eButton hovered, bool maximized) = 0;
+		virtual void update(eButton hovered, bool pressed, bool maximized) = 0;
 		virtual Eigen::AlignedBox2i getWidgetRect() const = 0;
 		virtual eButton getButtonFromPos(const Eigen::Vector2i& pos) const = 0;
 
@@ -58,7 +58,7 @@ namespace pd::ecs::cmp::tabbedWindowControl
 			QWidget::setPalette(pal);
 		}
 
-		void update(eButton pressed, eButton hovered, bool maximized) final
+		void update(eButton hovered, bool pressed, bool maximized) final
 		{
 			QPalette normal = QWidget::palette();
 			normal.setColor(QPalette::Background, QColor(30, 30, 30));
@@ -73,28 +73,37 @@ namespace pd::ecs::cmp::tabbedWindowControl
 
 
 			{ // eButton::MINIMIZE
-				if (pressed == eButton::MINIMIZE)
-					m_minimize->setPalette(press);
-				else if (hovered == eButton::MINIMIZE)
-					m_minimize->setPalette(hover);
+				if (hovered == eButton::MINIMIZE)
+				{
+					if (pressed)
+						m_minimize->setPalette(press);
+					else
+						m_minimize->setPalette(hover);
+				}
 				else
 					m_minimize->setPalette(normal);
 			}
 			{ // eButton::MAXIMIZE
 				QString part = maximized ? "restore" : "maximize";
 
-				if (pressed == eButton::MAXIMIZE)
-					m_maximize->setPalette(press);
-				else if (hovered == eButton::MAXIMIZE)
-					m_maximize->setPalette(hover);
+				if (hovered == eButton::MAXIMIZE)
+				{
+					if (pressed)
+						m_maximize->setPalette(press);
+					else
+						m_maximize->setPalette(hover);
+				}
 				else
 					m_maximize->setPalette(normal);
 			}
 			{ // eButton::CLOSE
-				if (pressed == eButton::CLOSE)
-					m_close->setPalette(closePress);
-				else if (hovered == eButton::CLOSE)
-					m_close->setPalette(closeHover);
+				if (hovered == eButton::CLOSE)
+				{
+					if (pressed)
+						m_close->setPalette(closePress);
+					else
+						m_close->setPalette(closeHover);
+				}
 				else
 					m_close->setPalette(normal);
 			}

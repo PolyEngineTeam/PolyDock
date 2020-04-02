@@ -8,6 +8,6 @@ namespace pd::ecs::cmp::tabbedWindowControl
 	class PressComponent
 	{
 	public:
-		IWidget::eButton pressed = IWidget::eButton::NONE;
+
 	};
 }

@@ -23,10 +23,9 @@ void TabbedWindowControlWidgetUpdateSystem::update(entt::registry& registry, ent
 		const auto* hoverCmp = registry.try_get<HoverComponent>(entity);
 		const IWidget::eButton hovered = hoverCmp ? hoverCmp->hovered : IWidget::eButton::NONE;
 
-		const auto* pressCmp = registry.try_get<PressComponent>(entity);
-		const IWidget::eButton pressed = pressCmp ? pressCmp->pressed : IWidget::eButton::NONE;
+		const bool pressed = registry.has<PressComponent>(entity);
 
-		widgetCmp.widget->update(pressed, hovered, cmp.maximized);
+		widgetCmp.widget->update(hovered, pressed, cmp.maximized);
 
 		registry.remove<WidgetUpdateRequestComponent>(entity);
 	}

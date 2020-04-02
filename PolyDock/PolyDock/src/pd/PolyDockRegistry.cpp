@@ -12,6 +12,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderHoverSystem.hpp>
 // tabbed window control no mode
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlPressSystem.hpp>
 // tabbed window movement
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementStartSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementDetectionSystem.hpp>
@@ -72,6 +73,7 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderHoverSystem>());
 	// tabbed window control no mode
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlPressSystem>());
 	// tabbed window movement
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementStartSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementDetectionSystem>());
