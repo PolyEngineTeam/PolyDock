@@ -207,6 +207,6 @@ int DefaultTabsHeaderWidget::getTabWidth() const
 // ---------------------------------------------------------------------------------------------------------
 int DefaultTabsHeaderWidget::getAlternativeTabWidth() const
 {
-	const int newAllTabsWidth = QWidget::width() - (static_cast<int>(m_names.size() + 1) * m_separatorWidth);
+	const int newAllTabsWidth = QWidget::width() - (static_cast<int>(m_names.size() + 5) * m_separatorWidth);
 	return newAllTabsWidth / static_cast<int>(m_names.size());
 }
