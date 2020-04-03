@@ -6,7 +6,7 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
 	// 1. InputComponent
-	// 2. TabbedWindowWidgetComponent
+	// 2. TabbedWindowResizeHoverComponent
 	// 
 	// Added
 	// 1. TabbedWindowResizeActiveComponent

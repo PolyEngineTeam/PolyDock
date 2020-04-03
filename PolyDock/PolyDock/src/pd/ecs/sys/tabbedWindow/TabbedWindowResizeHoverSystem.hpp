@@ -6,12 +6,12 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
 	// 1. InputComponent
-	// 2. TabbedWindowResizeActiveComponent
+	// 2. TabbedWindowWidgetComponent
 	// 
-	// Removed
-	// 1. TabbedWindowResizeActiveComponent
+	// Added
+	// 1. TabbedWindowResizeHoverComponent
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowResizeEndSystem : public SystemBase
+	class TabbedWindowResizeHoverSystem : public SystemBase
 	{
 	public:
 		void update(entt::registry& registry, entt::entity root) const final;
