@@ -54,8 +54,6 @@ void TabbedWindowResizeDetectionSystem::update(entt::registry& registry, entt::e
 					movementRequestCmp.newWindowPos.x() = windowCmp.position.x() + diff.x();
 					resizeRequestCmp.newWindowSize.x() = windowCmp.size.x() - diff.x();
 				}
-
-				std::cout << resizeRequestCmp.newWindowSize << std::endl;
 			}
 		}
 	}

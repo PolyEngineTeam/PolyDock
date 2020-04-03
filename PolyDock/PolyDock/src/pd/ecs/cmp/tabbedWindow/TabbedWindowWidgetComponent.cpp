@@ -31,6 +31,10 @@ DefaultTabbedWindowWidget::DefaultTabbedWindowWidget()
 	QWidget::setLayout(m_mainLayout);
 	QWidget::setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QWidget::setContentsMargins(5, 5, 5, 5);
+	QPalette pal = QWidget::palette();
+	pal.setColor(QPalette::Background, QColor(30, 30, 30));
+	QWidget::setAutoFillBackground(true);
+	QWidget::setPalette(pal);
 	QWidget::show();
 }
 
