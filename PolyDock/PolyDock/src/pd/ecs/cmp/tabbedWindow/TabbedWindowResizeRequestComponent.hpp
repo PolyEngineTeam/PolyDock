@@ -5,9 +5,9 @@
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowMovementRequestComponent
+	class TabbedWindowResizeRequestComponent
 	{
 	public:
-		Eigen::Vector2i newWindowPos;
+		Eigen::Vector2i newWindowSize;
 	};
 }

@@ -30,7 +30,7 @@ DefaultTabbedWindowWidget::DefaultTabbedWindowWidget()
 
 	QWidget::setLayout(m_mainLayout);
 	QWidget::setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-	QWidget::setContentsMargins(0, 0, 0, 0);
+	QWidget::setContentsMargins(5, 5, 5, 5);
 	QWidget::show();
 }
 
