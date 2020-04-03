@@ -5,18 +5,26 @@
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;
+using namespace ::pd::ecs::cmp::tabbedWindowControl;
+using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp::root;
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowMovementActiveComponent, TabbedWindowComponent>();
+	auto view = registry.view<
+		TabbedWindowMovementActiveComponent, 
+		TabbedWindowComponent, 
+		Component>();
 
 	if (auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -24,10 +32,20 @@ void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt:
 		{
 			for (auto entity : view)
 			{
-				auto& window = view.get<TabbedWindowComponent>(entity);
+				const auto& window = view.get<TabbedWindowComponent>(entity);
+				const auto controlCmp = view.get<Component>(entity);
 
-				registry.assign<TabbedWindowMovementRequestComponent>(
-					entity, window.position + inputComponent->getCursorDiff());
+				if (controlCmp.maximized)
+				{
+					registry.get_or_assign<TabbedWindowRestoreRequestComponent>(entity);
+					registry.assign<TabbedWindowMovementRequestComponent>(
+						entity, inputComponent->getCursorPos() - Vector2i{window.size.x() / 2, 20} );
+				}
+				else
+				{
+					registry.assign<TabbedWindowMovementRequestComponent>(
+						entity, window.position + inputComponent->getCursorDiff());
+				}
 			}
 		}
 	}
