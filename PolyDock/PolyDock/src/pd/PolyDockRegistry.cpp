@@ -15,6 +15,12 @@
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlPressSystem.hpp>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
+// tabbed window resize
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeHoverSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeStartSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeDetectionSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeEndSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeSystem.hpp>
 // tabbed window movement
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementStartSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementDetectionSystem.hpp>
@@ -81,6 +87,12 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlReleaseSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlPressSystem>());
+	// tabbed window resize
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeStartSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeDetectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeEndSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeSystem>());
 	// tabbed window movement
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementStartSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementDetectionSystem>());
