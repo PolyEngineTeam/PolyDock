@@ -38,12 +38,12 @@ void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt:
 				if (controlCmp.maximized)
 				{
 					registry.get_or_assign<TabbedWindowRestoreRequestComponent>(entity);
-					registry.assign<TabbedWindowMovementRequestComponent>(
+					registry.get_or_assign<TabbedWindowMovementRequestComponent>(
 						entity, inputComponent->getCursorPos() - Vector2i{window.size.x() / 2, 20} );
 				}
 				else
 				{
-					registry.assign<TabbedWindowMovementRequestComponent>(
+					registry.get_or_assign<TabbedWindowMovementRequestComponent>(
 						entity, window.position + inputComponent->getCursorDiff());
 				}
 			}

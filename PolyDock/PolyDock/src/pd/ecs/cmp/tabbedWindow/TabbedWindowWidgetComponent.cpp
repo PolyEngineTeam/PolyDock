@@ -31,6 +31,10 @@ DefaultTabbedWindowWidget::DefaultTabbedWindowWidget()
 	QWidget::setLayout(m_mainLayout);
 	QWidget::setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QWidget::setContentsMargins(5, 5, 5, 5);
+	QPalette pal = QWidget::palette();
+	pal.setColor(QPalette::Background, QColor(30, 30, 30));
+	QWidget::setAutoFillBackground(true);
+	QWidget::setPalette(pal);
 	QWidget::show();
 }
 
@@ -44,6 +48,24 @@ DefaultTabbedWindowWidget::~DefaultTabbedWindowWidget()
 		delete m_mainLayout;
 	if (m_placeholderContentWidget)
 		delete m_placeholderContentWidget;
+}
+
+// ---------------------------------------------------------------------------------------------------------
+void DefaultTabbedWindowWidget::setPos(Eigen::Vector2i pos)
+{
+	if (QWidget::isMaximized() || QWidget::isMinimized())
+		QWidget::showNormal();
+	
+	QWidget::move(pos.x(), pos.y()); 
+}
+
+// ---------------------------------------------------------------------------------------------------------
+void DefaultTabbedWindowWidget::setSize(Eigen::Vector2i size)
+{
+	if (QWidget::isMaximized() || QWidget::isMinimized())
+		QWidget::showNormal();
+
+	QWidget::resize(size.x(), size.y()); 
 }
 
 // ---------------------------------------------------------------------------------------------------------
