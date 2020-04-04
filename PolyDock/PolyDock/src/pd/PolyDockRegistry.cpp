@@ -6,6 +6,7 @@
 
 // input
 #include <pd/ecs/sys/root/InputSystem.hpp>
+#include <pd/ecs/sys/root/DesktopSystem.hpp>
 // tabs header - no mode
 #include <pd/ecs/sys/tabsHeader/TabsSelectionSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsActivationSystem.hpp>
@@ -15,7 +16,13 @@
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlPressSystem.hpp>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
+// tabbed window focus
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowFocusSystem.hpp>
 // tabbed window resize
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowRestoreSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowMinimizeSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowMaximizeSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeHoverSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeStartSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeDetectionSystem.hpp>
@@ -44,9 +51,6 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWIdgetUpdateSystem.hpp>
 // tabbed window widget support
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowRestoreSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMinimizeSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMaximizeSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCloseSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowRemovalSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCreationSystem.hpp>
@@ -57,6 +61,7 @@
 
 // root components
 #include <pd/ecs/cmp/root/RootComponent.hpp>
+#include <pd/ecs/cmp/root/DesktopComponent.hpp>
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
 // window creation
@@ -74,11 +79,13 @@ PolyDockRegistry::PolyDockRegistry()
 
 	m_root = m_registry.create();
 	m_registry.assign<ecs::cmp::root::RootComponent>(m_root);
+	m_registry.assign<ecs::cmp::root::DesktopComponent>(m_root);
 	m_registry.assign<ecs::cmp::root::InputComponent>(m_root);
 	m_registry.assign<ecs::cmp::root::WidgetsOwnerComponent>(m_root);
 
 	// input
 	m_systems.push_back(std::make_unique<ecs::sys::root::InputSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::root::DesktopSystem>());
 	// tabs header - no mode
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsSelectionSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsActivationSystem>());
@@ -87,7 +94,13 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlReleaseSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlPressSystem>());
+	// tabbed window focus
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowFocusSystem>());
 	// tabbed window resize
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowSnapSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRestoreSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMinimizeSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMaximizeSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeStartSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeDetectionSystem>());
@@ -116,9 +129,6 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>());
 	// tabbed window widget support
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRestoreSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMinimizeSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMaximizeSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCloseSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRemovalSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCreationSystem>());

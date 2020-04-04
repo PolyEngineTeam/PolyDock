@@ -23,6 +23,7 @@ void TabbedWindowMovementSystem::update(entt::registry& registry, entt::entity r
 		auto& window = view.get<TabbedWindowComponent>(entity);
 
 		window.position = request.newWindowPos;
+
 		registry.remove<TabbedWindowMovementRequestComponent>(entity);
 		registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
 	}

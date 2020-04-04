@@ -29,8 +29,8 @@ namespace pd::ecs::cmp::tabbedWindow
 		DefaultTabbedWindowWidget();
 		~DefaultTabbedWindowWidget();
 
-		void setPos(Eigen::Vector2i pos) override { QWidget::move(pos.x(), pos.y()); }
-		void setSize(Eigen::Vector2i size) override { QWidget::resize(size.x(), size.y()); }
+		void setPos(Eigen::Vector2i pos) override;
+		void setSize(Eigen::Vector2i size) override;
 
 		void setTabsHeaderWidget(QWidget* widget) override;
 		void setControlWidget(QWidget* widget) override;

@@ -4,6 +4,7 @@
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qlineedit.h>
+#include <qcalendarwidget.h>
 
 #include <pd/PolyDockRegistry.hpp>
 
@@ -29,7 +30,7 @@ int main(int argc, char* argv[])
 	tab1.setName("tab1");
 	tab1.setTabContent(new QPushButton("tab1"));
 	tab2.setName("tab2");
-	tab2.setTabContent(new QLabel("tab2"));
+	tab2.setTabContent(new QCalendarWidget());
 	tab3.setName("tab3");
 	tab3.setTabContent(new QLineEdit("tab3"));
 
