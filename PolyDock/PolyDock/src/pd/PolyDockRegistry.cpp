@@ -49,7 +49,7 @@
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetUpdateSystem.hpp>
 // tabs header widget support
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderWIdgetUpdateSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetUpdateSystem.hpp>
 // tabbed window widget support
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCloseSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowRemovalSystem.hpp>
@@ -72,10 +72,15 @@
 using namespace ::Eigen;
 using namespace ::pd;
 
+static void registerQtResources()
+{
+	Q_INIT_RESOURCE(Resource);
+}
+
 // ---------------------------------------------------------------------------------------------------------
 PolyDockRegistry::PolyDockRegistry()
 {
-	Q_INIT_RESOURCE(Resource);
+	registerQtResources();
 
 	m_root = m_registry.create();
 	m_registry.assign<ecs::cmp::root::RootComponent>(m_root);
