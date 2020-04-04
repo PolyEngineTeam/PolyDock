@@ -7,7 +7,6 @@
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::pd::ecs::cmp::root;
-using namespace ::Eigen;
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowResizeEndSystem::update(entt::registry& registry, entt::entity root) const

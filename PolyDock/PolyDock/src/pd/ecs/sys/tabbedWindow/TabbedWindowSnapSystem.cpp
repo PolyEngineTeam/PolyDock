@@ -110,8 +110,8 @@ void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root)
 			}
 
 			if (requestCmp.position == ePosition::MAXIMIZE
-				|| requestCmp.position != ePosition::RESTORE
-				|| requestCmp.position != ePosition::MINIMIZE)
+				|| requestCmp.position == ePosition::RESTORE
+				|| requestCmp.position == ePosition::MINIMIZE)
 			{
 				registry.remove<TabbedWindowResizeRequestComponent>(entity);
 				registry.remove<TabbedWindowMovementRequestComponent>(entity);

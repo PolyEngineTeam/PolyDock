@@ -51,6 +51,24 @@ DefaultTabbedWindowWidget::~DefaultTabbedWindowWidget()
 }
 
 // ---------------------------------------------------------------------------------------------------------
+void DefaultTabbedWindowWidget::setPos(Eigen::Vector2i pos)
+{
+	if (QWidget::isMaximized() || QWidget::isMinimized())
+		QWidget::showNormal();
+	
+	QWidget::move(pos.x(), pos.y()); 
+}
+
+// ---------------------------------------------------------------------------------------------------------
+void DefaultTabbedWindowWidget::setSize(Eigen::Vector2i size)
+{
+	if (QWidget::isMaximized() || QWidget::isMinimized())
+		QWidget::showNormal();
+
+	QWidget::resize(size.x(), size.y()); 
+}
+
+// ---------------------------------------------------------------------------------------------------------
 void DefaultTabbedWindowWidget::setTabsHeaderWidget(QWidget* widget)
 {
 	if (m_tabsHeaderWidget != widget)
