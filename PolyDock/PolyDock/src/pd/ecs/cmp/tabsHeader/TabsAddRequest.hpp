@@ -3,7 +3,7 @@
 namespace pd::ecs::cmp::tabsHeader
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class HoveredTabComponent
+	class TabsAddRequest
 	{
 	};
 }
