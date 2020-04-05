@@ -216,10 +216,10 @@ AlignedBox2i DefaultTabsHeaderWidget::getSeparatorRectAtIdx(int idx) const
 AlignedBox2i DefaultTabsHeaderWidget::getAddButtonRect() const
 {
 	const AlignedBox2i lastTab = getTabRectAtIdx(m_names.size() > 0 ? m_names.size() - 1 : 0);
-	const int left = lastTab.sizes().x() + m_separatorWidth;
+	const int left = lastTab.min().x() + lastTab.sizes().x() + m_separatorWidth;
 	return AlignedBox2i(
 		Vector2i{ left, 0 },
-		Vector2i{ left + m_interactiveBoxWidth, QWidget::heigth() });
+		Vector2i{ left + m_interactiveBoxWidth, QWidget::height() });
 }
 
 // ---------------------------------------------------------------------------------------------------------

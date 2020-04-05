@@ -26,7 +26,7 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)
 			{
-				auto& hovered = view.get<HoveredTabComponent>(entity);
+				auto hovered = view.get<HoveredTabComponent>(entity);
 
 				registry.get_or_assign<ActiveTabComponent>(entity).activeTab = hovered.hoveredTab;
 				registry.get_or_assign<DirtyTabsHeaderComponent>(entity);

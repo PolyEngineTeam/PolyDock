@@ -21,7 +21,7 @@ void TabsHeaderAddButtonPressSystem::update(entt::registry& registry, entt::enti
 	{
         for (auto entity : view)
         {
-            if (inputComponent->isPressed(eMouseButton::LEFT))
+            if (inputComponent->isPressed(InputComponent::eMouseButton::LEFT))
             {
                 registry.get_or_assign<TabsAddRequest>(entity);
                 registry.remove<HoveredAddButton>(entity);
