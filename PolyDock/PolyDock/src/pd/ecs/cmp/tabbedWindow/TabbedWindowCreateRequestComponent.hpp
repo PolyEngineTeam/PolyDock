@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <optional>
 #include <entt/entt.hpp>
 #include <Eigen/Dense>
 
