@@ -116,6 +116,7 @@ void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 	QPainter painter;
 	painter.begin(this);
 	painter.setFont(QFont("Arial", 9));
+	painter.setPen(Qt::white);
 
 	// clear with dark gray
 	painter.fillRect(QRect{ 0, 0, QWidget::width(), QWidget::height() }, m_filColor);

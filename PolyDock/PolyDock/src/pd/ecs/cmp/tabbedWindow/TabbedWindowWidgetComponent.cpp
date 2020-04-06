@@ -11,7 +11,8 @@ namespace
 {
 	constexpr int TABS_HEADER_IDX = 0;
 	constexpr int CONTROL_WIDGET_IDX = 0;
-	constexpr int CONTENT_IDX = 1;
+	constexpr int SEPARATOR_IDX = 1;
+	constexpr int CONTENT_IDX = 2;
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -27,6 +28,14 @@ DefaultTabbedWindowWidget::DefaultTabbedWindowWidget()
 	m_placeholderContentWidget = new QWidget();
 	m_contentWidget = m_placeholderContentWidget;
 	m_mainLayout->addWidget(m_placeholderContentWidget, CONTENT_IDX, 0, 1, 2);
+
+	QWidget* separator = new QWidget();
+	QPalette separatorPal = QWidget::palette();
+	separatorPal.setColor(QPalette::Background, QColor(45, 45, 45));
+	separator->setAutoFillBackground(true);
+	separator->setPalette(separatorPal);
+	separator->setFixedHeight(8);
+	m_mainLayout->addWidget(separator, SEPARATOR_IDX, 0, 1, 2);
 
 	QWidget::setLayout(m_mainLayout);
 	QWidget::setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
