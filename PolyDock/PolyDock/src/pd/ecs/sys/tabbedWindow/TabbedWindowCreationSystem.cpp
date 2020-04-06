@@ -31,7 +31,7 @@ void TabbedWindowCreationSystem::update(entt::registry& registry, entt::entity r
 			registry.assign<ActiveTabComponent>(entity, request.activeTab.value());
 
 		if (request.windowMovementState == TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE)
-			registry.assign<TabbedWindowMovementActiveComponent>(entity);
+			registry.assign<TabbedWindowMovementActiveComponent>(entity, request.cursorInTabSpacePosition);
 
 		registry.remove<TabbedWindowCreateRequestComponent>(entity);
 	}
