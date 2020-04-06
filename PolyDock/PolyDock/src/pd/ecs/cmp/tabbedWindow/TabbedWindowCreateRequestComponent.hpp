@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <optional>
 #include <entt/entt.hpp>
 #include <Eigen/Dense>
 
@@ -22,5 +23,6 @@ namespace pd::ecs::cmp::tabbedWindow
 		Eigen::Vector2i position;
 		Eigen::Vector2i size;
 		eWindowMovementState windowMovementState = eWindowMovementState::INACTIVE;
+		Eigen::Vector2i cursorInTabSpacePosition = { 0, 0 };
 	};
 }
