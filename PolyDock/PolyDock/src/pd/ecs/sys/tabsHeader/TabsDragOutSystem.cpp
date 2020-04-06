@@ -47,7 +47,8 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 
 			auto newWindow = registry.create();
 			registry.assign<TabbedWindowCreateRequestComponent>(newWindow, selected.selectedTabs, std::move(selected.selectedTabs),
-				active.activeTab, windowPos, Vector2i{ 500, 500 }, TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE);
+				active.activeTab, windowPos, Vector2i{ 500, 500 }, TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE,
+				tabsMovement.cursorInTabSpacePosition);
 
 			active.activeTab = header.tabs.at(std::min(activeTabIdx, header.tabs.size() - 1));
 			selected.selectedTabs = { active.activeTab };

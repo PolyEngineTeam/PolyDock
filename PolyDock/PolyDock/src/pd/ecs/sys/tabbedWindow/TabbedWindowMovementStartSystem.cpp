@@ -39,7 +39,13 @@ void TabbedWindowMovementStartSystem::update(entt::registry& registry, entt::ent
 					if (!registry.has<HoveredTabComponent>(entity) 
 						|| selected.selectedTabs.size() == header.tabs.size())
 					{
-						registry.assign<TabbedWindowMovementActiveComponent>(entity);
+						auto& newCmp = registry.assign<TabbedWindowMovementActiveComponent>(entity);
+
+						if (selected.selectedTabs.size() == header.tabs.size())
+						{
+							newCmp.cursorInTabSpacePosition = 
+								widget.getCursorPosInTabSpace(inputComponent->getCursorPos());
+						}
 					}
 				}
 			}

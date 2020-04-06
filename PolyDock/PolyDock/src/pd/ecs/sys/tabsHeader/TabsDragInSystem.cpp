@@ -9,6 +9,7 @@
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsMovementActiveComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowRemoveRequestComponent.hpp>
 
@@ -41,6 +42,8 @@ void TabsDragInSystem::update(entt::registry& registry, entt::entity root) const
 				srcHeader.tabs.begin(), srcHeader.tabs.end());
 			dstSelectedTabs = srcSelectedTabs;
 			dstActiveTab = srcActiveTab;
+
+			registry.assign<TabsMovementActiveComponent>(entity, request.cursorInTabSpacePosition);
 
 			registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
 			registry.assign<TabbedWindowRemoveRequestComponent>(request.source);
