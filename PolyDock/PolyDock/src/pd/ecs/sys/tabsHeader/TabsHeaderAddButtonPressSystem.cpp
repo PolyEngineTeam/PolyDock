@@ -15,13 +15,17 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsHeaderAddButtonPressSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabsHeaderWidgetComponent>();
+	auto view = registry.view<TabsHeaderWidgetComponent, 
+                              HoveredAddButton>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
         for (auto entity : view)
         {
-            if (inputComponent->isPressed(InputComponent::eMouseButton::LEFT))
+            const auto& widget = view.get<TabsHeaderWidgetComponent>(entity);
+
+            if (inputComponent->wasJustReleased(InputComponent::eMouseButton::LEFT) 
+                && widget.hoversAddButton(inputComponent->getCursorPos()))
             {
                 registry.get_or_assign<TabsAddRequest>(entity);
                 registry.remove<HoveredAddButton>(entity);

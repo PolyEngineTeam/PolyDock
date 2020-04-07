@@ -22,7 +22,8 @@ using namespace ::pd::ecs::cmp::tab;
 // ---------------------------------------------------------------------------------------------------------
 void TabsCreationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabsHeaderWidgetComponent>();
+	auto view = registry.view<TabsHeaderWidgetComponent,
+                              TabsAddRequest>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root)) // is this needed?
     {

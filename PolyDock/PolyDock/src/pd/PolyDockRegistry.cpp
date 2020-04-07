@@ -56,6 +56,10 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCreationSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
+// tab adding support
+#include <pd/ecs/sys/tabsHeader/TabsCreationSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderAddButtonHoverSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderAddButtonPressSystem.hpp>
 
 // dock widget support
 
@@ -139,6 +143,10 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCreationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetUpdateSystem>());
+	// tab adding
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonPressSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsCreationSystem>());
 
 	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); });
 
