@@ -30,6 +30,7 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 		{
 			for (auto destination : dstView)
 			{
+				const auto& movementCmp = srcView.get<TabbedWindowMovementActiveComponent>(source);
 				const auto& dstWidget = dstView.get<TabsHeaderWidgetComponent>(destination);
 				const auto& dstHeader = dstView.get<TabsHeaderComponent>(destination);
 				int dstPos = dstWidget.getTabIdxFromPosition(inputComponent->getCursorPos());
@@ -38,7 +39,10 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 					dstPos = static_cast<int>(dstHeader.tabs.size());
 
 				if (dstPos != -1 && dstWidget.getWidgetRect().contains(inputComponent->getCursorPos()))
-					registry.assign<TabsDragInRequestComponent>(destination, source, dstPos);
+				{
+					registry.assign<TabsDragInRequestComponent>(destination, source, dstPos,
+						movementCmp.cursorInTabSpacePosition);
+				}
 			}
 		}
 	}

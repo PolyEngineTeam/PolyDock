@@ -8,6 +8,6 @@ namespace pd::ecs::cmp::tabsHeader
 	class TabsMovementActiveComponent
 	{
 	public:
-		Eigen::Vector2i cursorInTabSpacePosition;
+		Eigen::Vector2i cursorInTabSpacePosition = { 0, 0 };
 	};
 }

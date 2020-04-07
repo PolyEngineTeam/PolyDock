@@ -10,5 +10,6 @@ namespace pd::ecs::cmp::tabsHeader
 	public:
 		entt::entity source;
 		int destinationIndex = 0;
+		Eigen::Vector2i cursorInTabSpacePosition = { 0, 0 };
 	};
 }
