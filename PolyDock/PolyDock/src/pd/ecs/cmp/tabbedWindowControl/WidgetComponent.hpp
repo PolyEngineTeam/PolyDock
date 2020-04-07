@@ -53,7 +53,7 @@ namespace pd::ecs::cmp::tabbedWindowControl
 			QWidget::setFixedSize(145, 20);
 
 			QPalette pal = QWidget::palette();
-			pal.setColor(QPalette::Background, QColor(30, 30, 30));
+			pal.setColor(QPalette::Window, QColor(30, 30, 30));
 			QWidget::setAutoFillBackground(true);
 			QWidget::setPalette(pal);
 		}
@@ -61,15 +61,15 @@ namespace pd::ecs::cmp::tabbedWindowControl
 		void update(eButton hovered, bool pressed, bool maximized) final
 		{
 			QPalette normal = QWidget::palette();
-			normal.setColor(QPalette::Background, QColor(30, 30, 30));
+			normal.setColor(QPalette::Window, QColor(30, 30, 30));
 			QPalette hover = QWidget::palette();
-			hover.setColor(QPalette::Background, QColor(60, 60, 60));
+			hover.setColor(QPalette::Window, QColor(60, 60, 60));
 			QPalette press = QWidget::palette();
-			press.setColor(QPalette::Background, QColor(90, 90, 90));
+			press.setColor(QPalette::Window, QColor(90, 90, 90));
 			QPalette closeHover = QWidget::palette();
-			closeHover.setColor(QPalette::Background, QColor(232, 17, 35));
+			closeHover.setColor(QPalette::Window, QColor(232, 17, 35));
 			QPalette closePress = QWidget::palette();
-			closePress.setColor(QPalette::Background, QColor(140, 12, 22));
+			closePress.setColor(QPalette::Window, QColor(140, 12, 22));
 
 
 			{ // eButton::MINIMIZE
