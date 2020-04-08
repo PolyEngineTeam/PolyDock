@@ -34,7 +34,7 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		int activeTab = -1;
 
 		// gather tabs names and icons
-		for (const entt::entity& ent : tabsHeader.tabs)
+		for (const entt::entity& ent : tabsHeader.tabs())
 		{
 			auto& tab = registry.get<cmp::tab::TabComponent>(ent);
 			tabsNames.push_back(tab.name);
@@ -46,23 +46,23 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		{
 			for (const entt::entity& tab : cmp->selectedTabs)
 			{
-				auto it = std::find(tabsHeader.tabs.begin(), tabsHeader.tabs.end(), tab);
-				selectedTabs.push_back(std::distance(tabsHeader.tabs.begin(), it));
+				auto it = std::find(tabsHeader.tabs().begin(), tabsHeader.tabs().end(), tab);
+				selectedTabs.push_back(std::distance(tabsHeader.tabs().begin(), it));
 			}
 		}
 
 		// set hovered tab if any
 		if (auto* cmp = registry.try_get<HoveredTabComponent>(entity))
 		{
-			auto it = std::find(tabsHeader.tabs.begin(), tabsHeader.tabs.end(), cmp->hoveredTab);
-			hoveredTab = std::distance(tabsHeader.tabs.begin(), it);
+			auto it = std::find(tabsHeader.tabs().begin(), tabsHeader.tabs().end(), cmp->hoveredTab);
+			hoveredTab = std::distance(tabsHeader.tabs().begin(), it);
 		}
 
 		// set active tab if any
 		if (auto* cmp = registry.try_get<ActiveTabComponent>(entity))
 		{
-			auto it = std::find(tabsHeader.tabs.begin(), tabsHeader.tabs.end(), cmp->activeTab);
-			activeTab = std::distance(tabsHeader.tabs.begin(), it);
+			auto it = std::find(tabsHeader.tabs().begin(), tabsHeader.tabs().end(), cmp->activeTab);
+			activeTab = std::distance(tabsHeader.tabs().begin(), it);
 		}
 
 		// update widget
