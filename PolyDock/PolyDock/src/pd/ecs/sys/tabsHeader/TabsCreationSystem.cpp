@@ -30,14 +30,14 @@ void TabsCreationSystem::update(entt::registry& registry, entt::entity root) con
     for (auto entity : view)
     {
         auto& requestCmp = registry.get<TabsAddRequest>(entity);
-        auto& newTabEntity = requestCmp.owner;
+        auto newTabEntity = requestCmp.owner;
 
         registry.get_or_assign<TabComponent>(newTabEntity);
         registry.get_or_assign<DirtyTabComponent>(newTabEntity);
         registry.get_or_assign<DirtyTabContentComponent>(newTabEntity);
 
         auto& tabsHeader = registry.get<TabsHeaderComponent>(entity);
-        tabsHeader.appendTab(std::move(newTabEntity));
+        tabsHeader.appendTab(newTabEntity);
         registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
         registry.get_or_assign<ActiveTabComponent>(entity).activeTab = newTabEntity;
         registry.get_or_assign<SelectedTabsComponent>(entity).selectedTabs = { newTabEntity };

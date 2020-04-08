@@ -17,7 +17,7 @@ namespace pd
 			virtual bool onTabAdded() = 0;
 		};
 
-		TabsHeaderHandle(entt::registry& reg, entt::entity ent) : m_registry(reg), m_entity(std::move(ent)) {}
+		TabsHeaderHandle(entt::registry& reg, entt::entity ent) : m_registry(reg), m_entity(ent) {}
 
 		void registerObserver(IObserver* observer) { }
 		void unregisterObserver(IObserver* observer);

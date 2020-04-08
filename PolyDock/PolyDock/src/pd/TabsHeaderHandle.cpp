@@ -20,6 +20,6 @@ WindowTabHandle TabsHeaderHandle::addTab()
 	Expects(valid());
 
 	auto& requestCmp = m_registry.get_or_assign<TabsAddRequest>(m_entity, m_registry.create());
-	auto& tabEntity = requestCmp.owner;
-	return WindowTabHandle(m_registry,tabEntity);
+	auto tabEntity = requestCmp.owner;
+	return WindowTabHandle(m_registry, tabEntity);
 }
