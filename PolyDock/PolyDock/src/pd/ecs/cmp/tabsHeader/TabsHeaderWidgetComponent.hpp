@@ -22,6 +22,7 @@ namespace pd::ecs::cmp::tabsHeader
 
 		virtual int getTabIdxFromPosition(const Eigen::Vector2i& pos) const = 0;
 		virtual bool isPositionOnTheRightOfLastTab(const Eigen::Vector2i& pos) const = 0;
+		virtual bool hoversAddButton(const Eigen::Vector2i& pos) const = 0;
 		virtual Eigen::AlignedBox2i getWidgetRect() const = 0;
 		virtual Eigen::Vector2i getCursorPosInTabSpace(const Eigen::Vector2i& pos) const = 0;
 
@@ -37,6 +38,7 @@ namespace pd::ecs::cmp::tabsHeader
 
 		int getTabIdxFromPosition(const Eigen::Vector2i& pos) const override;
 		bool isPositionOnTheRightOfLastTab(const Eigen::Vector2i& pos) const override;
+		bool hoversAddButton(const Eigen::Vector2i& pos) const override;
 		Eigen::AlignedBox2i getWidgetRect() const override;
 		Eigen::Vector2i getCursorPosInTabSpace(const Eigen::Vector2i& pos) const override;
 
@@ -49,6 +51,7 @@ namespace pd::ecs::cmp::tabsHeader
 		Eigen::AlignedBox2i getTabRectAtIdx(int idx) const;
 		Eigen::AlignedBox2i getTextRectAtIdx(int idx) const;
 		Eigen::AlignedBox2i getSeparatorRectAtIdx(int idx) const;
+		Eigen::AlignedBox2i getAddButtonRect() const;
 		int getTabWidth() const;
 		int getAlternativeTabWidth() const;
 
@@ -60,10 +63,12 @@ namespace pd::ecs::cmp::tabsHeader
 
 		int m_maxTabWidth = 150;
 		int m_separatorWidth = 4;
+		int m_interactiveBoxWidth = 20;
 		QLinearGradient m_activeTabGradient;
 		QLinearGradient m_hoveredTabGradient;
 		QLinearGradient m_inactiveTabGradient;
 		QLinearGradient m_separatorGradient;
+		QLinearGradient m_tempGradient; //temp toremove
 		QColor m_filColor;
 	};
 
@@ -78,6 +83,7 @@ namespace pd::ecs::cmp::tabsHeader
 
 		int getTabIdxFromPosition(const Eigen::Vector2i& pos) const { return m_header->getTabIdxFromPosition(pos); }
 		int isPositionOnTheRightOfLastTab(const Eigen::Vector2i& pos) const { return m_header->isPositionOnTheRightOfLastTab(pos); }
+		bool hoversAddButton(const Eigen::Vector2i& pos) const { return m_header->hoversAddButton(pos); }
 		Eigen::AlignedBox2i getWidgetRect() const { return m_header->getWidgetRect(); }
 		Eigen::Vector2i getCursorPosInTabSpace(const Eigen::Vector2i& pos) const { return m_header->getCursorPosInTabSpace(pos); }
 

@@ -12,7 +12,7 @@ namespace pd
 	class WindowTabHandle
 	{
 	public:
-		WindowTabHandle(entt::registry& reg, entt::entity ent) : m_registry(reg), m_entity(std::move(ent)) {}
+		WindowTabHandle(entt::registry& reg, entt::entity ent) : m_registry(reg), m_entity(ent) {}
 
 		bool valid() const { return m_registry.valid(m_entity); }
 

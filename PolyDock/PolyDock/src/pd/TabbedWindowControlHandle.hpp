@@ -19,7 +19,7 @@ namespace pd
 		};
 
 		TabbedWindowControlHandle(entt::registry& reg, entt::entity ent) 
-			: m_registry(reg), m_entity(std::move(ent)) {}
+			: m_registry(reg), m_entity(ent) {}
 
 		void registerObserver(Observer* observer);
 		void unregisterObserver(Observer* observer);

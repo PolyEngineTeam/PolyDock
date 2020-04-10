@@ -10,6 +10,7 @@ public:
 		std::vector<int>, int, int), (override));
 	MOCK_METHOD(int, getTabIdxFromPosition, (const Eigen::Vector2i&), (const, override));
 	MOCK_METHOD(bool, isPositionOnTheRightOfLastTab, (const Eigen::Vector2i& pos), (const, override));
+	MOCK_METHOD(bool, hoversAddButton, (const Eigen::Vector2i& pos), (const override));
 	MOCK_METHOD(Eigen::AlignedBox2i, getWidgetRect, (), (const, override));
 	MOCK_METHOD(Eigen::Vector2i, getCursorPosInTabSpace, (const Eigen::Vector2i&), (const, override));
 	MOCK_METHOD(QWidget*, getWidget, (), (override));

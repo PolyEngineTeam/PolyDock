@@ -53,8 +53,7 @@ public:
 	// ---------------------------------------------------------------------------------------------------------
 	void setupHoveredTab()
 	{
-		auto& headerCmp = reg.assign<TabsHeaderComponent>(header);
-		headerCmp.tabs.push_back(tab0);
+		auto& headerCmp = reg.assign<TabsHeaderComponent>(header, std::vector<entt::entity>{ tab0 });
 	}
 
 	TabsHeaderHoverSystem sys;

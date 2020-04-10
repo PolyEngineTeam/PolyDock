@@ -13,7 +13,7 @@ void WindowTabHandle::setName(std::string name)
 {
 	Expects(valid());
 
-	m_registry.get<ecs::cmp::tab::TabComponent>(m_entity).name = std::move(name);
+	m_registry.get_or_assign<ecs::cmp::tab::TabComponent>(m_entity).name = std::move(name);
 	m_registry.get_or_assign<ecs::cmp::tab::DirtyTabComponent>(m_entity);
 }
 

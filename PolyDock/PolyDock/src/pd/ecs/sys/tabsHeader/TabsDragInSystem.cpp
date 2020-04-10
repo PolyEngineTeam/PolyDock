@@ -38,12 +38,12 @@ void TabsDragInSystem::update(entt::registry& registry, entt::entity root) const
 			auto& dstSelectedTabs = registry.get<SelectedTabsComponent>(entity);
 			auto& dstActiveTab = registry.get<ActiveTabComponent>(entity);
 
-			dstHeader.tabs.insert(dstHeader.tabs.begin() + request.destinationIndex, 
-				srcHeader.tabs.begin(), srcHeader.tabs.end());
+			dstHeader.tabsMut().insert(dstHeader.tabs().begin() + request.destinationIndex, 
+				srcHeader.tabs().begin(), srcHeader.tabs().end());
 			dstSelectedTabs = srcSelectedTabs;
 			dstActiveTab = srcActiveTab;
 
-			registry.assign<TabsMovementActiveComponent>(entity, request.cursorInTabSpacePosition);
+			registry.get_or_assign<TabsMovementActiveComponent>(entity, request.cursorInTabSpacePosition);
 
 			registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
 			registry.assign<TabbedWindowRemoveRequestComponent>(request.source);

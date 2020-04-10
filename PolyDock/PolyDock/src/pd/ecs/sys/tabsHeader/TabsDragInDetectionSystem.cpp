@@ -36,7 +36,7 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 				int dstPos = dstWidget.getTabIdxFromPosition(inputComponent->getCursorPos());
 
 				if (dstPos == -1 && dstWidget.isPositionOnTheRightOfLastTab(inputComponent->getCursorPos()))
-					dstPos = static_cast<int>(dstHeader.tabs.size());
+					dstPos = static_cast<int>(dstHeader.tabs().size());
 
 				if (dstPos != -1 && dstWidget.getWidgetRect().contains(inputComponent->getCursorPos()))
 				{

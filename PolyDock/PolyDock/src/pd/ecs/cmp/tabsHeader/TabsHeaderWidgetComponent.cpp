@@ -52,6 +52,13 @@ bool DefaultTabsHeaderWidget::isPositionOnTheRightOfLastTab(const Vector2i& pos)
 }
 
 // ---------------------------------------------------------------------------------------------------------
+bool DefaultTabsHeaderWidget::hoversAddButton(const Eigen::Vector2i& pos) const
+{
+	const QPoint fromGlobal = QWidget::mapFromGlobal({ pos.x(), pos.y() });
+	return getAddButtonRect().contains(Vector2i{ fromGlobal.x(), fromGlobal.y() });
+}
+
+// ---------------------------------------------------------------------------------------------------------
 AlignedBox2i DefaultTabsHeaderWidget::getWidgetRect() const
 {
 	const QRect rect = QWidget::rect();
@@ -110,6 +117,13 @@ void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 	m_separatorGradient.setColorAt(0.97, QColor(darker, darker, darker));
 	m_separatorGradient.setColorAt(1, QColor(darker, darker, darker));
 
+	m_tempGradient = QLinearGradient(0, 0, 0, QWidget::height());
+	m_tempGradient.setSpread(QGradient::RepeatSpread);
+	m_tempGradient.setColorAt(0, QColor(lightest, lightest, lightest));
+	m_tempGradient.setColorAt(0.97, QColor(lighter,lighter, lighter));
+	m_tempGradient.setColorAt(1, QColor(lighter, lighter, lighter));
+
+
 	// fill color
 	m_filColor = QColor(darker, darker, darker);
 
@@ -159,6 +173,9 @@ void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 		}
 	}
 
+	const AlignedBox2i rect = getAddButtonRect();
+	painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), m_tempGradient);
+	// add drawing of the +
 	painter.end();
 }
 
@@ -193,6 +210,16 @@ AlignedBox2i DefaultTabsHeaderWidget::getSeparatorRectAtIdx(int idx) const
 	return AlignedBox2i(
 		Vector2i{ left, 0 }, 
 		Vector2i{ m_separatorWidth + left, QWidget::height() });
+}
+
+// ---------------------------------------------------------------------------------------------------------
+AlignedBox2i DefaultTabsHeaderWidget::getAddButtonRect() const
+{
+	const AlignedBox2i lastTab = getTabRectAtIdx(m_names.size() > 0 ? m_names.size() - 1 : 0);
+	const int left = lastTab.min().x() + lastTab.sizes().x() + m_separatorWidth;
+	return AlignedBox2i(
+		Vector2i{ left, 0 },
+		Vector2i{ left + m_interactiveBoxWidth, QWidget::height() });
 }
 
 // ---------------------------------------------------------------------------------------------------------
