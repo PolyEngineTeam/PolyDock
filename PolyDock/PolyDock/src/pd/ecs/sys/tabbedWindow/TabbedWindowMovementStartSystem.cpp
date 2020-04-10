@@ -37,11 +37,11 @@ void TabbedWindowMovementStartSystem::update(entt::registry& registry, entt::ent
 				if (widget.getWidgetRect().contains(inputComponent->getCursorPos()))
 				{
 					if (!registry.has<HoveredTabComponent>(entity) 
-						|| selected.selectedTabs.size() == header.tabs.size())
+						|| selected.selectedTabs.size() == header.tabs().size())
 					{
 						auto& newCmp = registry.assign<TabbedWindowMovementActiveComponent>(entity);
 
-						if (selected.selectedTabs.size() == header.tabs.size())
+						if (selected.selectedTabs.size() == header.tabs().size())
 						{
 							newCmp.cursorInTabSpacePosition = 
 								widget.getCursorPosInTabSpace(inputComponent->getCursorPos());

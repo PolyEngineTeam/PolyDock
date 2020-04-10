@@ -49,9 +49,7 @@ public:
 	// ---------------------------------------------------------------------------------------------------------
 	void setupTabsHeader()
 	{
-		auto& headerCmp = reg.assign<TabsHeaderComponent>(header);
-		headerCmp.tabs.push_back(tab0);
-		headerCmp.tabs.push_back(tab1);
+		auto& headerCmp = reg.assign<TabsHeaderComponent>(header, std::vector<entt::entity>{ tab0, tab1 });
 	}
 
 	// ---------------------------------------------------------------------------------------------------------

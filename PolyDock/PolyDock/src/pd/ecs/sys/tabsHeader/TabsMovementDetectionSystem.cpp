@@ -32,16 +32,16 @@ void TabsMovementDetectionSystem::update(entt::registry& registry, entt::entity 
 
 		if (hovered.hoveredTab != active.activeTab)
 		{
-			const auto hoveredIt = std::find(header.tabs.begin(), header.tabs.end(), hovered.hoveredTab);
-			const auto activeIt = std::find(header.tabs.begin(), header.tabs.end(), active.activeTab);
+			const auto hoveredIt = std::find(header.tabs().begin(), header.tabs().end(), hovered.hoveredTab);
+			const auto activeIt = std::find(header.tabs().begin(), header.tabs().end(), active.activeTab);
 			const int moveDistance = std::distance(activeIt, hoveredIt);
-			const int newActiveTabIdx = std::distance(header.tabs.begin(), activeIt) + moveDistance;
+			const int newActiveTabIdx = std::distance(header.tabs().begin(), activeIt) + moveDistance;
 			const auto activeItInSelected 
 				= std::find(selected.selectedTabs.begin(), selected.selectedTabs.end(), active.activeTab);
 			const int activeIdxInSelected 
 				= std::distance(selected.selectedTabs.begin(), activeItInSelected);
 			const int maxIdxForFirstSelectedTab 
-				= static_cast<int>(header.tabs.size() - selected.selectedTabs.size());
+				= static_cast<int>(header.tabs().size() - selected.selectedTabs.size());
 			const int newFirstSelectedTabIdx 
 				= std::min(newActiveTabIdx - activeIdxInSelected, maxIdxForFirstSelectedTab);
 

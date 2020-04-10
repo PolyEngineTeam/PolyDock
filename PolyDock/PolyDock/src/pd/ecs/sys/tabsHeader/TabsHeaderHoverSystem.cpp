@@ -31,7 +31,7 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 			if (hoveredIdx != -1)
 			{
 				registry.get_or_assign<HoveredTabComponent>(entity).hoveredTab 
-					= tabsHeader.tabs.at(hoveredIdx);
+					= tabsHeader.tabs().at(hoveredIdx);
 				registry.get_or_assign<HoveredTabsHeaderComponent>(entity);
 				registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
 			}

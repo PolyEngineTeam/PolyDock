@@ -35,7 +35,7 @@ void TabsMovementStartSystem::update(entt::registry& registry, entt::entity root
 				const auto& selected = view.get<SelectedTabsComponent>(entity);
 				const auto& widget = view.get<TabsHeaderWidgetComponent>(entity);
 
-				if (selected.selectedTabs.size() < header.tabs.size())
+				if (selected.selectedTabs.size() < header.tabs().size())
 				{
 					registry.assign<TabsMovementActiveComponent>(entity,
 						widget.getCursorPosInTabSpace(inputComponent->getCursorPos()));

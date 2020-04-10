@@ -39,18 +39,18 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 			const auto& tabsMovement = view.get<TabsMovementActiveComponent>(entity);
 
 			const Vector2i windowPos = inputComponent->getCursorPos() - tabsMovement.cursorInTabSpacePosition;
-			const size_t activeTabIdx = std::distance(header.tabs.begin(),
-				std::find(header.tabs.begin(), header.tabs.end(), active.activeTab));
+			const size_t activeTabIdx = std::distance(header.tabs().begin(),
+				std::find(header.tabs().begin(), header.tabs().end(), active.activeTab));
 
 			for (const entt::entity& ent : selected.selectedTabs)
-				header.tabs.erase(std::remove(header.tabs.begin(), header.tabs.end(), ent));
+				header.tabsMut().erase(std::remove(header.tabsMut().begin(), header.tabsMut().end(), ent));
 
 			auto newWindow = registry.create();
 			registry.assign<TabbedWindowCreateRequestComponent>(newWindow, selected.selectedTabs, std::move(selected.selectedTabs),
 				active.activeTab, windowPos, Vector2i{ 500, 500 }, TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE,
 				tabsMovement.cursorInTabSpacePosition);
 
-			active.activeTab = header.tabs.at(std::min(activeTabIdx, header.tabs.size() - 1));
+			active.activeTab = header.tabs().at(std::min(activeTabIdx, header.tabs().size() - 1));
 			selected.selectedTabs = { active.activeTab };
 			registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
 			registry.get_or_assign<DirtyTabbedWindowComponent>(entity);

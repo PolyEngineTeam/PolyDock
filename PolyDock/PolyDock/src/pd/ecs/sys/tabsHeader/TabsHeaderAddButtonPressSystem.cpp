@@ -27,7 +27,7 @@ void TabsHeaderAddButtonPressSystem::update(entt::registry& registry, entt::enti
             if (inputComponent->wasJustReleased(InputComponent::eMouseButton::LEFT) 
                 && widget.hoversAddButton(inputComponent->getCursorPos()))
             {
-                registry.get_or_assign<TabsAddRequest>(entity);
+                registry.get_or_assign<TabsAddRequest>(entity, registry.create());
                 registry.remove<HoveredAddButton>(entity);
             }
         }

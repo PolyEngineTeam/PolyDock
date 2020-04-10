@@ -2,9 +2,10 @@
 #include <pd/ecs/sys/tabsHeader/TabsCreationSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+//#include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAddRequest.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
+#include <pd/TabsHeaderHandle.hpp>
 // out
 #include <pd/WindowTabHandle.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
@@ -12,7 +13,8 @@
 #include <pd/ecs/cmp/tab/DirtyTabContentComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp> // selected too?
+#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;
@@ -25,23 +27,21 @@ void TabsCreationSystem::update(entt::registry& registry, entt::entity root) con
 	auto view = registry.view<TabsHeaderWidgetComponent,
                               TabsAddRequest>();
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root)) // is this needed?
+    for (auto entity : view)
     {
-        for (auto entity : view)
-        {
-            registry.remove<TabsAddRequest>(entity);
+        auto& requestCmp = registry.get<TabsAddRequest>(entity);
+        auto newTabEntity = requestCmp.owner;
 
-            auto newTabEntity = registry.create();
-            auto tab = WindowTabHandle(registry, newTabEntity);
-            registry.assign<TabComponent>(newTabEntity);
-            registry.assign<DirtyTabComponent>(newTabEntity);
-            registry.assign<DirtyTabContentComponent>(newTabEntity);
+        registry.get_or_assign<TabComponent>(newTabEntity);
+        registry.get_or_assign<DirtyTabComponent>(newTabEntity);
+        registry.get_or_assign<DirtyTabContentComponent>(newTabEntity);
 
-            auto& tabsHeader = registry.get<TabsHeaderComponent>(entity);
-            tabsHeader.tabs.push_back(newTabEntity);
-            registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
-            registry.get_or_assign<ActiveTabComponent>(entity).activeTab = newTabEntity;
-            // clear out selected tabs?
-        }
+        auto& tabsHeader = registry.get<TabsHeaderComponent>(entity);
+        tabsHeader.appendTab(newTabEntity);
+        registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+        registry.get_or_assign<ActiveTabComponent>(entity).activeTab = newTabEntity;
+        registry.get_or_assign<SelectedTabsComponent>(entity).selectedTabs = { newTabEntity };
+
+        registry.remove<TabsAddRequest>(entity);
     }
 }
