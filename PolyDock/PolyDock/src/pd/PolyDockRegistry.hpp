@@ -24,6 +24,7 @@ namespace pd
 
 	private:
 		void update();
+		void lateUpdate();
 
 		entt::registry m_registry;
 		entt::entity m_root;

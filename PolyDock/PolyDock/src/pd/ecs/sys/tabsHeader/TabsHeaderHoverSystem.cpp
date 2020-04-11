@@ -9,6 +9,7 @@
 #include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/HoveredTabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsRemovalRequest.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;
@@ -47,6 +48,11 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 					registry.get_or_assign<HoveredTabsHeaderComponent>(entity);
 				else if (registry.has<HoveredTabsHeaderComponent>(entity))
 					registry.remove<HoveredTabsHeaderComponent>(entity);
+			}
+
+			if (inputComponent->wasJustReleased(InputComponent::eMouseButton::MIDDLE))
+			{
+				registry.get_or_assign<TabsRemovalRequest>(entity, hoveredIdx);
 			}
 		}
 	}

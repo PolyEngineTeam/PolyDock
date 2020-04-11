@@ -60,6 +60,8 @@
 #include <pd/ecs/sys/tabsHeader/TabsCreationSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderAddButtonHoverSystem.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderAddButtonPressSystem.hpp>
+// tab removing support
+#include <pd/ecs/sys/tabsHeader/TabsRemovalSystem.hpp>
 
 // dock widget support
 
@@ -147,6 +149,8 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonPressSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsCreationSystem>());
+	// tab removing
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsRemovalSystem>()); // I believe there should be notion of postupdate now
 
 	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); });
 
@@ -193,4 +197,9 @@ void pd::PolyDockRegistry::update()
 {
 	for (const std::unique_ptr<ecs::sys::SystemBase>& system : m_systems)
 		system->update(m_registry, m_root);
+}
+
+void pd::PolyDockRegistry::lateUpdate()
+{
+
 }

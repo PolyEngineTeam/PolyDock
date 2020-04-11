@@ -78,6 +78,7 @@ Vector2i DefaultTabsHeaderWidget::getCursorPosInTabSpace(const Vector2i& pos) co
 	return pos - getWidgetRect().min() - hoveredTabRect.min();
 }
 
+// Draw an X sign only on the active tab, add a system for handling a hover and a press as before
 // ---------------------------------------------------------------------------------------------------------
 void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 {
