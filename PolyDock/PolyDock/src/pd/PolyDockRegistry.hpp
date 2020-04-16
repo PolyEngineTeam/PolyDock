@@ -29,6 +29,7 @@ namespace pd
 		entt::registry m_registry;
 		entt::entity m_root;
 		std::vector<std::unique_ptr<ecs::sys::SystemBase>> m_systems;
+		std::vector<std::unique_ptr<ecs::sys::SystemBase>> m_lateSystems;
 
 		QTimer m_timer;
 	};

@@ -31,10 +31,16 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 
 			if (hoveredIdx != -1)
 			{
-				registry.get_or_assign<HoveredTabComponent>(entity).hoveredTab 
-					= tabsHeader.tabs().at(hoveredIdx);
+				const entt::entity hoveredTab = tabsHeader.tabs().at(hoveredIdx);
+				registry.get_or_assign<HoveredTabComponent>(entity).hoveredTab = hoveredTab;
 				registry.get_or_assign<HoveredTabsHeaderComponent>(entity);
 				registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+
+				if (inputComponent->wasJustReleased(InputComponent::eMouseButton::MIDDLE))
+				{
+					registry.get_or_assign<TabsRemovalRequest>(entity, hoveredTab);
+					registry.remove<HoveredTabComponent>(entity);
+				}
 			}
 			else
 			{
@@ -48,11 +54,6 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 					registry.get_or_assign<HoveredTabsHeaderComponent>(entity);
 				else if (registry.has<HoveredTabsHeaderComponent>(entity))
 					registry.remove<HoveredTabsHeaderComponent>(entity);
-			}
-
-			if (inputComponent->wasJustReleased(InputComponent::eMouseButton::MIDDLE))
-			{
-				registry.get_or_assign<TabsRemovalRequest>(entity, hoveredIdx);
 			}
 		}
 	}

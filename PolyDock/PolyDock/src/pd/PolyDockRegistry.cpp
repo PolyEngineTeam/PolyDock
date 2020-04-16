@@ -149,10 +149,15 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonPressSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsCreationSystem>());
-	// tab removing
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsRemovalSystem>()); // I believe there should be notion of postupdate now
 
-	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); });
+	//-----------------------------------------------------------------------------------------
+	// Late systems
+	//-----------------------------------------------------------------------------------------
+	// tab removing
+	m_lateSystems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsRemovalSystem>());
+	m_lateSystems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>()); // needs to update state after removing and before TabsHeaderHoverSystem
+
+	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); lateUpdate(); });
 
 	m_timer.start(10);
 }
@@ -201,5 +206,6 @@ void pd::PolyDockRegistry::update()
 
 void pd::PolyDockRegistry::lateUpdate()
 {
-
+	for (const std::unique_ptr<ecs::sys::SystemBase>& system : m_lateSystems)
+		system->update(m_registry, m_root);
 }
