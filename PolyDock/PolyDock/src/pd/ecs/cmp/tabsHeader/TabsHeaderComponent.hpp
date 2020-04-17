@@ -33,6 +33,13 @@ namespace pd::ecs::cmp::tabsHeader
 				obs->onTabAdded();
 		}
 
+		void closeTab(entt::entity entity)
+		{
+			m_tabs.erase(std::remove(m_tabs.begin(), m_tabs.end(), entity));
+			for (auto obs : m_observers)
+				obs->onTabClosed();
+		}
+
 		const std::vector<entt::entity>& tabs() const { return m_tabs; }
 		std::vector<entt::entity>& tabsMut() { return m_tabs; }
 
