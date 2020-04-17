@@ -80,6 +80,7 @@ Vector2i DefaultTabsHeaderWidget::getCursorPosInTabSpace(const Vector2i& pos) co
 	return pos - getWidgetRect().min() - hoveredTabRect.min();
 }
 
+// Draw an X sign only on the active tab, add a system for handling a hover and a press as before
 // ---------------------------------------------------------------------------------------------------------
 void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 {
@@ -237,7 +238,7 @@ AlignedBox2i DefaultTabsHeaderWidget::getSeparatorRectAtIdx(int idx) const
 // ---------------------------------------------------------------------------------------------------------
 AlignedBox2i DefaultTabsHeaderWidget::getAddButtonRect() const
 {
-	const AlignedBox2i lastTab = getTabRectAtIdx(m_names.size() > 0 ? m_names.size() - 1 : 0);
+	const AlignedBox2i lastTab = getTabRectAtIdx(static_cast<int>(m_names.size() > 0 ? m_names.size() - 1 : 0));
 	const int left = lastTab.min().x() + lastTab.sizes().x() + m_separatorWidth;
 	const int top = (QWidget::height() - m_interactiveBoxSize.y()) / 2;
 	return AlignedBox2i(

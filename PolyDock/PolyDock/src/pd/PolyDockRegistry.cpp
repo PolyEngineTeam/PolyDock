@@ -58,6 +58,8 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
 // tab adding support
 #include <pd/ecs/sys/tabsHeader/TabsHeaderTabsAdding.hpp>
+// tab removing support
+#include <pd/ecs/sys/tabsHeader/TabsRemovalSystem.hpp>
 
 // dock widget support
 
@@ -146,7 +148,14 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetUpdateSystem>());
 
-	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); });
+	//-----------------------------------------------------------------------------------------
+	// Late systems
+	//-----------------------------------------------------------------------------------------
+	// tab removing
+	m_lateSystems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsRemovalSystem>());
+	m_lateSystems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>()); // needs to update state after removing and before TabsHeaderHoverSystem
+
+	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); lateUpdate(); });
 
 	m_timer.start(10);
 }
@@ -190,5 +199,11 @@ DockWidgetHandle pd::PolyDockRegistry::createDockWidget()
 void pd::PolyDockRegistry::update()
 {
 	for (const std::unique_ptr<ecs::sys::SystemBase>& system : m_systems)
+		system->update(m_registry, m_root);
+}
+
+void pd::PolyDockRegistry::lateUpdate()
+{
+	for (const std::unique_ptr<ecs::sys::SystemBase>& system : m_lateSystems)
 		system->update(m_registry, m_root);
 }
