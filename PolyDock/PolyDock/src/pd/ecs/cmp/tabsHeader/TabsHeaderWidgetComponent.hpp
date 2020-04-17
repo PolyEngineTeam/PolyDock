@@ -15,10 +15,12 @@ namespace pd::ecs::cmp::tabsHeader
 	class ITabsHeaderWidget
 	{
 	public:
+		enum class eAddButtonState { IDLE, HOVERED, PRESSED };
+
 		virtual ~ITabsHeaderWidget() = default;
 
 		virtual void update(std::vector<std::string> names, std::vector<std::optional<QIcon>> icons,
-			std::vector<int> selected, int hovered, int active) = 0;
+			std::vector<int> selected, int hovered, int active, eAddButtonState addButtonState) = 0;
 
 		virtual int getTabIdxFromPosition(const Eigen::Vector2i& pos) const = 0;
 		virtual bool isPositionOnTheRightOfLastTab(const Eigen::Vector2i& pos) const = 0;
@@ -34,7 +36,7 @@ namespace pd::ecs::cmp::tabsHeader
 	{
 	public:
 		void update(std::vector<std::string> names, std::vector<std::optional<QIcon>> icons,
-			std::vector<int> selected, int hovered, int active) override;
+			std::vector<int> selected, int hovered, int active, eAddButtonState addButtonState) override;
 
 		int getTabIdxFromPosition(const Eigen::Vector2i& pos) const override;
 		bool isPositionOnTheRightOfLastTab(const Eigen::Vector2i& pos) const override;
@@ -60,10 +62,11 @@ namespace pd::ecs::cmp::tabsHeader
 		std::vector<int> m_selected;
 		int m_hovered = -1;
 		int m_active = -1;
+		eAddButtonState m_addButtonState = eAddButtonState::IDLE;
 
 		int m_maxTabWidth = 150;
 		int m_separatorWidth = 4;
-		int m_interactiveBoxWidth = 20;
+		Eigen::Vector2i m_interactiveBoxSize = { 20, 20 };
 		QLinearGradient m_activeTabGradient;
 		QLinearGradient m_hoveredTabGradient;
 		QLinearGradient m_inactiveTabGradient;
@@ -78,8 +81,9 @@ namespace pd::ecs::cmp::tabsHeader
 	public:
 		TabsHeaderWidgetComponent(ITabsHeaderWidget* header) : m_header(header) {}
 
-		void update(std::vector<std::string> names, std::vector<std::optional<QIcon>> icons, std::vector<int> selected, int hovered, int active)
-			{ m_header->update(std::move(names), std::move(icons), std::move(selected), hovered, active); }
+		void update(std::vector<std::string> names, std::vector<std::optional<QIcon>> icons, 
+			std::vector<int> selected, int hovered, int active, ITabsHeaderWidget::eAddButtonState addButtonState)
+			{ m_header->update(std::move(names), std::move(icons), std::move(selected), hovered, active, addButtonState); }
 
 		int getTabIdxFromPosition(const Eigen::Vector2i& pos) const { return m_header->getTabIdxFromPosition(pos); }
 		int isPositionOnTheRightOfLastTab(const Eigen::Vector2i& pos) const { return m_header->isPositionOnTheRightOfLastTab(pos); }

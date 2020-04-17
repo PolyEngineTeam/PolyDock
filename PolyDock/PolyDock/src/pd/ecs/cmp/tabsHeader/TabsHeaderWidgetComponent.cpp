@@ -10,7 +10,8 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 // ---------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------
 void DefaultTabsHeaderWidget::update(std::vector<std::string> names, 
-	std::vector<std::optional<QIcon>> icons, std::vector<int> selected, int hovered, int active)
+	std::vector<std::optional<QIcon>> icons, std::vector<int> selected, int hovered, int active, 
+	eAddButtonState addButtonState)
 {
 	Expects(names.size() == icons.size());
 	Expects(selected.size() <= names.size());
@@ -22,6 +23,7 @@ void DefaultTabsHeaderWidget::update(std::vector<std::string> names,
 	m_selected = std::move(selected);
 	m_hovered = hovered;
 	m_active = active;
+	m_addButtonState = addButtonState;
 
 	QWidget::update();
 }
@@ -174,8 +176,28 @@ void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 	}
 
 	const AlignedBox2i rect = getAddButtonRect();
-	painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), m_tempGradient);
-	// add drawing of the +
+	switch (m_addButtonState)
+	{
+		case eAddButtonState::IDLE:
+		painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), m_inactiveTabGradient);
+		break;
+
+		case eAddButtonState::HOVERED:
+		painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), m_hoveredTabGradient);
+		break;
+
+		case eAddButtonState::PRESSED:
+		painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), m_activeTabGradient);
+		break;
+	}
+
+	QPainterPath path;
+	path.moveTo(rect.center().x(), rect.min().y() + 4);
+	path.lineTo(rect.center().x(), rect.max().y() - 4);
+	path.moveTo(rect.min().x() + 4, rect.center().y());
+	path.lineTo(rect.max().x() - 4, rect.center().y());
+	painter.drawPath(path);
+
 	painter.end();
 }
 
@@ -217,9 +239,10 @@ AlignedBox2i DefaultTabsHeaderWidget::getAddButtonRect() const
 {
 	const AlignedBox2i lastTab = getTabRectAtIdx(m_names.size() > 0 ? m_names.size() - 1 : 0);
 	const int left = lastTab.min().x() + lastTab.sizes().x() + m_separatorWidth;
+	const int top = (QWidget::height() - m_interactiveBoxSize.y()) / 2;
 	return AlignedBox2i(
-		Vector2i{ left, 0 },
-		Vector2i{ left + m_interactiveBoxWidth, QWidget::height() });
+		Vector2i{ left, top },
+		Vector2i{ left + m_interactiveBoxSize.x(), top + m_interactiveBoxSize.y() });
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -234,6 +257,6 @@ int DefaultTabsHeaderWidget::getTabWidth() const
 // ---------------------------------------------------------------------------------------------------------
 int DefaultTabsHeaderWidget::getAlternativeTabWidth() const
 {
-	const int newAllTabsWidth = QWidget::width() - (static_cast<int>(m_names.size() + 5) * m_separatorWidth);
+	const int newAllTabsWidth = QWidget::width() - (static_cast<int>(m_names.size() + 10) * m_separatorWidth);
 	return newAllTabsWidth / static_cast<int>(m_names.size());
 }

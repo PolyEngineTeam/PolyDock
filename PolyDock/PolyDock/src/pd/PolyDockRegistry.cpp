@@ -57,9 +57,7 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
 // tab adding support
-#include <pd/ecs/sys/tabsHeader/TabsCreationSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderAddButtonHoverSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderAddButtonPressSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderTabsAdding.hpp>
 
 // dock widget support
 
@@ -131,6 +129,10 @@ PolyDockRegistry::PolyDockRegistry()
 	// tabs drag out
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutDetectionSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutSystem>());
+	// tab adding
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::AddButtonHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::AddButtonPressSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsCreationSystem>());
 	// tabbed window control widget support
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetUpdateSystem>());
@@ -143,10 +145,6 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCreationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetUpdateSystem>());
-	// tab adding
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonHoverSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderAddButtonPressSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsCreationSystem>());
 
 	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); });
 
