@@ -7,6 +7,7 @@
 #include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
@@ -36,9 +37,16 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		// gather tabs names and icons
 		for (const entt::entity& ent : tabsHeader.tabs())
 		{
-			auto& tab = registry.get<cmp::tab::TabComponent>(ent);
-			tabsNames.push_back(tab.name);
-			tabsIcons.push_back(tab.icon);
+			if (const auto* tab = registry.try_get<cmp::tab::TabComponent>(ent))
+			{
+				tabsNames.push_back(tab->name);
+				tabsIcons.push_back(tab->icon);
+			}
+			else
+			{
+				tabsNames.push_back("Tab name not set");
+				tabsIcons.push_back({});
+			}
 		}
 
 		// gather selected tabs indices
@@ -65,8 +73,14 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 			activeTab = std::distance(tabsHeader.tabs().begin(), it);
 		}
 
+		ITabsHeaderWidget::eAddButtonState addButtonState = ITabsHeaderWidget::eAddButtonState::IDLE;
+		if (registry.has<AddButtonHovered>(entity))
+			addButtonState = ITabsHeaderWidget::eAddButtonState::HOVERED;
+		else if (registry.has<AddButtonPressed>(entity))
+			addButtonState = ITabsHeaderWidget::eAddButtonState::PRESSED;
+
 		// update widget
-		widget.update(std::move(tabsNames), std::move(tabsIcons), std::move(selectedTabs), hoveredTab, activeTab);
+		widget.update(std::move(tabsNames), std::move(tabsIcons), std::move(selectedTabs), hoveredTab, activeTab, addButtonState);
 
 		// remove dirty flag component
 		registry.remove<DirtyTabsHeaderComponent>(entity);
