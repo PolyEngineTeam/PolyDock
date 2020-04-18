@@ -2,11 +2,8 @@
 #include <pd/ecs/sys/tabsHeader/TabsMovementSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/tabsHeader/TabsMovementRequestComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
-// out
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;

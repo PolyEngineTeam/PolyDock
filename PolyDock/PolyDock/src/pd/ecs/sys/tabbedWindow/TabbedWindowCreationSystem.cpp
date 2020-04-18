@@ -4,9 +4,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowCreateRequestComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;

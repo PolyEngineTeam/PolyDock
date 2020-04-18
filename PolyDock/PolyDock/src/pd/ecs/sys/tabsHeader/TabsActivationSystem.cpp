@@ -3,10 +3,8 @@
 
 // in
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;

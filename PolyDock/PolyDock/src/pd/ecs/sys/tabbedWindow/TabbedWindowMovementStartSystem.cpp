@@ -3,10 +3,8 @@
 
 // in
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
 

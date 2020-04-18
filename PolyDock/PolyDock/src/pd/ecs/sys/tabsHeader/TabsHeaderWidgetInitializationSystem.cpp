@@ -3,10 +3,9 @@
 
 // in
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;

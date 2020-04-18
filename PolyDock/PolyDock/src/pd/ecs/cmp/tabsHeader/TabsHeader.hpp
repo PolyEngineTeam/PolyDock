@@ -1,9 +1,46 @@
 #pragma once
 
+#include <vector>
+#include <entt/entt.hpp>
+
 #include <pd/TabsHeaderHandle.hpp>
 
 namespace pd::ecs::cmp::tabsHeader
 {
+	// ---------------------------------------------------------------------------------------------------------
+	class HoveredTabComponent
+	{
+	public:
+		entt::entity hoveredTab;
+	};
+
+	// ---------------------------------------------------------------------------------------------------------
+	class ActiveTabComponent
+	{
+	public:
+		entt::entity activeTab;
+	};
+
+	// ---------------------------------------------------------------------------------------------------------
+	class SelectedTabsComponent
+	{
+	public:
+		std::vector<entt::entity> selectedTabs;
+	};
+
+	// ---------------------------------------------------------------------------------------------------------
+	class HoveredTabsHeaderComponent
+	{
+	public:
+	};
+
+	// ---------------------------------------------------------------------------------------------------------
+	class DirtyTabsHeaderComponent
+	{
+	public:
+
+	};
+	
 	// ---------------------------------------------------------------------------------------------------------
 	class TabsHeaderComponent
 	{

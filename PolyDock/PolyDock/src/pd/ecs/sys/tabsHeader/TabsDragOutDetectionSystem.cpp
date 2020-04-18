@@ -3,10 +3,9 @@
 
 // in
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsMovementActiveComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/TabsDragOutRequestComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd::ecs::sys::tabsHeader;

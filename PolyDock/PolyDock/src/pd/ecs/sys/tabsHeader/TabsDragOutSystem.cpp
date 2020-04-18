@@ -3,13 +3,9 @@
 
 // in
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsDragOutRequestComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsMovementActiveComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowCreateRequestComponent.hpp>
 

@@ -6,7 +6,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowRemoveRequestComponent.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

@@ -3,11 +3,8 @@
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 #include <pd/ecs/cmp/tab/DirtyTabComponent.hpp>
 #include <pd/ecs/cmp/tab/DirtyTabContentComponent.hpp>

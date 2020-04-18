@@ -4,8 +4,8 @@
 // in
 #include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/WidgetComponent.hpp>
 #include <pd/ecs/cmp/tab/TabContentComponent.hpp>
 // out

@@ -4,7 +4,7 @@
 // in
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/TabsMovementActiveComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;

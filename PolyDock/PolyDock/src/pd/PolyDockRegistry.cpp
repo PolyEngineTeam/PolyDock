@@ -2,7 +2,7 @@
 #include <pd/PolyDockRegistry.hpp>
 
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
 // input
 #include <pd/ecs/sys/root/InputSystem.hpp>

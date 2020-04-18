@@ -2,15 +2,11 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetUpdateSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;

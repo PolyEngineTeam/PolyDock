@@ -2,13 +2,8 @@
 #include <pd/ecs/sys/tabsHeader/TabsRemovalSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/tabsHeader/TabsRemovalRequest.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-
-// out
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsRemoving.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;
