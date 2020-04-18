@@ -17,16 +17,16 @@ void TabbedWindowControlPressSystem::update(entt::registry& registry, entt::enti
 	{
 		for (auto entity : view)
 		{
-			if (registry.has<HoverComponent>(entity)
+			if (registry.has<Hover>(entity)
 				&& inputComponent->isPressed(InputComponent::eMouseButton::LEFT))
 			{
-				registry.get_or_assign<PressComponent>(entity);
-				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
+				registry.get_or_assign<Press>(entity);
+				registry.get_or_assign<WidgetUpdateRequest>(entity);
 			}
-			else if (registry.has<PressComponent>(entity))
+			else if (registry.has<Press>(entity))
 			{
-				registry.remove<PressComponent>(entity);
-				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
+				registry.remove<Press>(entity);
+				registry.get_or_assign<WidgetUpdateRequest>(entity);
 			}
 		}
 	}

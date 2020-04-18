@@ -16,7 +16,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<Component, PressComponent, HoverComponent>();
+	auto view = registry.view<Component, Press, Hover>();
 
 	if (auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -29,7 +29,7 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 			if (inputComponent->wasJustReleased(InputComponent::eMouseButton::LEFT))
 			{
 				const auto& cmp = view.get<Component>(entity);
-				const auto& hoverCmp = view.get<HoverComponent>(entity);
+				const auto& hoverCmp = view.get<Hover>(entity);
 				switch (hoverCmp.hovered)
 				{
 					case IWidget::eButton::MINIMIZE:

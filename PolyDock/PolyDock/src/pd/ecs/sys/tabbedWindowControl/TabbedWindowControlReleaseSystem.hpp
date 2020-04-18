@@ -8,8 +8,8 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// Required
 	// 1. root/InputComponent
 	// 2. tabbedWindowControl/Component
-	// 3. tabbedWindowControl/PressComponent
-	// 3. tabbedWindowControl/HoverComponent
+	// 3. tabbedWindowControl/Press
+	// 3. tabbedWindowControl/Hover
 	//
 	// Added
 	// 1. tabbedWindow/TabbedWindowMinimizeRequestComponent

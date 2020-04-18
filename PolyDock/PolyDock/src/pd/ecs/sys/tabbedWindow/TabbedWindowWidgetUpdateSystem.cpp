@@ -25,14 +25,14 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		TabbedWindowComponent,
 		TabbedWindowWidgetComponent,
 		Widget,
-		tabbedWindowControl::WidgetComponent>();
+		tabbedWindowControl::Widget>();
 
 	for (auto entity : view)
 	{
 		auto& window = view.get<TabbedWindowComponent>(entity);
 		auto& widget = view.get<TabbedWindowWidgetComponent>(entity);
 		auto& tabsHeaderWidget = view.get<Widget>(entity);
-		auto& controlWidget = view.get<tabbedWindowControl::WidgetComponent>(entity);
+		auto& controlWidget = view.get<tabbedWindowControl::Widget>(entity);
 
 		widget.window->setPos(window.position);
 		widget.window->setSize(window.size);

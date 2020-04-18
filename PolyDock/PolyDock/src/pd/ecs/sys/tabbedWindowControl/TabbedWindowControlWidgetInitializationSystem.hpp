@@ -9,10 +9,10 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// 1. WidgetsOwnerComponent
 	// 2. tabbedWindowControl/Component
 	// Banned
-	// 1. tabbedWindowControl/WidgetComponent
+	// 1. tabbedWindowControl/Widget
 	//
 	// Added
-	// 1. tabbedWindowControl/WidgetComponent
+	// 1. tabbedWindowControl/Widget
 	// Modified
 	// 1. WidgetsOwnerComponent
 	class TabbedWindowControlWidgetInitializationSystem : public SystemBase

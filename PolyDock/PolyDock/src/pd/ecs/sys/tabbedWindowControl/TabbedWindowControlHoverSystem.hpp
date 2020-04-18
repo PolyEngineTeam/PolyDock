@@ -8,12 +8,12 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// Required
 	// 1. root/InputComponent
 	// 2. tabbedWindowControl/Component
-	// 3. tabbedWindowControl/WidgetComponent
+	// 3. tabbedWindowControl/Widget
 	//
 	// Removed/Added/Modified
-	// 1. tabbedWindowControl/HoverComponent
+	// 1. tabbedWindowControl/Hover
 	// Added
-	// 1. tabbedWindowControl/WidgetUpdateRequestComponent
+	// 1. tabbedWindowControl/WidgetUpdateRequest
 	class TabbedWindowControlHoverSystem : public SystemBase
 	{
 	public:

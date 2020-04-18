@@ -12,7 +12,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowControlWidgetInitializationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<Component>(entt::exclude<WidgetComponent>);
+	auto view = registry.view<Component>(entt::exclude<Widget>);
 
 	if (auto* widgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
 	{
@@ -21,7 +21,7 @@ void TabbedWindowControlWidgetInitializationSystem::update(entt::registry& regis
 			IWidget* widget = new DefaultWidget();
 			widgetsOwner->windowControls.insert({ entity, widget });
 
-			registry.assign<WidgetComponent>(entity, widget);
+			registry.assign<Widget>(entity, widget);
 		}
 	}
 }

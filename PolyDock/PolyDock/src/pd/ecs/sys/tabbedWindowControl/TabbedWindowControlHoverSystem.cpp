@@ -12,25 +12,25 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowControlHoverSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<Component, WidgetComponent>();
+	auto view = registry.view<Component, Widget>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			const auto& widgetCmp = view.get<WidgetComponent>(entity);
+			const auto& widgetCmp = view.get<Widget>(entity);
 
 			const IWidget::eButton hovered = widgetCmp.widget->getButtonFromPos(inputComponent->getCursorPos());
 
 			if (hovered != IWidget::eButton::NONE)
 			{
-				registry.get_or_assign<HoverComponent>(entity).hovered = hovered;
-				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
+				registry.get_or_assign<Hover>(entity).hovered = hovered;
+				registry.get_or_assign<WidgetUpdateRequest>(entity);
 			}
-			else if (registry.has<HoverComponent>(entity))
+			else if (registry.has<Hover>(entity))
 			{
-				registry.remove<HoverComponent>(entity);
-				registry.get_or_assign<WidgetUpdateRequestComponent>(entity);
+				registry.remove<Hover>(entity);
+				registry.get_or_assign<WidgetUpdateRequest>(entity);
 			}
 		}
 	}{}

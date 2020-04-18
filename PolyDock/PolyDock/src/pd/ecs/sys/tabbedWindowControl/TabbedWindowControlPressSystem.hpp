@@ -9,12 +9,12 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// 1. root/InputComponent
 	// 2. tabbedWindowControl/Component
 	// Optional
-	// 1. tabbedWindowControl/HoverComponent
+	// 1. tabbedWindowControl/Hover
 	//
 	// Removed/Added/Modified
-	// 1. tabbedWindowControl/PressComponent
+	// 1. tabbedWindowControl/Press
 	// Added
-	// 1. tabbedWindowControl/WidgetUpdateRequestComponent
+	// 1. tabbedWindowControl/WidgetUpdateRequest
 	class TabbedWindowControlPressSystem : public SystemBase
 	{
 	public:

@@ -46,7 +46,7 @@ namespace pd::ecs::cmp::tabbedWindowControl
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class WidgetComponent
+	class Widget
 	{
 	public:
 		IWidget* widget = nullptr;

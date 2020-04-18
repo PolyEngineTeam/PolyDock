@@ -15,35 +15,35 @@ namespace pd::ecs::cmp::tabbedWindowControl
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class ObserversComponent
+	class Observers
 	{
 	public:
 		std::vector<TabbedWindowControlHandle::Observer*> observers;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class HoverComponent
+	class Hover
 	{
 	public:
 		IWidget::eButton hovered = IWidget::eButton::NONE;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class PressComponent
+	class Press
 	{
 	public:
 
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class CloseRequestComponent
+	class CloseRequest
 	{
 	public:
 		bool force = false;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class WidgetUpdateRequestComponent
+	class WidgetUpdateRequest
 	{
 	public:
 	};
