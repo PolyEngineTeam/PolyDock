@@ -2,9 +2,7 @@
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/PressComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/HoverComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMinimizeRequestComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMaximizeRequestComponent.hpp>

@@ -5,7 +5,7 @@
 #include <pd/ecs/cmp/root/DesktopComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowSnapRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

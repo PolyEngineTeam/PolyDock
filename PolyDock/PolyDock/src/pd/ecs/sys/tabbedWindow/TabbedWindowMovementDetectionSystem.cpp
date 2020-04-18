@@ -6,7 +6,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementRequestComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>

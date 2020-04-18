@@ -1,8 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/TabbedWindowControlHandle.hpp>
 
-#include <pd/ecs/cmp/tabbedWindowControl/ObserversComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/CloseRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::pd;
 using namespace ::pd::ecs::cmp::tabbedWindowControl;

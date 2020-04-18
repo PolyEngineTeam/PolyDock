@@ -4,7 +4,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowMaximizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

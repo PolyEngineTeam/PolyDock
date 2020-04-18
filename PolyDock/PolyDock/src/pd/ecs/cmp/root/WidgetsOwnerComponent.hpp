@@ -2,7 +2,7 @@
 
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/WidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 #include <pd/ecs/cmp/dock/DockWidgetComponent.hpp>
 
 namespace pd::ecs::cmp::root

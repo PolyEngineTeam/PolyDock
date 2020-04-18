@@ -2,8 +2,8 @@
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetInitializationSystem.hpp>
 
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/WidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindowControl;
 using namespace ::pd::ecs::cmp::tabbedWindowControl;

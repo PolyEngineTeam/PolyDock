@@ -2,10 +2,8 @@
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/Component.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/WidgetComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/HoverComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/WidgetUpdateRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindowControl;
 using namespace ::pd::ecs::cmp::tabbedWindowControl;
