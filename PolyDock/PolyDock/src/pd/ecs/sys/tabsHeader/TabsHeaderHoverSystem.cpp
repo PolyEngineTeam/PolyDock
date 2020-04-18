@@ -15,42 +15,42 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabsHeaderComponent, TabsHeaderWidgetComponent>();
+	auto view = registry.view<Component, Widget>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			const auto& tabsHeader = view.get<TabsHeaderComponent>(entity);
-			const auto& widget = view.get<TabsHeaderWidgetComponent>(entity);
+			const auto& tabsHeader = view.get<Component>(entity);
+			const auto& widget = view.get<Widget>(entity);
 
 			const int hoveredIdx = widget.getTabIdxFromPosition(inputComponent->getCursorPos());
 
 			if (hoveredIdx != -1)
 			{
 				const entt::entity hoveredTab = tabsHeader.tabs().at(hoveredIdx);
-				registry.get_or_assign<HoveredTabComponent>(entity).hoveredTab = hoveredTab;
-				registry.get_or_assign<HoveredTabsHeaderComponent>(entity);
-				registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+				registry.get_or_assign<HoveredTab>(entity).hoveredTab = hoveredTab;
+				registry.get_or_assign<HoveredHeader>(entity);
+				registry.get_or_assign<WidgetUpdateRequest>(entity);
 
 				if (inputComponent->wasJustReleased(InputComponent::eMouseButton::MIDDLE))
 				{
 					registry.get_or_assign<TabsRemovalRequest>(entity, hoveredTab);
-					registry.remove<HoveredTabComponent>(entity);
+					registry.remove<HoveredTab>(entity);
 				}
 			}
 			else
 			{
-				if (registry.has<HoveredTabComponent>(entity))
+				if (registry.has<HoveredTab>(entity))
 				{
-					registry.remove<HoveredTabComponent>(entity);
-					registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+					registry.remove<HoveredTab>(entity);
+					registry.get_or_assign<WidgetUpdateRequest>(entity);
 				}
 
 				if (widget.getWidgetRect().contains(inputComponent->getCursorPos()))
-					registry.get_or_assign<HoveredTabsHeaderComponent>(entity);
-				else if (registry.has<HoveredTabsHeaderComponent>(entity))
-					registry.remove<HoveredTabsHeaderComponent>(entity);
+					registry.get_or_assign<HoveredHeader>(entity);
+				else if (registry.has<HoveredHeader>(entity))
+					registry.remove<HoveredHeader>(entity);
 			}
 		}
 	}

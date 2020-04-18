@@ -17,9 +17,9 @@ using namespace ::pd::ecs::cmp::root;
 void TabbedWindowMovementStartSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabsHeaderWidgetComponent,
-		TabsHeaderComponent,
-		SelectedTabsComponent>();
+		Widget,
+		Component,
+		SelectedTabs>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -28,13 +28,13 @@ void TabbedWindowMovementStartSystem::update(entt::registry& registry, entt::ent
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)
 			{
-				const auto& widget = view.get<TabsHeaderWidgetComponent>(entity);
-				const auto& header = view.get<TabsHeaderComponent>(entity);
-				const auto& selected = view.get<SelectedTabsComponent>(entity);
+				const auto& widget = view.get<Widget>(entity);
+				const auto& header = view.get<Component>(entity);
+				const auto& selected = view.get<SelectedTabs>(entity);
 
 				if (widget.getWidgetRect().contains(inputComponent->getCursorPos()))
 				{
-					if (!registry.has<HoveredTabComponent>(entity) 
+					if (!registry.has<HoveredTab>(entity) 
 						|| selected.selectedTabs.size() == header.tabs().size())
 					{
 						auto& newCmp = registry.assign<TabbedWindowMovementActiveComponent>(entity);

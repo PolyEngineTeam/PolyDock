@@ -17,10 +17,10 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto srcView = registry.view<TabbedWindowMovementActiveComponent, HoveredTabComponent>();
+	auto srcView = registry.view<TabbedWindowMovementActiveComponent, HoveredTab>();
 	auto dstView = registry.view<
-		TabsHeaderWidgetComponent,
-		TabsHeaderComponent
+		Widget,
+		Component
 			>(entt::exclude<TabbedWindowMovementActiveComponent>);
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
@@ -30,8 +30,8 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 			for (auto destination : dstView)
 			{
 				const auto& movementCmp = srcView.get<TabbedWindowMovementActiveComponent>(source);
-				const auto& dstWidget = dstView.get<TabsHeaderWidgetComponent>(destination);
-				const auto& dstHeader = dstView.get<TabsHeaderComponent>(destination);
+				const auto& dstWidget = dstView.get<Widget>(destination);
+				const auto& dstHeader = dstView.get<Component>(destination);
 				int dstPos = dstWidget.getTabIdxFromPosition(inputComponent->getCursorPos());
 
 				if (dstPos == -1 && dstWidget.isPositionOnTheRightOfLastTab(inputComponent->getCursorPos()))
@@ -39,7 +39,7 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 
 				if (dstPos != -1 && dstWidget.getWidgetRect().contains(inputComponent->getCursorPos()))
 				{
-					registry.assign<TabsDragInRequestComponent>(destination, source, dstPos,
+					registry.assign<TabsDragInRequest>(destination, source, dstPos,
 						movementCmp.cursorInTabSpacePosition);
 				}
 			}

@@ -12,18 +12,18 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 void TabsMovementDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabsMovementActiveComponent, 
-		SelectedTabsComponent,
-		HoveredTabComponent,
-		ActiveTabComponent,
-		TabsHeaderComponent>();
+		TabsMovementActive, 
+		SelectedTabs,
+		HoveredTab,
+		ActiveTab,
+		Component>();
 
 	for (auto entity : view)
 	{
-		const auto& selected = registry.get<SelectedTabsComponent>(entity);
-		const auto& hovered = registry.get<HoveredTabComponent>(entity);
-		const auto& active = registry.get<ActiveTabComponent>(entity);
-		const auto& header = registry.get<TabsHeaderComponent>(entity);
+		const auto& selected = registry.get<SelectedTabs>(entity);
+		const auto& hovered = registry.get<HoveredTab>(entity);
+		const auto& active = registry.get<ActiveTab>(entity);
+		const auto& header = registry.get<Component>(entity);
 
 		if (hovered.hoveredTab != active.activeTab)
 		{
@@ -40,7 +40,7 @@ void TabsMovementDetectionSystem::update(entt::registry& registry, entt::entity 
 			const int newFirstSelectedTabIdx 
 				= std::min(newActiveTabIdx - activeIdxInSelected, maxIdxForFirstSelectedTab);
 
-			registry.assign<TabsMovementRequestComponent>(entity, newFirstSelectedTabIdx);
+			registry.assign<TabsMovementRequest>(entity, newFirstSelectedTabIdx);
 		}
 	}
 }

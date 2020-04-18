@@ -10,10 +10,10 @@ namespace pd::ecs::sys::tabbedWindow
 	//
 	// Added
 	// 1. TabbedWindowComponent
-	// 2. TabsHeaderComponent
+	// 2. Component
 	// 3. tabbedWindowControl/Component
-	// 4. SelectedTabsComponent
-	// 5. ActiveTabComponent
+	// 4. SelectedTabs
+	// 5. ActiveTab
 	// 6. TabbedWindowMovementActiveComponent
 	// Removed
 	// 1. TabbedWindowCreateRequestComponent

@@ -22,11 +22,11 @@ void TabbedWindowCreationSystem::update(entt::registry& registry, entt::entity r
 		const auto& request = view.get<TabbedWindowCreateRequestComponent>(entity);
 
 		registry.assign<TabbedWindowComponent>(entity, request.position, request.size);
-		registry.assign<TabsHeaderComponent>(entity, request.tabs);
+		registry.assign<Component>(entity, request.tabs);
 		registry.assign<tabbedWindowControl::Component>(entity);
-		registry.assign<SelectedTabsComponent>(entity, request.selectedTabs);
+		registry.assign<SelectedTabs>(entity, request.selectedTabs);
 		if (request.activeTab.has_value())
-			registry.assign<ActiveTabComponent>(entity, request.activeTab.value());
+			registry.assign<ActiveTab>(entity, request.activeTab.value());
 
 		if (request.windowMovementState == TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE)
 			registry.assign<TabbedWindowMovementActiveComponent>(entity, request.cursorInTabSpacePosition);

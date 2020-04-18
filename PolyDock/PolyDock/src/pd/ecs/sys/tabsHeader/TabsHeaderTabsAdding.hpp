@@ -7,12 +7,12 @@ namespace pd::ecs::sys::tabsHeader
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
 	// 1. root::InputComponent
-	// 2. tabsHeader::TabsHeaderWidgetComponent
+	// 2. tabsHeader::Widget
 	// 
 	// Added / Removed
 	// 1. tabsHeader::AddButtonHovered
 	// Added
-	// 1. tabsHeader::DirtyTabsHeaderComponent
+	// 1. tabsHeader::WidgetUpdateRequest
 	class AddButtonHoverSystem : public SystemBase
 	{
 	public:
@@ -27,7 +27,7 @@ namespace pd::ecs::sys::tabsHeader
 	// Added / Removed
 	// 1. tabsHeader::AddButtonPressed
 	// Added
-	// 1. tabsHeader::DirtyTabsHeaderComponent
+	// 1. tabsHeader::WidgetUpdateRequest
 	// 2. tabsHeader::AddTabRequest
 	class AddButtonPressSystem : public SystemBase
 	{
@@ -37,12 +37,12 @@ namespace pd::ecs::sys::tabsHeader
 	
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. tabsHeader::TabsHeaderComponent
+	// 1. tabsHeader::Component
 	// 2. tabsHeader::AddTabRequest
 	// 
 	// Added / Removed
 	// 1. tabsHeader::AddButtonPressed
-	// 2. tabsHeader::ActiveTabComponent
+	// 2. tabsHeader::ActiveTab
 	// Removed
 	// 1. tabsHeader::AddTabRequest
 	class TabsCreationSystem : public SystemBase

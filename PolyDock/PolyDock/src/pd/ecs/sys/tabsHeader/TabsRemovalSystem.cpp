@@ -10,14 +10,14 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 
 void TabsRemovalSystem::update(entt::registry& registry, entt::entity root) const
 {
-    auto view = registry.view<TabsHeaderComponent,
+    auto view = registry.view<Component,
                               TabsRemovalRequest>();
     
     for (auto entity : view)
     {
-        auto& tabsHeader = registry.get<TabsHeaderComponent>(entity);
+        auto& tabsHeader = registry.get<Component>(entity);
         auto& requestCmp = registry.get<TabsRemovalRequest>(entity);
-        auto& activeCmp = registry.get<ActiveTabComponent>(entity);
+        auto& activeCmp = registry.get<ActiveTab>(entity);
 
         // for now disallow destroying the only tab
         if (tabsHeader.tabs().size() > 1)
@@ -37,8 +37,8 @@ void TabsRemovalSystem::update(entt::registry& registry, entt::entity root) cons
             tabsHeader.closeTab(requestCmp.tabToRemove);
             registry.destroy(requestCmp.tabToRemove);
 
-            registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
-            registry.get_or_assign<SelectedTabsComponent>(entity).selectedTabs = { activeCmp.activeTab };
+            registry.get_or_assign<WidgetUpdateRequest>(entity);
+            registry.get_or_assign<SelectedTabs>(entity).selectedTabs = { activeCmp.activeTab };
         }
         registry.remove<TabsRemovalRequest>(entity);
     }

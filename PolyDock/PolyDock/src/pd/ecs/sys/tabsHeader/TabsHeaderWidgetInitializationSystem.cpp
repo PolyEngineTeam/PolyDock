@@ -14,7 +14,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsHeaderWidgetInitializationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabsHeaderComponent>(entt::exclude<TabsHeaderWidgetComponent>);
+	auto view = registry.view<Component>(entt::exclude<Widget>);
 
 	if (auto* widgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
 	{
@@ -23,8 +23,8 @@ void TabsHeaderWidgetInitializationSystem::update(entt::registry& registry, entt
 			DefaultTabsHeaderWidget* widget = new DefaultTabsHeaderWidget();
 			widgetsOwner->tabsHeaders.insert({ entity, widget });
 
-			registry.assign<TabsHeaderWidgetComponent>(entity, widget);
-			registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+			registry.assign<Widget>(entity, widget);
+			registry.get_or_assign<WidgetUpdateRequest>(entity);
 		}
 	}
 }

@@ -15,14 +15,14 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		DirtyTabsHeaderComponent,
-		TabsHeaderComponent,
-		TabsHeaderWidgetComponent>();
+		WidgetUpdateRequest,
+		Component,
+		Widget>();
 
 	for (auto entity : view)
 	{
-		const auto& tabsHeader = view.get<TabsHeaderComponent>(entity);
-		auto& widget = view.get<TabsHeaderWidgetComponent>(entity);
+		const auto& tabsHeader = view.get<Component>(entity);
+		auto& widget = view.get<Widget>(entity);
 
 		std::vector<std::string> tabsNames;
 		std::vector<std::optional<QIcon>> tabsIcons;
@@ -46,7 +46,7 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		}
 
 		// gather selected tabs indices
-		if (auto* cmp = registry.try_get<SelectedTabsComponent>(entity))
+		if (auto* cmp = registry.try_get<SelectedTabs>(entity))
 		{
 			for (const entt::entity& tab : cmp->selectedTabs)
 			{
@@ -56,14 +56,14 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		}
 
 		// set hovered tab if any
-		if (auto* cmp = registry.try_get<HoveredTabComponent>(entity))
+		if (auto* cmp = registry.try_get<HoveredTab>(entity))
 		{
 			auto it = std::find(tabsHeader.tabs().begin(), tabsHeader.tabs().end(), cmp->hoveredTab);
 			hoveredTab = std::distance(tabsHeader.tabs().begin(), it);
 		}
 
 		// set active tab if any
-		if (auto* cmp = registry.try_get<ActiveTabComponent>(entity))
+		if (auto* cmp = registry.try_get<ActiveTab>(entity))
 		{
 			auto it = std::find(tabsHeader.tabs().begin(), tabsHeader.tabs().end(), cmp->activeTab);
 			activeTab = std::distance(tabsHeader.tabs().begin(), it);
@@ -79,6 +79,6 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		widget.update(std::move(tabsNames), std::move(tabsIcons), std::move(selectedTabs), hoveredTab, activeTab, addButtonState);
 
 		// remove dirty flag component
-		registry.remove<DirtyTabsHeaderComponent>(entity);
+		registry.remove<WidgetUpdateRequest>(entity);
 	}
 }

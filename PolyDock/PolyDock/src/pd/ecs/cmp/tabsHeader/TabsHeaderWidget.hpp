@@ -76,10 +76,10 @@ namespace pd::ecs::cmp::tabsHeader
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsHeaderWidgetComponent
+	class Widget
 	{
 	public:
-		TabsHeaderWidgetComponent(ITabsHeaderWidget* header) : m_header(header) {}
+		Widget(ITabsHeaderWidget* header) : m_header(header) {}
 
 		void update(std::vector<std::string> names, std::vector<std::optional<QIcon>> icons, 
 			std::vector<int> selected, int hovered, int active, ITabsHeaderWidget::eAddButtonState addButtonState)

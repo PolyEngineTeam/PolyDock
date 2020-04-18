@@ -13,14 +13,14 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsMovementEndSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabsMovementActiveComponent>();
+	auto view = registry.view<TabsMovementActive>();
 
 	if (auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
 		if (inputComponent->wasJustReleased(cmp::root::InputComponent::eMouseButton::LEFT))
 		{
 			for (auto entity : view)
-				registry.remove<TabsMovementActiveComponent>(entity);
+				registry.remove<TabsMovementActive>(entity);
 		}
 	}
 }

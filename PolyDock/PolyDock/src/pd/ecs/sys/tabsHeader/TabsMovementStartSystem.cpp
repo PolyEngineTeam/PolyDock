@@ -16,10 +16,10 @@ using namespace ::pd::ecs::cmp::root;
 void TabsMovementStartSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabsHeaderComponent,
-		HoveredTabComponent, 
-		SelectedTabsComponent,
-		TabsHeaderWidgetComponent>();
+		Component,
+		HoveredTab, 
+		SelectedTabs,
+		Widget>();
 
 	if (auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -28,14 +28,14 @@ void TabsMovementStartSystem::update(entt::registry& registry, entt::entity root
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)
 			{
-				const auto& header = view.get<TabsHeaderComponent>(entity);
-				const auto& hovered = view.get<HoveredTabComponent>(entity);
-				const auto& selected = view.get<SelectedTabsComponent>(entity);
-				const auto& widget = view.get<TabsHeaderWidgetComponent>(entity);
+				const auto& header = view.get<Component>(entity);
+				const auto& hovered = view.get<HoveredTab>(entity);
+				const auto& selected = view.get<SelectedTabs>(entity);
+				const auto& widget = view.get<Widget>(entity);
 
 				if (selected.selectedTabs.size() < header.tabs().size())
 				{
-					registry.assign<TabsMovementActiveComponent>(entity,
+					registry.assign<TabsMovementActive>(entity,
 						widget.getCursorPosInTabSpace(inputComponent->getCursorPos()));
 				}
 			}

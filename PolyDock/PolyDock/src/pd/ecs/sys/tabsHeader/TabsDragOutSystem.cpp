@@ -19,20 +19,20 @@ using namespace ::pd::ecs::cmp::root;
 void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabsDragOutRequestComponent,
-		TabsHeaderComponent,
-		SelectedTabsComponent,
-		ActiveTabComponent,
-		TabsMovementActiveComponent>();
+		TabsDragOutRequest,
+		Component,
+		SelectedTabs,
+		ActiveTab,
+		TabsMovementActive>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			auto& header = view.get<TabsHeaderComponent>(entity);
-			auto& selected = view.get<SelectedTabsComponent>(entity);
-			auto& active = view.get<ActiveTabComponent>(entity);
-			const auto& tabsMovement = view.get<TabsMovementActiveComponent>(entity);
+			auto& header = view.get<Component>(entity);
+			auto& selected = view.get<SelectedTabs>(entity);
+			auto& active = view.get<ActiveTab>(entity);
+			const auto& tabsMovement = view.get<TabsMovementActive>(entity);
 
 			const Vector2i windowPos = inputComponent->getCursorPos() - tabsMovement.cursorInTabSpacePosition;
 			const size_t activeTabIdx = std::distance(header.tabs().begin(),
@@ -48,10 +48,10 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 
 			active.activeTab = header.tabs().at(std::min(activeTabIdx, header.tabs().size() - 1));
 			selected.selectedTabs = { active.activeTab };
-			registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+			registry.get_or_assign<WidgetUpdateRequest>(entity);
 			registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
-			registry.remove<TabsDragOutRequestComponent>(entity);
-			registry.remove<TabsMovementActiveComponent>(entity);
+			registry.remove<TabsDragOutRequest>(entity);
+			registry.remove<TabsMovementActive>(entity);
 		}
 	}
 }

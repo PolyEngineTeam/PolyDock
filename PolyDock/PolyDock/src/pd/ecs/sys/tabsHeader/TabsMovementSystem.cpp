@@ -12,15 +12,15 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 void TabsMovementSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabsMovementRequestComponent, 
-		SelectedTabsComponent, 
-		TabsHeaderComponent>();
+		TabsMovementRequest, 
+		SelectedTabs, 
+		Component>();
 
 	for (auto entity : view)
 	{
-		const auto& request = registry.get<TabsMovementRequestComponent>(entity);
-		const auto& selected = registry.get<SelectedTabsComponent>(entity);
-		auto& header = registry.get<TabsHeaderComponent>(entity);
+		const auto& request = registry.get<TabsMovementRequest>(entity);
+		const auto& selected = registry.get<SelectedTabs>(entity);
+		auto& header = registry.get<Component>(entity);
 
 		for (const entt::entity tab : selected.selectedTabs)
 			header.tabsMut().erase(std::remove(header.tabsMut().begin(), header.tabsMut().end(), tab));
@@ -31,7 +31,7 @@ void TabsMovementSystem::update(entt::registry& registry, entt::entity root) con
 				, selected.selectedTabs.at(i));
 		}
 
-		registry.remove<TabsMovementRequestComponent>(entity);
-		registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+		registry.remove<TabsMovementRequest>(entity);
+		registry.get_or_assign<WidgetUpdateRequest>(entity);
 	}
 }

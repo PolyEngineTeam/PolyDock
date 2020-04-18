@@ -12,7 +12,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<HoveredTabComponent>();
+	auto view = registry.view<HoveredTab>();
 
 	if (auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -20,9 +20,9 @@ void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) co
 		{
 			for (auto entity : view)
 			{
-				registry.get_or_assign<SelectedTabsComponent>(entity).selectedTabs =
-				{ view.get<HoveredTabComponent>(entity).hoveredTab };
-					registry.get_or_assign<DirtyTabsHeaderComponent>(entity);
+				registry.get_or_assign<SelectedTabs>(entity).selectedTabs =
+				{ view.get<HoveredTab>(entity).hoveredTab };
+					registry.get_or_assign<WidgetUpdateRequest>(entity);
 			}
 		}
 	}

@@ -8,44 +8,44 @@
 namespace pd::ecs::cmp::tabsHeader
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class HoveredTabComponent
+	class HoveredTab
 	{
 	public:
 		entt::entity hoveredTab;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class ActiveTabComponent
+	class ActiveTab
 	{
 	public:
 		entt::entity activeTab;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class SelectedTabsComponent
+	class SelectedTabs
 	{
 	public:
 		std::vector<entt::entity> selectedTabs;
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class HoveredTabsHeaderComponent
+	class HoveredHeader
 	{
 	public:
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class DirtyTabsHeaderComponent
+	class WidgetUpdateRequest
 	{
 	public:
 
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsHeaderComponent
+	class Component
 	{
 	public:
-		explicit TabsHeaderComponent(std::vector<entt::entity> tabs) : m_tabs(std::move(tabs)) {};
+		explicit Component(std::vector<entt::entity> tabs) : m_tabs(std::move(tabs)) {};
 		void registerObserver(pd::TabsHeaderHandle::IObserver* observer)
 		{
 			m_observers.push_back(observer);

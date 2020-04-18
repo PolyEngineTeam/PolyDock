@@ -6,27 +6,27 @@
 namespace pd::ecs::cmp::tabsHeader
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsMovementActiveComponent
+	class TabsMovementActive
 	{
 	public:
 		Eigen::Vector2i cursorInTabSpacePosition = { 0, 0 };
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsMovementRequestComponent
+	class TabsMovementRequest
 	{
 	public:
 		int indexRequestedForFirstMovedTab = 0;
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsDragOutRequestComponent
+	class TabsDragOutRequest
 	{
 	public:
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabsDragInRequestComponent
+	class TabsDragInRequest
 	{
 	public:
 		entt::entity source;

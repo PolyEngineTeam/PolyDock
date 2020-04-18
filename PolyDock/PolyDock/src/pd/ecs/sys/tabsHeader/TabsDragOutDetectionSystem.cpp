@@ -15,7 +15,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsDragOutDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabsHeaderWidgetComponent, TabsMovementActiveComponent>();
+	auto view = registry.view<Widget, TabsMovementActive>();
 
 	if (auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -23,13 +23,13 @@ void TabsDragOutDetectionSystem::update(entt::registry& registry, entt::entity r
 		{
 			for (auto entity : view)
 			{
-				auto& widget = registry.get<TabsHeaderWidgetComponent>(entity);
+				auto& widget = registry.get<Widget>(entity);
 
 				auto pos = inputComponent->getCursorPos();
 				auto rect = widget.getWidgetRect();
 
 				if (!widget.getWidgetRect().contains(inputComponent->getCursorPos()))
-					registry.assign<TabsDragOutRequestComponent>(entity);
+					registry.assign<TabsDragOutRequest>(entity);
 			}
 		}
 	}
