@@ -3,7 +3,7 @@
 
 #include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 
-using namespace ::pd::ecs::sys::root;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::root;
 
 // ---------------------------------------------------------------------------------------------------------

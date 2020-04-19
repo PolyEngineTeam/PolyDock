@@ -7,7 +7,7 @@
 #include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindowControl;
 using namespace ::pd::ecs::cmp::root;

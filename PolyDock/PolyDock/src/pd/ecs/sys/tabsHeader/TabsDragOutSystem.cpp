@@ -12,7 +12,7 @@
 using namespace ::Eigen;
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabsHeader
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -56,4 +56,4 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 	}
 }
 
-} // namespace pd::ecs::sys::tabsHeader
+} // namespace pd::ecs::sys

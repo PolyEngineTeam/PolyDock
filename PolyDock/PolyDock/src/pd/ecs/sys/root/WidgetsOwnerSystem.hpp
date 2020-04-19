@@ -4,7 +4,7 @@
 
 namespace pd::ecs::cmp::root { class Input; }
 
-namespace pd::ecs::sys::root
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	class WidgetsOwnerSystem : public SystemBase

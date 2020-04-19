@@ -12,7 +12,7 @@
 using namespace ::Eigen;
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabbedWindow
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -121,4 +121,4 @@ void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root)
 	}
 }
 
-} // namespace pd::ecs::sys::tabbedWindow
+} // namespace pd::ecs::sys

@@ -13,7 +13,7 @@
 using namespace ::Eigen;
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabbedWindow
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -49,4 +49,4 @@ void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt:
 	}
 }
 
-} // namespace pd::ecs::sys::tabbedWindow
+} // namespace pd::ecs::sys

@@ -9,7 +9,7 @@
 
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabsHeader
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -34,4 +34,4 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 	}
 }
 
-} // namespace pd::ecs::sys::tabsHeader
+} // namespace pd::ecs::sys

@@ -4,7 +4,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 
 // ---------------------------------------------------------------------------------------------------------

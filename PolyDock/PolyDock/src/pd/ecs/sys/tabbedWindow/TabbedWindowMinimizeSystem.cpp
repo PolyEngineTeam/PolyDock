@@ -8,7 +8,7 @@
 
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabbedWindow
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -32,4 +32,4 @@ void TabbedWindowMinimizeSystem::update(entt::registry& registry, entt::entity r
 	}
 }
 
-} // namespace pd::ecs::sys::tabbedWindow
+} // namespace pd::ecs::sys

@@ -91,67 +91,67 @@ PolyDockRegistry::PolyDockRegistry()
 	m_registry.assign<ecs::cmp::root::WidgetsOwner>(m_root);
 
 	// input
-	m_systems.push_back(std::make_unique<ecs::sys::root::InputSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::root::DesktopSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::InputSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::DesktopSystem>());
 	// tabs header - no mode
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsSelectionSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsActivationSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsSelectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsActivationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsHeaderHoverSystem>());
 	// tabbed window control no mode
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlHoverSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlReleaseSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlPressSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlReleaseSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlPressSystem>());
 	// tabbed window focus
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowFocusSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowFocusSystem>());
 	// tabbed window resize
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowSnapSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRestoreSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMinimizeSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMaximizeSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeHoverSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeStartSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeDetectionSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeEndSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowResizeSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowSnapSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowRestoreSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowMinimizeSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowMaximizeSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowResizeHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowResizeStartSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowResizeDetectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowResizeEndSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowResizeSystem>());
 	// tabbed window movement
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementStartSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementDetectionSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementEndSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowMovementSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowMovementStartSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowMovementDetectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowMovementEndSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowMovementSystem>());
 	// tabs movement
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsMovementStartSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsMovementDetectionSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsMovementEndSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsMovementSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsMovementStartSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsMovementDetectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsMovementEndSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsMovementSystem>());
 	// tabs drag in
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragInDetectionSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragInSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsDragInDetectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsDragInSystem>());
 	// tabs drag out
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutDetectionSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsDragOutSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsDragOutDetectionSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsDragOutSystem>());
 	// tab adding
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::AddButtonHoverSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::AddButtonPressSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsCreationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::AddButtonHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::AddButtonPressSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsCreationSystem>());
 	// tabbed window control widget support
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetInitializationSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindowControl::TabbedWindowControlWidgetUpdateSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlWidgetInitializationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlWidgetUpdateSystem>());
 	// tabs header widget support
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetInitializationSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsHeaderWidgetInitializationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabsHeaderWidgetUpdateSystem>());
 	// tabbed window widget support
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCloseSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowRemovalSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowCreationSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetInitializationSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::tabbedWindow::TabbedWindowWidgetUpdateSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowCloseSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowRemovalSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowCreationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowWidgetInitializationSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowWidgetUpdateSystem>());
 
 	//-----------------------------------------------------------------------------------------
 	// Late systems
 	//-----------------------------------------------------------------------------------------
 	// tab removing
-	m_lateSystems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsRemovalSystem>());
-	m_lateSystems.push_back(std::make_unique<ecs::sys::tabsHeader::TabsHeaderWidgetUpdateSystem>()); // needs to update state after removing and before TabsHeaderHoverSystem
+	m_lateSystems.push_back(std::make_unique<ecs::sys::TabsRemovalSystem>());
+	m_lateSystems.push_back(std::make_unique<ecs::sys::TabsHeaderWidgetUpdateSystem>()); // needs to update state after removing and before TabsHeaderHoverSystem
 
 	QObject::connect(&m_timer, &QTimer::timeout, this, [this]() { update(); lateUpdate(); });
 
@@ -171,7 +171,7 @@ TabbedWindowHandle PolyDockRegistry::createWindow()
 	auto control = TabbedWindowControlHandle(m_registry, windowEntity);
 	auto window = TabbedWindowHandle(header, control);
 
-	m_registry.assign<ecs::cmp::tabbedWindow::CreateRequest>(windowEntity, 
+	m_registry.assign<ecs::cmp::tabbedWindow::CreateRequest>(windowEntity,
 		std::vector<entt::entity>{}, std::vector<entt::entity>{}, std::optional<entt::entity>{},
 		Vector2i{ 100, 100 }, Vector2i{ 500, 500 });
 

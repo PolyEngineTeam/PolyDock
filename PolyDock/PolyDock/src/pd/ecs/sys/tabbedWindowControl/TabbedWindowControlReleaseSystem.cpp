@@ -8,7 +8,7 @@
 
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabbedWindowControl
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -59,4 +59,4 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 	}
 }
 
-} // namespace pd::ecs::sys::tabbedWindowControl
+} // namespace pd::ecs::sys

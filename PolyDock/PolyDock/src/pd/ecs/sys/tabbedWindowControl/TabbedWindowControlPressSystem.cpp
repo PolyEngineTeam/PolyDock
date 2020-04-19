@@ -4,7 +4,7 @@
 #include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindowControl;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindowControl;
 using namespace ::pd::ecs::cmp::root;
 

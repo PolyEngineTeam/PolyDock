@@ -9,7 +9,7 @@
 
 using namespace ::pd::ecs::cmp;
 
-namespace pd::ecs::sys::tabbedWindow
+namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
@@ -30,4 +30,4 @@ void TabbedWindowWidgetInitializationSystem::update(entt::registry& registry, en
 	}
 }
 
-} // namespace pd::ecs::sys::tabbedWindow
+} // namespace pd::ecs::sys

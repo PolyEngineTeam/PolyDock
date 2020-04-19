@@ -6,7 +6,7 @@
 #include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::pd::ecs::cmp::root;
 using namespace ::Eigen;

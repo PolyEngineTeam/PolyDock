@@ -4,7 +4,7 @@
 #include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::pd::ecs::cmp::root;
 

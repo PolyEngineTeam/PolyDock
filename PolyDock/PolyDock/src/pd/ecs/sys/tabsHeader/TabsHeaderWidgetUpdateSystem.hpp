@@ -2,7 +2,7 @@
 
 #include <pd/ecs/sys/SystemBase.hpp>
 
-namespace pd::ecs::sys::tabsHeader
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	class TabsHeaderWidgetUpdateSystem : public SystemBase

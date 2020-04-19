@@ -2,7 +2,7 @@
 
 #include <pd/ecs/sys/SystemBase.hpp>
 
-namespace pd::ecs::sys::tabbedWindowControl
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required

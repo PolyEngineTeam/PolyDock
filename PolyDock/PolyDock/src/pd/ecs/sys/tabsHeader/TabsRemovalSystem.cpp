@@ -5,7 +5,7 @@
 #include <pd/ecs/cmp/tabsHeader/TabsRemoving.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
-using namespace ::pd::ecs::sys::tabsHeader;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabsHeader;
 
 void TabsRemovalSystem::update(entt::registry& registry, entt::entity root) const

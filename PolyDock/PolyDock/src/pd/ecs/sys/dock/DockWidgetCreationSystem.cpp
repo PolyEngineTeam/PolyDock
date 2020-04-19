@@ -5,7 +5,7 @@
 #include <pd/ecs/cmp/dock/Dock.hpp>
 #include <pd/ecs/cmp/dock/DockWidgetComponent.hpp>
 
-using namespace ::pd::ecs::sys::dock;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::dock;
 using namespace ::pd::ecs::cmp::root;
 

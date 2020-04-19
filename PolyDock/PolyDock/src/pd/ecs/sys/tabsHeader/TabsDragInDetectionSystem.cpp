@@ -9,7 +9,7 @@
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 
-using namespace ::pd::ecs::sys::tabsHeader;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp::root;

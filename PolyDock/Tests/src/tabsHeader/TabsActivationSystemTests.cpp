@@ -13,7 +13,7 @@
 // misc
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 
-using namespace ::pd::ecs::sys::tabsHeader;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp::tab;
