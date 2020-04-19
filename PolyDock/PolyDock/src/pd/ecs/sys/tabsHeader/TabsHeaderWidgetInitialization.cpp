@@ -1,5 +1,5 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitialization.hpp>
 
 // in
 #include <pd/ecs/cmp/root/WidgetsOwner.hpp>

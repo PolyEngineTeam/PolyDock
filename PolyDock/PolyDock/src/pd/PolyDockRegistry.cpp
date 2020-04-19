@@ -10,10 +10,7 @@
 // tabs header - no mode
 #include <pd/ecs/sys/tabsHeader/TabsHeader.hpp>
 // tabbed window control no mode
-#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
-#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
-#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlPressSystem.hpp>
-#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControl.hpp>
 // tabbed window focus
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowFocusSystem.hpp>
 // tabbed window resize
@@ -36,11 +33,11 @@
 // tabs drag in
 #include <pd/ecs/sys/tabsHeader/TabsDraggingInOut.hpp>
 // tabbed window control widget support
-#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetInitializationSystem.hpp>
-#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetUpdateSystem.hpp>
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetInitialization.hpp>
+#include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetUpdate.hpp>
 // tabs header widget support
-#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetUpdateSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitialization.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetUpdate.hpp>
 // tabbed window widget support
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCloseSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowRemovalSystem.hpp>
