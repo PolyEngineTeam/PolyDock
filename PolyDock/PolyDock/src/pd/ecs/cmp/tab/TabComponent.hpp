@@ -7,7 +7,7 @@
 namespace pd::ecs::cmp::tab
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabComponent
+	class Component
 	{
 	public:
 		std::string name;
@@ -15,20 +15,20 @@ namespace pd::ecs::cmp::tab
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabContentComponent
+	class Content
 	{
 	public:
 		QWidget* contentWidget = nullptr;
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class DirtyTabContentComponent
+	class RefreshTabContent
 	{
 	public:
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class DirtyTabComponent
+	class RefreshTab
 	{
 	public:
 

@@ -33,7 +33,7 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		// gather tabs names and icons
 		for (const entt::entity& ent : tabsHeader.tabs())
 		{
-			if (const auto* tab = registry.try_get<cmp::tab::TabComponent>(ent))
+			if (const auto* tab = registry.try_get<cmp::tab::Component>(ent))
 			{
 				tabsNames.push_back(tab->name);
 				tabsIcons.push_back(tab->icon);

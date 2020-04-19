@@ -10,8 +10,8 @@ void WindowTabHandle::setName(std::string name)
 {
 	Expects(valid());
 
-	m_registry.get_or_assign<ecs::cmp::tab::TabComponent>(m_entity).name = std::move(name);
-	m_registry.get_or_assign<ecs::cmp::tab::DirtyTabComponent>(m_entity);
+	m_registry.get_or_assign<ecs::cmp::tab::Component>(m_entity).name = std::move(name);
+	m_registry.get_or_assign<ecs::cmp::tab::RefreshTab>(m_entity);
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -25,11 +25,11 @@ void WindowTabHandle::setTabContent(QWidget* widget)
 {
 	Expects(valid());
 	if (widget)
-		m_registry.get_or_assign<ecs::cmp::tab::TabContentComponent>(m_entity).contentWidget = widget;
+		m_registry.get_or_assign<ecs::cmp::tab::Content>(m_entity).contentWidget = widget;
 	else
-		m_registry.remove_if_exists<ecs::cmp::tab::TabContentComponent>(m_entity);
+		m_registry.remove_if_exists<ecs::cmp::tab::Content>(m_entity);
 
-	m_registry.get_or_assign<ecs::cmp::tab::DirtyTabContentComponent>(m_entity);
+	m_registry.get_or_assign<ecs::cmp::tab::RefreshTabContent>(m_entity);
 }
 
 // ---------------------------------------------------------------------------------------------------------

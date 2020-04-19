@@ -39,7 +39,7 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 
 		if (auto* activeTabCmp = registry.try_get<tabsHeader::ActiveTab>(entity))
 		{
-			if (auto* tabContentCmp = registry.try_get<tab::TabContentComponent>(activeTabCmp->activeTab))
+			if (auto* tabContentCmp = registry.try_get<tab::Content>(activeTabCmp->activeTab))
 				widget.window->setContentWidget(tabContentCmp->contentWidget);
 			else
 				widget.window->setContentWidget(nullptr);
