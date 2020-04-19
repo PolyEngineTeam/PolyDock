@@ -8,12 +8,12 @@
 namespace pd::ecs::cmp::root
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class WidgetsOwnerComponent
+	class WidgetsOwner
 	{
 	public:
-		WidgetsOwnerComponent() = default;
-		WidgetsOwnerComponent(const WidgetsOwnerComponent&) { assert(false); }
-		~WidgetsOwnerComponent()
+		WidgetsOwner() = default;
+		WidgetsOwner(const WidgetsOwner&) { assert(false); }
+		~WidgetsOwner()
 		{
 			for (auto&[key, value] : windows)
 				delete value;

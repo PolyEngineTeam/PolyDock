@@ -64,10 +64,9 @@
 // dock widget support
 
 // root components
-#include <pd/ecs/cmp/root/RootComponent.hpp>
-#include <pd/ecs/cmp/root/DesktopComponent.hpp>
-#include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/Desktop.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 // window creation
 #include <pd/ecs/cmp/tabbedWindow/Opening.hpp>
 // dock
@@ -87,10 +86,9 @@ PolyDockRegistry::PolyDockRegistry()
 	registerQtResources();
 
 	m_root = m_registry.create();
-	m_registry.assign<ecs::cmp::root::RootComponent>(m_root);
-	m_registry.assign<ecs::cmp::root::DesktopComponent>(m_root);
-	m_registry.assign<ecs::cmp::root::InputComponent>(m_root);
-	m_registry.assign<ecs::cmp::root::WidgetsOwnerComponent>(m_root);
+	m_registry.assign<ecs::cmp::root::Desktop>(m_root);
+	m_registry.assign<ecs::cmp::root::Input>(m_root);
+	m_registry.assign<ecs::cmp::root::WidgetsOwner>(m_root);
 
 	// input
 	m_systems.push_back(std::make_unique<ecs::sys::root::InputSystem>());

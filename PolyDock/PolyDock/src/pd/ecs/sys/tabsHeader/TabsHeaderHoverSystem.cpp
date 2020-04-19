@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderHoverSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // out
@@ -17,7 +17,7 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 {
 	auto view = registry.view<Component, Widget>();
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<Input>(root))
 	{
 		for (auto entity : view)
 		{
@@ -33,7 +33,7 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 				registry.get_or_assign<HoveredHeader>(entity);
 				registry.get_or_assign<WidgetUpdateRequest>(entity);
 
-				if (inputComponent->wasJustReleased(InputComponent::eMouseButton::MIDDLE))
+				if (inputComponent->wasJustReleased(Input::eMouseButton::MIDDLE))
 				{
 					registry.get_or_assign<TabsRemovalRequest>(entity, hoveredTab);
 					registry.remove<HoveredTab>(entity);

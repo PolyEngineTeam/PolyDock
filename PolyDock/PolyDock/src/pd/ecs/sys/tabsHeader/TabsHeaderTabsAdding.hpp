@@ -6,7 +6,7 @@ namespace pd::ecs::sys::tabsHeader
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. root::InputComponent
+	// 1. root::Input
 	// 2. tabsHeader::Widget
 	// 
 	// Added / Removed
@@ -21,7 +21,7 @@ namespace pd::ecs::sys::tabsHeader
 
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. root::InputComponent
+	// 1. root::Input
 	// 2. tabsHeader::AddButtonHovered
 	// 
 	// Added / Removed

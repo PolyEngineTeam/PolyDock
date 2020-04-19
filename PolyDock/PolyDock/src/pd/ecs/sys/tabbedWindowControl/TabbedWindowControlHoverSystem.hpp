@@ -6,7 +6,7 @@ namespace pd::ecs::sys::tabbedWindowControl
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. root/InputComponent
+	// 1. root/Input
 	// 2. tabbedWindowControl/Component
 	// 3. tabbedWindowControl/Widget
 	//

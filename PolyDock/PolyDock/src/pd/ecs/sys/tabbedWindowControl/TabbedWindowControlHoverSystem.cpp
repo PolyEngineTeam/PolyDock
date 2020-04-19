@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
 
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 
@@ -14,7 +14,7 @@ void TabbedWindowControlHoverSystem::update(entt::registry& registry, entt::enti
 {
 	auto view = registry.view<Component, Widget>();
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<Input>(root))
 	{
 		for (auto entity : view)
 		{

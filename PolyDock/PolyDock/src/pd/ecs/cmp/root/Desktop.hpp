@@ -6,7 +6,7 @@
 namespace pd::ecs::cmp::root
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class DesktopComponent
+	class Desktop
 	{
 	public:
 		Eigen::AlignedBox2i desktopSize;

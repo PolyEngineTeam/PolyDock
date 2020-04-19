@@ -2,7 +2,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 
 #include <Eigen/Dense>
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 
 using namespace ::pd::ecs::cmp::tabbedWindow;
 using namespace ::Eigen;

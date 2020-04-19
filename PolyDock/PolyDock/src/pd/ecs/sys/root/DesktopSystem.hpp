@@ -6,7 +6,7 @@ namespace pd::ecs::sys::root
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Modified
-	// 1. DesktopComponent
+	// 1. Desktop
 	class DesktopSystem : public SystemBase
 	{
 	public:

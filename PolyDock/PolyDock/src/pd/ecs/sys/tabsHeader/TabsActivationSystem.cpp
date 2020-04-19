@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsActivationSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
@@ -17,9 +17,9 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 {
 	auto view = registry.view<::tabsHeader::HoveredTab>();
 
-	if (auto* inputComponent = registry.try_get<root::InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<root::Input>(root))
 	{
-		if (inputComponent->wasJustPressed(cmp::root::InputComponent::eMouseButton::LEFT))
+		if (inputComponent->wasJustPressed(cmp::root::Input::eMouseButton::LEFT))
 		{
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)

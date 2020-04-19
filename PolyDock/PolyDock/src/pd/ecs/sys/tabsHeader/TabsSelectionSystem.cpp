@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsSelectionSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
@@ -14,9 +14,9 @@ void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) co
 {
 	auto view = registry.view<HoveredTab>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<Input>(root))
 	{
-		if (inputComponent->wasJustPressed(InputComponent::eMouseButton::LEFT))
+		if (inputComponent->wasJustPressed(Input::eMouseButton::LEFT))
 		{
 			for (auto entity : view)
 			{

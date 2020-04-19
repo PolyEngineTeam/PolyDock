@@ -5,7 +5,7 @@
 namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
-	// 1. InputComponent
+	// 1. Input
 	// 2. ResizeActive
 	// 
 	// Removed

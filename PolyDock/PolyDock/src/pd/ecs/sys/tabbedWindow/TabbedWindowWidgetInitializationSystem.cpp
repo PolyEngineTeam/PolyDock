@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitializationSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
@@ -17,7 +17,7 @@ void TabbedWindowWidgetInitializationSystem::update(entt::registry& registry, en
 {
 	auto view = registry.view<::tabbedWindow::Component>(entt::exclude<::tabbedWindow::Widget>);
 
-	if (auto* widgetsOwner = registry.try_get<root::WidgetsOwnerComponent>(root))
+	if (auto* widgetsOwner = registry.try_get<root::WidgetsOwner>(root))
 	{
 		for (auto entity : view)
 		{

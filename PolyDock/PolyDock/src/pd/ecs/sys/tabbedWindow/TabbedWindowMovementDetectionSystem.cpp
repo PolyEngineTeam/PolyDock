@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementDetectionSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
@@ -24,7 +24,7 @@ void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt:
 		::tabbedWindow::Component,
 		tabbedWindowControl::Component>();
 
-	if (auto* inputComponent = registry.try_get<root::InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<root::Input>(root))
 	{
 		if (inputComponent->getCursorDiff() != Vector2i{ 0, 0 })
 		{

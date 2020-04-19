@@ -5,7 +5,7 @@
 namespace pd::ecs::cmp::root
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class InputComponent
+	class Input
 	{
 	public:
 		enum class eMouseButton

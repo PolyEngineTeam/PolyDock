@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsDragOutDetectionSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
@@ -17,7 +17,7 @@ void TabsDragOutDetectionSystem::update(entt::registry& registry, entt::entity r
 {
 	auto view = registry.view<Widget, TabsMovementActive>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<Input>(root))
 	{
 		if (inputComponent->getCursorDiff() != Vector2i{ 0, 0 })
 		{

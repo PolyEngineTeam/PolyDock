@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/dock/DockWidgetRemovalSystem.hpp>
 
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 #include <pd/ecs/cmp/dock/DockComponent.hpp>
 #include <pd/ecs/cmp/dock/DockWidgetComponent.hpp>
 
@@ -14,7 +14,7 @@ void DockWidgetRemovalSystem::update(entt::registry& registry, entt::entity root
 {
 	auto view = registry.view<DockComponent>(entt::exclude<DockWidgetComponent>);
 
-	if (auto* widgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
+	if (auto* widgetsOwner = registry.try_get<WidgetsOwner>(root))
 	{
 		for (auto entity : view)
 		{

@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsDragOutSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
@@ -25,7 +25,7 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 		::tabsHeader::ActiveTab,
 		::tabsHeader::TabsMovementActive>();
 
-	if (const auto* inputComponent = registry.try_get<root::InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<root::Input>(root))
 	{
 		for (auto entity : view)
 		{

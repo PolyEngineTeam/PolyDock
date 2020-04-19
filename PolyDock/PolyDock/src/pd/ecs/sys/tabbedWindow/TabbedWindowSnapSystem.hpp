@@ -6,7 +6,7 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. DesktopComponent
+	// 1. Desktop
 	// 2. SnapRequest
 	// 3. Component
 	// 4. tabbedWindowControl/Component=

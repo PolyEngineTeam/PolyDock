@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
 
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
@@ -19,15 +19,15 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 		::tabbedWindowControl::Press, 
 		::tabbedWindowControl::Hover>();
 
-	if (auto* inputComponent = registry.try_get<root::InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<root::Input>(root))
 	{
 		for (auto entity : view)
 		{
-			bool isPressed = inputComponent->isPressed(root::InputComponent::eMouseButton::LEFT);
-			bool wasJustPressed = inputComponent->wasJustPressed(root::InputComponent::eMouseButton::LEFT);
-			bool wasJustReleased = inputComponent->wasJustReleased(root::InputComponent::eMouseButton::LEFT);
+			bool isPressed = inputComponent->isPressed(root::Input::eMouseButton::LEFT);
+			bool wasJustPressed = inputComponent->wasJustPressed(root::Input::eMouseButton::LEFT);
+			bool wasJustReleased = inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT);
 
-			if (inputComponent->wasJustReleased(root::InputComponent::eMouseButton::LEFT))
+			if (inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT))
 			{
 				const auto& cmp = view.get<::tabbedWindowControl::Component>(entity);
 				const auto& hoverCmp = view.get<::tabbedWindowControl::Hover>(entity);

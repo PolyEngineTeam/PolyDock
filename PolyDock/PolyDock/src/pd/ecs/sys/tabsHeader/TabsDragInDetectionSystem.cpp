@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsDragInDetectionSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
@@ -23,7 +23,7 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 		Component
 			>(entt::exclude<MovementActive>);
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<Input>(root))
 	{
 		for (auto source : srcView)
 		{

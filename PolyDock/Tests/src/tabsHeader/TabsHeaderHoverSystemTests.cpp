@@ -4,7 +4,7 @@
 // sys
 #include <pd/ecs/sys/tabsHeader/TabsHeaderHoverSystem.hpp>
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
 // out

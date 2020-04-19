@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapSystem.hpp>
 
-#include <pd/ecs/cmp/root/DesktopComponent.hpp>
+#include <pd/ecs/cmp/root/Desktop.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
@@ -20,7 +20,7 @@ void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root)
 {
 	auto view = registry.view<::tabbedWindow::Component, tabbedWindowControl::Component, ::tabbedWindow::SnapRequest>();
 
-	if (const auto* desktopCmp = registry.try_get<root::DesktopComponent>(root))
+	if (const auto* desktopCmp = registry.try_get<root::Desktop>(root))
 	{
 		for (auto entity : view)
 		{

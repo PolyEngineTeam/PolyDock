@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeEndSystem.hpp>
 
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
@@ -13,9 +13,9 @@ void TabbedWindowResizeEndSystem::update(entt::registry& registry, entt::entity 
 {
 	auto view = registry.view<ResizeActive>();
 	
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<Input>(root))
 	{
-		if (inputComponent->wasJustReleased(InputComponent::eMouseButton::LEFT))
+		if (inputComponent->wasJustReleased(Input::eMouseButton::LEFT))
 		{
 			for (auto entity : view)
 			{

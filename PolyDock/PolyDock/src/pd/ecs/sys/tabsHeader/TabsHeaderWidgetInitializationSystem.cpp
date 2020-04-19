@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitializationSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
@@ -16,7 +16,7 @@ void TabsHeaderWidgetInitializationSystem::update(entt::registry& registry, entt
 {
 	auto view = registry.view<Component>(entt::exclude<Widget>);
 
-	if (auto* widgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
+	if (auto* widgetsOwner = registry.try_get<WidgetsOwner>(root))
 	{
 		for (auto entity : view)
 		{

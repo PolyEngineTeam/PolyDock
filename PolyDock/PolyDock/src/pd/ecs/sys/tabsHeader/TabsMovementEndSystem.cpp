@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsMovementEndSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 
@@ -15,9 +15,9 @@ void TabsMovementEndSystem::update(entt::registry& registry, entt::entity root) 
 {
 	auto view = registry.view<TabsMovementActive>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<Input>(root))
 	{
-		if (inputComponent->wasJustReleased(cmp::root::InputComponent::eMouseButton::LEFT))
+		if (inputComponent->wasJustReleased(cmp::root::Input::eMouseButton::LEFT))
 		{
 			for (auto entity : view)
 				registry.remove<TabsMovementActive>(entity);

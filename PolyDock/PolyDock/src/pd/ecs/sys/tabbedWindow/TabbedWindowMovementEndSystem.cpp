@@ -1,8 +1,8 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementEndSystem.hpp>
 
-#include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/root/DesktopComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
+#include <pd/ecs/cmp/root/Desktop.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
@@ -18,10 +18,10 @@ void TabbedWindowMovementEndSystem::update(entt::registry& registry, entt::entit
 {
 	auto view = registry.view<MovementActive, Component>();
 
-	const auto* inputCmp = registry.try_get<InputComponent>(root);
-	const auto* desktopCmp = registry.try_get<DesktopComponent>(root);
+	const auto* inputCmp = registry.try_get<Input>(root);
+	const auto* desktopCmp = registry.try_get<Desktop>(root);
 
-	if (inputCmp && desktopCmp && inputCmp->wasJustReleased(InputComponent::eMouseButton::LEFT))
+	if (inputCmp && desktopCmp && inputCmp->wasJustReleased(Input::eMouseButton::LEFT))
 	{
 		const Vector2i mousePos = inputCmp->getCursorPos();
 

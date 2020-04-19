@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderTabsAdding.hpp>
 
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
@@ -15,7 +15,7 @@ namespace pd::ecs::sys::tabsHeader
 // ---------------------------------------------------------------------------------------------------------
 void AddButtonHoverSystem::update(entt::registry& registry, entt::entity root) const
 {
-	if (const auto* inputComponent = registry.try_get<root::InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<root::Input>(root))
 	{
 		auto view = registry.view<::tabsHeader::Widget>();
 
@@ -46,12 +46,12 @@ void AddButtonHoverSystem::update(entt::registry& registry, entt::entity root) c
 // ---------------------------------------------------------------------------------------------------------
 void AddButtonPressSystem::update(entt::registry& registry, entt::entity root) const
 {
-	if (const auto* inputComponent = registry.try_get<root::InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<root::Input>(root))
 	{
 		auto hoveredViews = registry.view<::tabsHeader::AddButtonHovered>();
 		auto pressedViews = registry.view<::tabsHeader::AddButtonPressed>();
 
-		if (inputComponent->wasJustPressed(root::InputComponent::eMouseButton::LEFT))
+		if (inputComponent->wasJustPressed(root::Input::eMouseButton::LEFT))
 		{
 			for (auto entity : hoveredViews)
 			{
@@ -59,7 +59,7 @@ void AddButtonPressSystem::update(entt::registry& registry, entt::entity root) c
 				registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
 			}
 		}
-		else if (inputComponent->wasJustReleased(root::InputComponent::eMouseButton::LEFT))
+		else if (inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT))
 		{
 			for (auto entity : pressedViews)
 			{

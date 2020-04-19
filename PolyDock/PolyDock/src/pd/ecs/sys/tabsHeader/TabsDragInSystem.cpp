@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsDragInSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // out
@@ -19,7 +19,7 @@ void TabsDragInSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<TabsDragInRequest, Widget>();
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<Input>(root))
 	{
 		for (auto entity : view)
 		{

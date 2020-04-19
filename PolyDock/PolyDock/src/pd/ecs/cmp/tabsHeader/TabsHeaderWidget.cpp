@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd::ecs::cmp::tabsHeader;

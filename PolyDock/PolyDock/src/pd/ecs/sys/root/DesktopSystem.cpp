@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/root/DesktopSystem.hpp>
 
-#include <pd/ecs/cmp/root/DesktopComponent.hpp>
+#include <pd/ecs/cmp/root/Desktop.hpp>
 
 using namespace ::pd::ecs::sys::root;
 using namespace ::pd::ecs::cmp::root;
@@ -10,12 +10,12 @@ using namespace ::Eigen;
 // ---------------------------------------------------------------------------------------------------------
 void DesktopSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<DesktopComponent>();
+	auto view = registry.view<Desktop>();
 	Expects(view.size() == 1);
 
 	for (auto entity : view)
 	{
-		auto& cmp = view.get<DesktopComponent>(entity);
+		auto& cmp = view.get<Desktop>(entity);
 
 		cmp.screens.clear();
 		Vector2i min{ 0, 0 };

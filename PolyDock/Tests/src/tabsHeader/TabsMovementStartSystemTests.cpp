@@ -4,7 +4,7 @@
 // sys
 #include <pd/ecs/sys/tabsHeader/TabsMovementStartSystem.hpp>
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>

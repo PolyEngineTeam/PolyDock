@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabsHeader/TabsMovementStartSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // out
@@ -21,9 +21,9 @@ void TabsMovementStartSystem::update(entt::registry& registry, entt::entity root
 		SelectedTabs,
 		Widget>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<Input>(root))
 	{
-		if (inputComponent->wasJustPressed(cmp::root::InputComponent::eMouseButton::LEFT))
+		if (inputComponent->wasJustPressed(cmp::root::Input::eMouseButton::LEFT))
 		{
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)

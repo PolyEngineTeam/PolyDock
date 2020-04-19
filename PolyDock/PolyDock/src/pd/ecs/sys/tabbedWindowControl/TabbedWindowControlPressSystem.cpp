@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlPressSystem.hpp>
 
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindowControl;
@@ -13,12 +13,12 @@ void TabbedWindowControlPressSystem::update(entt::registry& registry, entt::enti
 {
 	auto view = registry.view<Component>();
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<Input>(root))
 	{
 		for (auto entity : view)
 		{
 			if (registry.has<Hover>(entity)
-				&& inputComponent->isPressed(InputComponent::eMouseButton::LEFT))
+				&& inputComponent->isPressed(Input::eMouseButton::LEFT))
 			{
 				registry.get_or_assign<Press>(entity);
 				registry.get_or_assign<WidgetUpdateRequest>(entity);

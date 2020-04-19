@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowRemovalSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
+#include <pd/ecs/cmp/root/WidgetsOwner.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
@@ -18,7 +18,7 @@ void TabbedWindowRemovalSystem::update(entt::registry& registry, entt::entity ro
 {
 	auto view = registry.view<RemoveRequest>();
 
-	if (auto* wiodgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
+	if (auto* wiodgetsOwner = registry.try_get<WidgetsOwner>(root))
 	{
 		for (auto entity : view)
 		{

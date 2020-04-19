@@ -2,7 +2,7 @@
 
 #include <Eigen/Dense>
 
-namespace pd::ecs::cmp::root { class WidgetsOwnerComponent; }
+namespace pd::ecs::cmp::root { class WidgetsOwner; }
 
 namespace pd::ecs::cmp::tabbedWindow
 {

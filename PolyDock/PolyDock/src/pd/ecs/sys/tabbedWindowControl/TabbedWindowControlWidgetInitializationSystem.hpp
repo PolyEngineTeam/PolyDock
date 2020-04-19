@@ -6,7 +6,7 @@ namespace pd::ecs::sys::tabbedWindowControl
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. WidgetsOwnerComponent
+	// 1. WidgetsOwner
 	// 2. tabbedWindowControl/Component
 	// Banned
 	// 1. tabbedWindowControl/Widget
@@ -14,7 +14,7 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// Added
 	// 1. tabbedWindowControl/Widget
 	// Modified
-	// 1. WidgetsOwnerComponent
+	// 1. WidgetsOwner
 	class TabbedWindowControlWidgetInitializationSystem : public SystemBase
 	{
 	public:
