@@ -2,7 +2,7 @@
 #include <pd/ecs/sys/dock/DockWidgetCreationSystem.hpp>
 
 #include <pd/ecs/cmp/root/WidgetsOwner.hpp>
-#include <pd/ecs/cmp/dock/DockComponent.hpp>
+#include <pd/ecs/cmp/dock/Dock.hpp>
 #include <pd/ecs/cmp/dock/DockWidgetComponent.hpp>
 
 using namespace ::pd::ecs::sys::dock;

@@ -12,4 +12,10 @@ namespace pd::ecs::cmp::dock
 	public:
 		std::vector<entt::entity> docks;
 	};
+	
+	// ---------------------------------------------------------------------------------------------------------
+	class UpdateDockWidgetRequestComponent final
+	{
+	public:
+	};
 }

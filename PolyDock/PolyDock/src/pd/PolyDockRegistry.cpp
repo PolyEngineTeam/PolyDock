@@ -70,7 +70,7 @@
 // window creation
 #include <pd/ecs/cmp/tabbedWindow/Opening.hpp>
 // dock
-#include <pd/ecs/cmp/dock/DockComponent.hpp>
+#include <pd/ecs/cmp/dock/Dock.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd;

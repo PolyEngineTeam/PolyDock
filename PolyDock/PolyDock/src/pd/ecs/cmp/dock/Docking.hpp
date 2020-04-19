@@ -12,4 +12,11 @@ namespace pd::ecs::cmp::dock
 		entt::entity dock;
 		DockWidgetHandle::eDockArea dockArea = DockWidgetHandle::eDockArea::CENTER;
 	};
+	
+	// ---------------------------------------------------------------------------------------------------------
+	class UndockRequestComponent final
+	{
+	public:
+		entt::entity dock;
+	};
 }
