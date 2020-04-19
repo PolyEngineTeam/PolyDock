@@ -1,5 +1,5 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 
 #include <Eigen/Dense>
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>

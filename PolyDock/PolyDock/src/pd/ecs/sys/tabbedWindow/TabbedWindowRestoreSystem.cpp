@@ -1,9 +1,9 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowRestoreSystem.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;

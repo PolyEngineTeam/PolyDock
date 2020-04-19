@@ -3,8 +3,8 @@
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/root/DesktopComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowSnapRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;

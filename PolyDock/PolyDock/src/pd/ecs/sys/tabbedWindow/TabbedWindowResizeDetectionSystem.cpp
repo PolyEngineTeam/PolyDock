@@ -2,12 +2,9 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeDetectionSystem.hpp>
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowResizeActiveComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowResizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementRequestComponent.hpp>
-
-#include <iostream>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

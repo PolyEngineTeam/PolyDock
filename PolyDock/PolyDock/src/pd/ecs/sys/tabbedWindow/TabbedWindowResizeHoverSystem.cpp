@@ -2,8 +2,8 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeHoverSystem.hpp>
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowResizeHoverComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

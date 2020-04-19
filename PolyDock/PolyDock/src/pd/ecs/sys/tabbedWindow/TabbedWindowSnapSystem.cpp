@@ -2,15 +2,12 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapSystem.hpp>
 
 #include <pd/ecs/cmp/root/DesktopComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowSnapRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMaximizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMinimizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowResizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

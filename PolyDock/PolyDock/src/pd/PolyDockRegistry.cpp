@@ -1,7 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/PolyDockRegistry.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
 // input
@@ -69,7 +69,7 @@
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
 // window creation
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowCreateRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Opening.hpp>
 // dock
 #include <pd/ecs/cmp/dock/DockComponent.hpp>
 

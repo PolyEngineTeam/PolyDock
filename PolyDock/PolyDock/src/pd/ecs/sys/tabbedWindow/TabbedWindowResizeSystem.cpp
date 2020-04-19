@@ -1,9 +1,8 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeSystem.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowResizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

@@ -3,10 +3,8 @@
 
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMinimizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMaximizeRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowCloseRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindowControl;
 using namespace ::pd::ecs::cmp::tabbedWindowControl;

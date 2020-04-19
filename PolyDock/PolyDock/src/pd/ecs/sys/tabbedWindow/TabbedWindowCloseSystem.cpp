@@ -1,9 +1,8 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCloseSystem.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowCloseRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRemoveRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

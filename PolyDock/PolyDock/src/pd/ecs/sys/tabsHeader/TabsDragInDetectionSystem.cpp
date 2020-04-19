@@ -5,7 +5,7 @@
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 

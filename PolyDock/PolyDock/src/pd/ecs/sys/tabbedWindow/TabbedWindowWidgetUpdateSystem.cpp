@@ -2,14 +2,13 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 #include <pd/ecs/cmp/tab/TabContentComponent.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

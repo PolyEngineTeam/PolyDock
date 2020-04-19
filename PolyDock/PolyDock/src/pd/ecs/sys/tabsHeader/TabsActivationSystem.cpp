@@ -5,7 +5,7 @@
 #include <pd/ecs/cmp/root/InputComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabbedWindow;

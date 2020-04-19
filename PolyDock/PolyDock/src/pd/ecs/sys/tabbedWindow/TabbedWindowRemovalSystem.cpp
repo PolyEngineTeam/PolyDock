@@ -3,9 +3,9 @@
 
 // in
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRemoveRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;

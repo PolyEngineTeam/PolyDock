@@ -1,7 +1,7 @@
 #pragma once
 
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 #include <pd/ecs/cmp/dock/DockWidgetComponent.hpp>
 

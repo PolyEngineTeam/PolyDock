@@ -1,9 +1,9 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowCreationSystem.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowCreateRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Opening.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 

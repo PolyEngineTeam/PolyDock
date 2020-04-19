@@ -1,8 +1,8 @@
 #include <pd/pch/PCH.h>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowFocusSystem.hpp>
 
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowFocusComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

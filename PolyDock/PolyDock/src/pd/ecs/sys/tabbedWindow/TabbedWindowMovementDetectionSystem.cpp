@@ -3,13 +3,12 @@
 
 // in
 #include <pd/ecs/cmp/root/InputComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementActiveComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementRequestComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRestoreRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd::ecs::sys::tabbedWindow;

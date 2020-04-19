@@ -2,10 +2,9 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementSystem.hpp>
 
 // in
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowMovementRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 
 using namespace ::pd::ecs::sys::tabbedWindow;
 using namespace ::pd::ecs::cmp::tabbedWindow;

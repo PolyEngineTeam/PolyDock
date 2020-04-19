@@ -6,8 +6,8 @@
 #include <pd/ecs/cmp/tabsHeader/TabsDragging.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowCreateRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Opening.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd::ecs::sys::tabsHeader;

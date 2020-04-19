@@ -7,7 +7,7 @@
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowRemoveRequestComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabbedWindow;
