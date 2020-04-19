@@ -1,9 +1,8 @@
 #pragma once
 
 #include <optional>
+#include <vector>
 #include <entt/entt.hpp>
-
-#include <pd/WindowTabHandle.hpp>
 
 namespace pd::ecs::cmp::tabsHeader
 {

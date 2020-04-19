@@ -27,8 +27,6 @@ namespace pd
 		bool valid() const { return m_registry.valid(m_entity); }
 
 		bool canClose();
-		void tryClose();
-		void forceClose();
 
 	private:
 		entt::registry& m_registry;

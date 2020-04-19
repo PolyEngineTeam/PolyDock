@@ -2,13 +2,8 @@
 #include <pd/TabsHeaderHandle.hpp>
 
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabContentComponent.hpp>
+#include <pd/ecs/cmp/tab/TabComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/ActiveTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
 
 using namespace ::pd;
 using namespace ::pd::ecs::cmp::tabsHeader;

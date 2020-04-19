@@ -2,9 +2,9 @@
 
 #include <pd/ecs/sys/SystemBase.hpp>
 
-namespace pd::ecs::cmp::root { class InputComponent; }
+namespace pd::ecs::cmp::root { class Input; }
 
-namespace pd::ecs::sys::root
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	class InputSystem : public SystemBase
@@ -13,7 +13,7 @@ namespace pd::ecs::sys::root
 		void update(entt::registry&, entt::entity root) const final;
 
 	private:
-		void updateCursorPos(cmp::root::InputComponent& cmp) const;
-		void updateMouseButtonState(cmp::root::InputComponent& cmp) const;
+		void updateCursorPos(cmp::root::Input& cmp) const;
+		void updateMouseButtonState(cmp::root::Input& cmp) const;
 	};
 }
