@@ -8,9 +8,7 @@
 #include <pd/ecs/sys/root/InputSystem.hpp>
 #include <pd/ecs/sys/root/DesktopSystem.hpp>
 // tabs header - no mode
-#include <pd/ecs/sys/tabsHeader/TabsSelectionSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsActivationSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderHoverSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeader.hpp>
 // tabbed window control no mode
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlHoverSystem.hpp>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlReleaseSystem.hpp>
@@ -34,16 +32,9 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementEndSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementSystem.hpp>
 // tabs movement
-#include <pd/ecs/sys/tabsHeader/TabsMovementStartSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsMovementDetectionSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsMovementEndSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsMovementSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsMovement.hpp>
 // tabs drag in
-#include <pd/ecs/sys/tabsHeader/TabsDragInDetectionSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsDragInSystem.hpp>
-// tabs drag out
-#include <pd/ecs/sys/tabsHeader/TabsDragOutDetectionSystem.hpp>
-#include <pd/ecs/sys/tabsHeader/TabsDragOutSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsDraggingInOut.hpp>
 // tabbed window control widget support
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControlWidgetUpdateSystem.hpp>
@@ -57,9 +48,9 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitializationSystem.hpp>
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
 // tab adding support
-#include <pd/ecs/sys/tabsHeader/TabsHeaderTabsAdding.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsAdding.hpp>
 // tab removing support
-#include <pd/ecs/sys/tabsHeader/TabsRemovalSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsRemoving.hpp>
 
 // dock widget support
 

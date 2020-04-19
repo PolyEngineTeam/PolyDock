@@ -1,5 +1,5 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/sys/tabsHeader/TabsHeaderTabsAdding.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsAdding.hpp>
 
 #include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>

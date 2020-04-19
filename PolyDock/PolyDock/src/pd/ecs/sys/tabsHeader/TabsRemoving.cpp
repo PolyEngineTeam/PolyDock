@@ -1,23 +1,24 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/sys/tabsHeader/TabsRemovalSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsRemoving.hpp>
 
-// in
 #include <pd/ecs/cmp/tabsHeader/TabsRemoving.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 
-using namespace ::pd::ecs::sys;
-using namespace ::pd::ecs::cmp::tabsHeader;
+using namespace ::pd::ecs::cmp;
 
+namespace pd::ecs::sys
+{
+
+// ---------------------------------------------------------------------------------------------------------
 void TabsRemovalSystem::update(entt::registry& registry, entt::entity root) const
 {
-    auto view = registry.view<Component,
-                              TabsRemovalRequest>();
+    auto view = registry.view<tabsHeader::Component, tabsHeader::TabsRemovalRequest>();
     
     for (auto entity : view)
     {
-        auto& tabsHeader = registry.get<Component>(entity);
-        auto& requestCmp = registry.get<TabsRemovalRequest>(entity);
-        auto& activeCmp = registry.get<ActiveTab>(entity);
+        auto& tabsHeader = registry.get<tabsHeader::Component>(entity);
+        auto& requestCmp = registry.get<tabsHeader::TabsRemovalRequest>(entity);
+        auto& activeCmp = registry.get<tabsHeader::ActiveTab>(entity);
 
         // for now disallow destroying the only tab
         if (tabsHeader.tabs().size() > 1)
@@ -37,9 +38,12 @@ void TabsRemovalSystem::update(entt::registry& registry, entt::entity root) cons
             tabsHeader.closeTab(requestCmp.tabToRemove);
             registry.destroy(requestCmp.tabToRemove);
 
-            registry.get_or_assign<WidgetUpdateRequest>(entity);
-            registry.get_or_assign<SelectedTabs>(entity).selectedTabs = { activeCmp.activeTab };
+            registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
+            registry.get_or_assign<tabsHeader::SelectedTabs>(entity).selectedTabs = { activeCmp.activeTab };
         }
-        registry.remove<TabsRemovalRequest>(entity);
+
+        registry.remove<tabsHeader::TabsRemovalRequest>(entity);
     }
 }
+
+} // namespace pd::ecs::sys
