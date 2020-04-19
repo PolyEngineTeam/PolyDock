@@ -13,4 +13,24 @@ namespace pd::ecs::cmp::tab
 		std::string name;
 		std::optional<QIcon> icon;
 	};
+	
+	// ---------------------------------------------------------------------------------------------------------
+	class TabContentComponent
+	{
+	public:
+		QWidget* contentWidget = nullptr;
+	};
+	
+	// ---------------------------------------------------------------------------------------------------------
+	class DirtyTabContentComponent
+	{
+	public:
+	};
+	
+	// ---------------------------------------------------------------------------------------------------------
+	class DirtyTabComponent
+	{
+	public:
+
+	};
 }

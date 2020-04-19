@@ -1,10 +1,7 @@
 #include <pd/pch/PCH.h>
 #include <pd/WindowTabHandle.hpp>
 
-#include <pd/ecs/cmp/tab/DirtyTabComponent.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabContentComponent.hpp>
-#include <pd/ecs/cmp/tab/TabContentComponent.hpp>
 
 using namespace ::pd;
 

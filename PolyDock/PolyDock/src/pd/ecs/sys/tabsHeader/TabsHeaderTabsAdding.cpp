@@ -6,8 +6,6 @@
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabContentComponent.hpp>
 
 using namespace ::pd::ecs::sys::tabsHeader;
 using namespace ::pd::ecs::cmp::tabsHeader;

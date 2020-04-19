@@ -6,7 +6,7 @@
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
-#include <pd/ecs/cmp/tab/TabContentComponent.hpp>
+#include <pd/ecs/cmp/tab/TabComponent.hpp>
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 

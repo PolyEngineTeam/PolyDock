@@ -2,8 +2,7 @@
 #include <pd/TabsHeaderHandle.hpp>
 
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabComponent.hpp>
-#include <pd/ecs/cmp/tab/DirtyTabContentComponent.hpp>
+#include <pd/ecs/cmp/tab/TabComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
 
 using namespace ::pd;
