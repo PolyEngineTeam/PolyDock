@@ -6,17 +6,17 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. TabbedWindowCreateRequestComponent
+	// 1. CreateRequest
 	//
 	// Added
-	// 1. TabbedWindowComponent
+	// 1. Component
 	// 2. Component
 	// 3. tabbedWindowControl/Component
 	// 4. SelectedTabs
 	// 5. ActiveTab
-	// 6. TabbedWindowMovementActiveComponent
+	// 6. MovementActive
 	// Removed
-	// 1. TabbedWindowCreateRequestComponent
+	// 1. CreateRequest
 	class TabbedWindowCreationSystem : public SystemBase
 	{
 	public:

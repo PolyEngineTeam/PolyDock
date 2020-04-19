@@ -6,15 +6,15 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. TabbedWindowComponent
-	// 2. TabbedWindowWidgetComponent
-	// 3. TabbedWindowRestoreRequestComponent
+	// 1. Component
+	// 2. Widget
+	// 3. RestoreRequest
 	// 4. tabbedWindowControl/Component
 	//
 	// Removed
-	// 1. TabbedWindowRestoreRequestComponent
+	// 1. RestoreRequest
 	// Modified
-	// 1. TabbedWindowWidgetComponent
+	// 1. Widget
 	class TabbedWindowRestoreSystem : public SystemBase
 	{
 	public:

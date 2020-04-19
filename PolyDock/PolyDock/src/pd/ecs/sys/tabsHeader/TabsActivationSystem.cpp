@@ -7,29 +7,31 @@
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 
-using namespace ::pd::ecs::sys::tabsHeader;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabsHeader;
-using namespace ::pd::ecs::cmp::root;
+using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabsHeader
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabsActivationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<HoveredTab>();
+	auto view = registry.view<::tabsHeader::HoveredTab>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<root::InputComponent>(root))
 	{
 		if (inputComponent->wasJustPressed(cmp::root::InputComponent::eMouseButton::LEFT))
 		{
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)
 			{
-				auto& hovered = view.get<HoveredTab>(entity);
+				auto& hovered = view.get<::tabsHeader::HoveredTab>(entity);
 
-				registry.get_or_assign<ActiveTab>(entity).activeTab = hovered.hoveredTab;
-				registry.get_or_assign<WidgetUpdateRequest>(entity);
-				registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
+				registry.get_or_assign<::tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
+				registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+				registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
 			}
 		}
 	}
 }
+
+} // namespace pd::ecs::sys::tabsHeader

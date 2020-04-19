@@ -10,29 +10,29 @@
 #include <pd/ecs/cmp/tabbedWindow/Opening.hpp>
 
 using namespace ::Eigen;
-using namespace ::pd::ecs::sys::tabsHeader;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabsHeader;
-using namespace ::pd::ecs::cmp::root;
+using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabsHeader
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabsDragOutRequest,
-		Component,
-		SelectedTabs,
-		ActiveTab,
-		TabsMovementActive>();
+		::tabsHeader::TabsDragOutRequest,
+		::tabsHeader::Component,
+		::tabsHeader::SelectedTabs,
+		::tabsHeader::ActiveTab,
+		::tabsHeader::TabsMovementActive>();
 
-	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (const auto* inputComponent = registry.try_get<root::InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			auto& header = view.get<Component>(entity);
-			auto& selected = view.get<SelectedTabs>(entity);
-			auto& active = view.get<ActiveTab>(entity);
-			const auto& tabsMovement = view.get<TabsMovementActive>(entity);
+			auto& header = view.get<::tabsHeader::Component>(entity);
+			auto& selected = view.get<::tabsHeader::SelectedTabs>(entity);
+			auto& active = view.get<::tabsHeader::ActiveTab>(entity);
+			const auto& tabsMovement = view.get<::tabsHeader::TabsMovementActive>(entity);
 
 			const Vector2i windowPos = inputComponent->getCursorPos() - tabsMovement.cursorInTabSpacePosition;
 			const size_t activeTabIdx = std::distance(header.tabs().begin(),
@@ -42,16 +42,18 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 				header.tabsMut().erase(std::remove(header.tabsMut().begin(), header.tabsMut().end(), ent));
 
 			auto newWindow = registry.create();
-			registry.assign<TabbedWindowCreateRequestComponent>(newWindow, selected.selectedTabs, std::move(selected.selectedTabs),
-				active.activeTab, windowPos, Vector2i{ 500, 500 }, TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE,
+			registry.assign<tabbedWindow::CreateRequest>(newWindow, selected.selectedTabs, std::move(selected.selectedTabs),
+				active.activeTab, windowPos, Vector2i{ 500, 500 }, tabbedWindow::CreateRequest::eWindowMovementState::ACTIVE,
 				tabsMovement.cursorInTabSpacePosition);
 
 			active.activeTab = header.tabs().at(std::min(activeTabIdx, header.tabs().size() - 1));
 			selected.selectedTabs = { active.activeTab };
-			registry.get_or_assign<WidgetUpdateRequest>(entity);
-			registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
-			registry.remove<TabsDragOutRequest>(entity);
-			registry.remove<TabsMovementActive>(entity);
+			registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+			registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
+			registry.remove<::tabsHeader::TabsDragOutRequest>(entity);
+			registry.remove<::tabsHeader::TabsMovementActive>(entity);
 		}
 	}
 }
+
+} // namespace pd::ecs::sys::tabsHeader

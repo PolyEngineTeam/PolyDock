@@ -11,41 +11,42 @@
 #include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 
 using namespace ::Eigen;
-using namespace ::pd::ecs::sys::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindowControl;
-using namespace ::pd::ecs::cmp::tabsHeader;
-using namespace ::pd::ecs::cmp::root;
+using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabbedWindow
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabbedWindowMovementActiveComponent, 
-		TabbedWindowComponent, 
-		Component>();
+		::tabbedWindow::MovementActive,
+		::tabbedWindow::Component,
+		tabbedWindowControl::Component>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<root::InputComponent>(root))
 	{
 		if (inputComponent->getCursorDiff() != Vector2i{ 0, 0 })
 		{
 			for (auto entity : view)
 			{
-				const auto& window = view.get<TabbedWindowComponent>(entity);
-				const auto controlCmp = view.get<Component>(entity);
+				const auto& window = view.get<::tabbedWindow::Component>(entity);
+				const auto controlCmp = view.get<tabbedWindowControl::Component>(entity);
 
 				if (controlCmp.maximized)
 				{
-					registry.get_or_assign<TabbedWindowRestoreRequestComponent>(entity);
-					registry.get_or_assign<TabbedWindowMovementRequestComponent>(
+					registry.get_or_assign<::tabbedWindow::RestoreRequest>(entity);
+					registry.get_or_assign<::tabbedWindow::MovementRequest>(
 						entity, inputComponent->getCursorPos() - Vector2i{window.size.x() / 2, 20} );
 				}
 				else
 				{
-					registry.get_or_assign<TabbedWindowMovementRequestComponent>(
+					registry.get_or_assign<::tabbedWindow::MovementRequest>(
 						entity, window.position + inputComponent->getCursorDiff());
 				}
 			}
 		}
 	}
 }
+
+} // namespace pd::ecs::sys::tabbedWindow

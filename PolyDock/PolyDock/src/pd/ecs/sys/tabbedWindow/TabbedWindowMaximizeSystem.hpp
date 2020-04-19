@@ -6,15 +6,15 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. TabbedWindowComponent
-	// 2. TabbedWindowWidgetComponent
-	// 3. TabbedWindowMaximizeRequestComponent
+	// 1. Component
+	// 2. Widget
+	// 3. MaximizeRequest
 	// 4. tabbedWindowControl/Component
 	//
 	// Removed
-	// 1. TabbedWindowMaximizeRequestComponent
+	// 1. MaximizeRequest
 	// Modified
-	// 1. TabbedWindowWidgetComponent
+	// 1. Widget
 	class TabbedWindowMaximizeSystem : public SystemBase
 	{
 	public:

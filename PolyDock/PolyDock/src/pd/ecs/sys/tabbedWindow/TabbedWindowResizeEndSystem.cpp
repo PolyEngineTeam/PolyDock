@@ -11,7 +11,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowResizeEndSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowResizeActiveComponent>();
+	auto view = registry.view<ResizeActive>();
 	
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -19,7 +19,7 @@ void TabbedWindowResizeEndSystem::update(entt::registry& registry, entt::entity 
 		{
 			for (auto entity : view)
 			{
-				registry.remove<TabbedWindowResizeActiveComponent>(entity);
+				registry.remove<ResizeActive>(entity);
 			}
 		}
 	}

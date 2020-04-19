@@ -13,17 +13,17 @@ using namespace ::pd::ecs::cmp::tabbedWindow;
 void TabbedWindowMovementSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabbedWindowMovementRequestComponent,
-		TabbedWindowComponent>();
+		MovementRequest,
+		Component>();
 
 	for (auto entity : view)
 	{
-		auto& request = view.get<TabbedWindowMovementRequestComponent>(entity);
-		auto& window = view.get<TabbedWindowComponent>(entity);
+		auto& request = view.get<MovementRequest>(entity);
+		auto& window = view.get<Component>(entity);
 
 		window.position = request.newWindowPos;
 
-		registry.remove<TabbedWindowMovementRequestComponent>(entity);
-		registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
+		registry.remove<MovementRequest>(entity);
+		registry.get_or_assign<RequestWidgetUpdate>(entity);
 	}
 }

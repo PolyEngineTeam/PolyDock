@@ -7,7 +7,7 @@ namespace pd { class TabbedWindow; }
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowComponent
+	class Component
 	{
 	public:
 		Eigen::Vector2i position;
@@ -15,14 +15,14 @@ namespace pd::ecs::cmp::tabbedWindow
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class DirtyTabbedWindowComponent
+	class RequestWidgetUpdate
 	{
 	public:
 
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowFocusComponent
+	class Focused
 	{
 	public:
 	};

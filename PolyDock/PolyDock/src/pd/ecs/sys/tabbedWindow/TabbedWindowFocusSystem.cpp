@@ -10,15 +10,15 @@ using namespace ::pd::ecs::cmp::tabbedWindow;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowFocusSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowWidgetComponent>();
+	auto view = registry.view<Widget>();
 
 	for (auto entity : view)
 	{
-		const auto& widgetCmp = view.get<TabbedWindowWidgetComponent>(entity);
+		const auto& widgetCmp = view.get<Widget>(entity);
 		
 		if (widgetCmp.window->getWidget()->isActiveWindow())
-			registry.get_or_assign<TabbedWindowFocusComponent>(entity);
+			registry.get_or_assign<Focused>(entity);
 		else
-			registry.remove_if_exists<TabbedWindowFocusComponent>(entity);
+			registry.remove_if_exists<Focused>(entity);
 	}
 }

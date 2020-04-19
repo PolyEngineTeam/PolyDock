@@ -3,14 +3,14 @@
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowCloseRequestComponent
+	class CloseRequest
 	{
 	public:
 
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowRemoveRequestComponent
+	class RemoveRequest
 	{
 	public:
 	};

@@ -7,18 +7,18 @@ namespace pd::ecs::sys::tabbedWindow
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
 	// 1. DesktopComponent
-	// 2. TabbedWindowSnapRequestComponent
-	// 3. TabbedWindowComponent
+	// 2. SnapRequest
+	// 3. Component
 	// 4. tabbedWindowControl/Component=
 	//
 	// Added
-	// 1. TabbedWindowRestoreRequestComponent
+	// 1. RestoreRequest
 	// Removed
-	// 1. TabbedWindowMaximizeRequestComponent
-	// 2. TabbedWindowRestoreRequestComponent
-	// 3. TabbedWindowMinimizeRequestComponent
-	// 4. TabbedWindowResizeRequestComponent
-	// 5. TabbedWindowMovementRequestComponent
+	// 1. MaximizeRequest
+	// 2. RestoreRequest
+	// 3. MinimizeRequest
+	// 4. ResizeRequest
+	// 5. MovementRequest
 	class TabbedWindowSnapSystem : public SystemBase
 	{
 	public:

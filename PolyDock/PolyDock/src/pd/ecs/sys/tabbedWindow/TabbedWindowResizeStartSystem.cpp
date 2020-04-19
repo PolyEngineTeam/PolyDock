@@ -12,7 +12,7 @@ using namespace ::Eigen;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowResizeStartSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowResizeHoverComponent>();
+	auto view = registry.view<ResizeHover>();
 	
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -20,8 +20,8 @@ void TabbedWindowResizeStartSystem::update(entt::registry& registry, entt::entit
 		{
 			for (auto entity : view)
 			{
-				const auto& hoverCmp = view.get<TabbedWindowResizeHoverComponent>(entity);
-				auto& activeCmp = registry.get_or_assign<TabbedWindowResizeActiveComponent>(entity);
+				const auto& hoverCmp = view.get<ResizeHover>(entity);
+				auto& activeCmp = registry.get_or_assign<ResizeActive>(entity);
 				activeCmp.horizontal = hoverCmp.horizontal;
 				activeCmp.vertical = hoverCmp.vertical;
 			}

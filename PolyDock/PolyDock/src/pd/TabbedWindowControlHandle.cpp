@@ -35,15 +35,3 @@ bool TabbedWindowControlHandle::canClose()
 
 	return true;
 }
-
-// ---------------------------------------------------------------------------------------------------------
-void TabbedWindowControlHandle::tryClose()
-{
-	m_registry.get_or_assign<CloseRequest>(m_entity);
-}
-
-// ---------------------------------------------------------------------------------------------------------
-void TabbedWindowControlHandle::forceClose()
-{
-	m_registry.get_or_assign<CloseRequest>(m_entity, true);
-}

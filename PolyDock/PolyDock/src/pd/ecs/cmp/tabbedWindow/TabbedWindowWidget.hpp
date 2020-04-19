@@ -50,7 +50,7 @@ namespace pd::ecs::cmp::tabbedWindow
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowWidgetComponent
+	class Widget
 	{
 	public:
 		ITabbedWindowWidget* window;

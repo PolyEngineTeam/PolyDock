@@ -5,14 +5,14 @@
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowMovementActiveComponent
+	class MovementActive
 	{
 	public:
 		Eigen::Vector2i cursorInTabSpacePosition = { 0, 0 };
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowMovementRequestComponent
+	class MovementRequest
 	{
 	public:
 		Eigen::Vector2i newWindowPos;

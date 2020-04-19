@@ -13,13 +13,13 @@ using namespace ::Eigen;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowResizeHoverSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowComponent>();
+	auto view = registry.view<Component>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			const auto& cmp = view.get<TabbedWindowComponent>(entity);
+			const auto& cmp = view.get<Component>(entity);
 
 			const Vector2i pos = inputComponent->getCursorPos();
 
@@ -33,15 +33,15 @@ void TabbedWindowResizeHoverSystem::update(entt::registry& registry, entt::entit
 
 			if (outer.contains(pos) && !inner.contains(pos))
 			{
-				using eVertical = TabbedWindowResizeHoverComponent::eVertical;
-				using eHorizontal = TabbedWindowResizeHoverComponent::eHorizontal;
+				using eVertical = ResizeHover::eVertical;
+				using eHorizontal = ResizeHover::eHorizontal;
 
 				const eVertical vertical = pos.y() < (inner.min().y() + 5) ? eVertical::TOP
 					: (pos.y() > (inner.max().y() - 5) ? eVertical::BOTTOM : eVertical::MIDDLE);
 				const eHorizontal horizontal = pos.x() < (inner.min().x() + 5) ? eHorizontal::LEFT
 					: (pos.x() > (inner.max().x() - 5) ? eHorizontal::RIGHT : eHorizontal::MIDDLE);
 
-				auto& activeCmp = registry.get_or_assign<TabbedWindowResizeHoverComponent>(entity);
+				auto& activeCmp = registry.get_or_assign<ResizeHover>(entity);
 
 				if (activeCmp.vertical != vertical || activeCmp.horizontal != horizontal)
 				{
@@ -76,9 +76,9 @@ void TabbedWindowResizeHoverSystem::update(entt::registry& registry, entt::entit
 						assert(false);
 				}
 			}
-			else if (registry.has<TabbedWindowResizeHoverComponent>(entity))
+			else if (registry.has<ResizeHover>(entity))
 			{
-				registry.remove<TabbedWindowResizeHoverComponent>(entity);
+				registry.remove<ResizeHover>(entity);
 				auto* cursor = new QCursor(Qt::ArrowCursor);
 				qApp->setOverrideCursor(*cursor);
 			}

@@ -12,10 +12,10 @@ namespace pd::ecs::sys::tabbedWindowControl
 	// 3. tabbedWindowControl/Hover
 	//
 	// Added
-	// 1. tabbedWindow/TabbedWindowMinimizeRequestComponent
-	// 2. tabbedWindow/TabbedWindowRestoreRequestComponent
-	// 3. tabbedWindow/TabbedWindowMaximizeRequestComponent
-	// 4. tabbedWindow/TabbedWindowCloseRequestComponent
+	// 1. tabbedWindow/MinimizeRequest
+	// 2. tabbedWindow/RestoreRequest
+	// 3. tabbedWindow/MaximizeRequest
+	// 4. tabbedWindow/CloseRequest
 	class TabbedWindowControlReleaseSystem : public SystemBase
 	{
 	public:

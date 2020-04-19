@@ -6,10 +6,10 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
 	// 1. InputComponent
-	// 2. TabbedWindowWidgetComponent
+	// 2. Widget
 	// 
 	// Added
-	// 1. TabbedWindowResizeHoverComponent
+	// 1. ResizeHover
 	// ---------------------------------------------------------------------------------------------------------
 	class TabbedWindowResizeHoverSystem : public SystemBase
 	{

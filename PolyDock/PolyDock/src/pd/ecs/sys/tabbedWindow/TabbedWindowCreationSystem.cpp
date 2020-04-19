@@ -7,30 +7,32 @@
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabbedWindow
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowCreationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowCreateRequestComponent>();
+	auto view = registry.view<::tabbedWindow::CreateRequest>();
 
 	for (auto entity : view)
 	{
-		const auto& request = view.get<TabbedWindowCreateRequestComponent>(entity);
+		const auto& request = view.get<::tabbedWindow::CreateRequest>(entity);
 
-		registry.assign<TabbedWindowComponent>(entity, request.position, request.size);
-		registry.assign<Component>(entity, request.tabs);
+		registry.assign<::tabbedWindow::Component>(entity, request.position, request.size);
+		registry.assign<tabsHeader::Component>(entity, request.tabs);
 		registry.assign<tabbedWindowControl::Component>(entity);
-		registry.assign<SelectedTabs>(entity, request.selectedTabs);
+		registry.assign<tabsHeader::SelectedTabs>(entity, request.selectedTabs);
 		if (request.activeTab.has_value())
-			registry.assign<ActiveTab>(entity, request.activeTab.value());
+			registry.assign<tabsHeader::ActiveTab>(entity, request.activeTab.value());
 
-		if (request.windowMovementState == TabbedWindowCreateRequestComponent::eWindowMovementState::ACTIVE)
-			registry.assign<TabbedWindowMovementActiveComponent>(entity, request.cursorInTabSpacePosition);
+		if (request.windowMovementState == ::tabbedWindow::CreateRequest::eWindowMovementState::ACTIVE)
+			registry.assign<::tabbedWindow::MovementActive>(entity, request.cursorInTabSpacePosition);
 
-		registry.remove<TabbedWindowCreateRequestComponent>(entity);
+		registry.remove<::tabbedWindow::CreateRequest>(entity);
 	}
 }
+
+} // namespace pd::ecs::sys::tabsHeader

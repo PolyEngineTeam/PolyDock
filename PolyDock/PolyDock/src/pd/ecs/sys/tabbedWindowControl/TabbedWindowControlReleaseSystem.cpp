@@ -6,48 +6,51 @@
 #include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Closing.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindowControl;
-using namespace ::pd::ecs::cmp::tabbedWindowControl;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::root;
+using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabbedWindowControl
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<Component, Press, Hover>();
+	auto view = registry.view<
+		::tabbedWindowControl::Component, 
+		::tabbedWindowControl::Press, 
+		::tabbedWindowControl::Hover>();
 
-	if (auto* inputComponent = registry.try_get<InputComponent>(root))
+	if (auto* inputComponent = registry.try_get<root::InputComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			bool isPressed = inputComponent->isPressed(InputComponent::eMouseButton::LEFT);
-			bool wasJustPressed = inputComponent->wasJustPressed(InputComponent::eMouseButton::LEFT);
-			bool wasJustReleased = inputComponent->wasJustReleased(InputComponent::eMouseButton::LEFT);
+			bool isPressed = inputComponent->isPressed(root::InputComponent::eMouseButton::LEFT);
+			bool wasJustPressed = inputComponent->wasJustPressed(root::InputComponent::eMouseButton::LEFT);
+			bool wasJustReleased = inputComponent->wasJustReleased(root::InputComponent::eMouseButton::LEFT);
 
-			if (inputComponent->wasJustReleased(InputComponent::eMouseButton::LEFT))
+			if (inputComponent->wasJustReleased(root::InputComponent::eMouseButton::LEFT))
 			{
-				const auto& cmp = view.get<Component>(entity);
-				const auto& hoverCmp = view.get<Hover>(entity);
+				const auto& cmp = view.get<::tabbedWindowControl::Component>(entity);
+				const auto& hoverCmp = view.get<::tabbedWindowControl::Hover>(entity);
 				switch (hoverCmp.hovered)
 				{
-					case IWidget::eButton::MINIMIZE:
+					case ::tabbedWindowControl::IWidget::eButton::MINIMIZE:
 					{
-						registry.get_or_assign<TabbedWindowMinimizeRequestComponent>(entity);
+						registry.get_or_assign<tabbedWindow::MinimizeRequest>(entity);
 					}
 					break;
 
-					case IWidget::eButton::MAXIMIZE:
+					case ::tabbedWindowControl::IWidget::eButton::MAXIMIZE:
 					{
 						if (cmp.maximized)
-							registry.get_or_assign<TabbedWindowRestoreRequestComponent>(entity);
+							registry.get_or_assign<tabbedWindow::RestoreRequest>(entity);
 						else
-							registry.get_or_assign<TabbedWindowMaximizeRequestComponent>(entity);
+							registry.get_or_assign<tabbedWindow::MaximizeRequest>(entity);
 					}
 					break;
 
-					case IWidget::eButton::CLOSE:
+					case ::tabbedWindowControl::IWidget::eButton::CLOSE:
 					{
-						registry.get_or_assign<TabbedWindowCloseRequestComponent>(entity);
+						registry.get_or_assign<tabbedWindow::CloseRequest>(entity);
 					}
 					break;
 				}
@@ -55,3 +58,5 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 		}
 	}
 }
+
+} // namespace pd::ecs::sys::tabbedWindowControl

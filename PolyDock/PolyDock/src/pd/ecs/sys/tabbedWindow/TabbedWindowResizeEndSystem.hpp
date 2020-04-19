@@ -6,10 +6,10 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
 	// 1. InputComponent
-	// 2. TabbedWindowResizeActiveComponent
+	// 2. ResizeActive
 	// 
 	// Removed
-	// 1. TabbedWindowResizeActiveComponent
+	// 1. ResizeActive
 	// ---------------------------------------------------------------------------------------------------------
 	class TabbedWindowResizeEndSystem : public SystemBase
 	{

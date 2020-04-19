@@ -6,14 +6,14 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. TabbedWindowComponent
-	// 2. TabbedWindowWidgetComponent
-	// 3. TabbedWindowCloseRequestComponent
+	// 1. Component
+	// 2. Widget
+	// 3. CloseRequest
 	//
 	// Removed
-	// 1. TabbedWindowCloseRequestComponent
+	// 1. CloseRequest
 	// Added
-	// 1. TabbedWindowRemoveRequestComponent
+	// 1. RemoveRequest
 	class TabbedWindowCloseSystem : public SystemBase
 	{
 	public:

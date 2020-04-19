@@ -6,10 +6,10 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 2. TabbedWindowWidgetComponent
+	// 2. Widget
 	//
 	// Removed/Added
-	// 1. TabbedWindowFocusComponent
+	// 1. Focused
 	class TabbedWindowFocusSystem : public SystemBase
 	{
 	public:

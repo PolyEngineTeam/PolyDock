@@ -9,33 +9,33 @@
 #include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindowControl;
-using namespace ::pd::ecs::cmp::root;
 using namespace ::Eigen;
+using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabbedWindow
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowComponent, Component, TabbedWindowSnapRequestComponent>();
+	auto view = registry.view<::tabbedWindow::Component, tabbedWindowControl::Component, ::tabbedWindow::SnapRequest>();
 
-	if (const auto* desktopCmp = registry.try_get<DesktopComponent>(root))
+	if (const auto* desktopCmp = registry.try_get<root::DesktopComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			using ePosition = TabbedWindowSnapRequestComponent::ePosition;
+			using ePosition = ::tabbedWindow::SnapRequest::ePosition;
 
-			const auto& windowCmp = view.get<TabbedWindowComponent>(entity);
-			const auto& controlCmp = view.get<Component>(entity);
-			const auto& requestCmp = view.get<TabbedWindowSnapRequestComponent>(entity);
+			const auto& windowCmp = view.get<::tabbedWindow::Component>(entity);
+			const auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
+			const auto& requestCmp = view.get<::tabbedWindow::SnapRequest>(entity);
 			const AlignedBox2i& screen = desktopCmp->screens[requestCmp.screenIndex];
 			const Vector2i screenSize = screen.sizes();
 
 			auto& rezieRequestCmp = 
-				registry.get_or_assign<TabbedWindowResizeRequestComponent>(entity, windowCmp.size);
+				registry.get_or_assign<::tabbedWindow::ResizeRequest>(entity, windowCmp.size);
 			auto& moveRequestCmp = 
-				registry.get_or_assign<TabbedWindowMovementRequestComponent>(entity, windowCmp.position);
+				registry.get_or_assign<::tabbedWindow::MovementRequest>(entity, windowCmp.position);
 
 			switch (requestCmp.position)
 			{
@@ -83,19 +83,19 @@ void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root)
 
 				case ePosition::MAXIMIZE:
 				{
-					registry.get_or_assign<TabbedWindowMaximizeRequestComponent>(entity);
+					registry.get_or_assign<::tabbedWindow::MaximizeRequest>(entity);
 				}
 				break;
 
 				case ePosition::RESTORE:
 				{
-					registry.get_or_assign<TabbedWindowRestoreRequestComponent>(entity);
+					registry.get_or_assign<::tabbedWindow::RestoreRequest>(entity);
 				}
 				break;
 
 				case ePosition::MINIMIZE:
 				{
-					registry.get_or_assign<TabbedWindowMinimizeRequestComponent>(entity);
+					registry.get_or_assign<::tabbedWindow::MinimizeRequest>(entity);
 				}
 				break;
 
@@ -110,13 +110,15 @@ void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root)
 				|| requestCmp.position == ePosition::RESTORE
 				|| requestCmp.position == ePosition::MINIMIZE)
 			{
-				registry.remove<TabbedWindowResizeRequestComponent>(entity);
-				registry.remove<TabbedWindowMovementRequestComponent>(entity);
+				registry.remove<::tabbedWindow::ResizeRequest>(entity);
+				registry.remove<::tabbedWindow::MovementRequest>(entity);
 			}
 			else if (controlCmp.maximized)
-				registry.get_or_assign<TabbedWindowRestoreRequestComponent>(entity);
+				registry.get_or_assign<::tabbedWindow::RestoreRequest>(entity);
 
-			registry.remove<TabbedWindowSnapRequestComponent>(entity);
+			registry.remove<::tabbedWindow::SnapRequest>(entity);
 		}
 	}
 }
+
+} // namespace pd::ecs::sys::tabbedWindow

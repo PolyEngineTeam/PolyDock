@@ -37,7 +37,7 @@ void TabbedWindowMovementStartSystem::update(entt::registry& registry, entt::ent
 					if (!registry.has<HoveredTab>(entity) 
 						|| selected.selectedTabs.size() == header.tabs().size())
 					{
-						auto& newCmp = registry.assign<TabbedWindowMovementActiveComponent>(entity);
+						auto& newCmp = registry.assign<MovementActive>(entity);
 
 						if (selected.selectedTabs.size() == header.tabs().size())
 						{

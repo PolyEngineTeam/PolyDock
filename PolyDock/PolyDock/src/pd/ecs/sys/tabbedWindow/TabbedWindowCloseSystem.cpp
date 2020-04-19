@@ -11,12 +11,12 @@ using namespace ::pd::ecs::cmp::tabbedWindow;
 void TabbedWindowCloseSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabbedWindowComponent,
-		TabbedWindowCloseRequestComponent>();
+		Component,
+		CloseRequest>();
 
 	for (auto entity : view)
 	{
-		registry.remove<TabbedWindowCloseRequestComponent>(entity);
-		registry.get_or_assign<TabbedWindowRemoveRequestComponent>(entity);
+		registry.remove<CloseRequest>(entity);
+		registry.get_or_assign<RemoveRequest>(entity);
 	}
 }

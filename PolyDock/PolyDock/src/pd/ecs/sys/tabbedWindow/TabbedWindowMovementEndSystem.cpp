@@ -16,7 +16,7 @@ using namespace ::Eigen;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowMovementEndSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowMovementActiveComponent, Component>();
+	auto view = registry.view<MovementActive, Component>();
 
 	const auto* inputCmp = registry.try_get<InputComponent>(root);
 	const auto* desktopCmp = registry.try_get<DesktopComponent>(root);
@@ -34,7 +34,7 @@ void TabbedWindowMovementEndSystem::update(entt::registry& registry, entt::entit
 
 			if (screen.contains(mousePos) && !inner.contains(mousePos))
 			{
-				using ePosition = TabbedWindowSnapRequestComponent::ePosition;
+				using ePosition = SnapRequest::ePosition;
 				ePosition position = ePosition::INVALID;
 
 				// top
@@ -80,7 +80,7 @@ void TabbedWindowMovementEndSystem::update(entt::registry& registry, entt::entit
 
 				if (position != ePosition::INVALID)
 				{
-					auto& request = registry.get_or_assign<TabbedWindowSnapRequestComponent>(entity);
+					auto& request = registry.get_or_assign<SnapRequest>(entity);
 					request.screenIndex = screenIdx;
 					request.position = position;
 				}
@@ -89,7 +89,7 @@ void TabbedWindowMovementEndSystem::update(entt::registry& registry, entt::entit
 			auto& controlCmp = view.get<Component>(entity);
 			controlCmp.maximized = false;
 
-			registry.remove<TabbedWindowMovementActiveComponent>(entity);
+			registry.remove<MovementActive>(entity);
 		}
 	}
 }

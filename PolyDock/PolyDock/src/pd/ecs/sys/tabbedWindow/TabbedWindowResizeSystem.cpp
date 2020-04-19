@@ -11,17 +11,17 @@ using namespace ::pd::ecs::cmp::tabbedWindow;
 void TabbedWindowResizeSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabbedWindowResizeRequestComponent,
-		TabbedWindowComponent>();
+		ResizeRequest,
+		Component>();
 
 	for (auto entity : view)
 	{
-		const auto& request = view.get<TabbedWindowResizeRequestComponent>(entity);
-		auto& window = view.get<TabbedWindowComponent>(entity);
+		const auto& request = view.get<ResizeRequest>(entity);
+		auto& window = view.get<Component>(entity);
 
 		window.size = request.newWindowSize;
 
-		registry.remove<TabbedWindowResizeRequestComponent>(entity);
-		registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
+		registry.remove<ResizeRequest>(entity);
+		registry.get_or_assign<RequestWidgetUpdate>(entity);
 	}
 }

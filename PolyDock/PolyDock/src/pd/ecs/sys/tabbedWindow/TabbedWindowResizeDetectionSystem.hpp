@@ -6,12 +6,12 @@ namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
 	// 1. InputComponent
-	// 1. TabbedWindowComponent
-	// 2. TabbedWindowResizeActiveComponent
+	// 1. Component
+	// 2. ResizeActive
 	// 
 	// Added
-	// 1. TabbedWindowResizeRequestComponent
-	// 2. TabbedWindowMovementRequestComponent
+	// 1. ResizeRequest
+	// 2. MovementRequest
 	// ---------------------------------------------------------------------------------------------------------
 	class TabbedWindowResizeDetectionSystem : public SystemBase
 	{

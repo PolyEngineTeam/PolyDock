@@ -7,7 +7,7 @@
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowCreateRequestComponent
+	class CreateRequest
 	{
 	public:
 		enum class eWindowMovementState

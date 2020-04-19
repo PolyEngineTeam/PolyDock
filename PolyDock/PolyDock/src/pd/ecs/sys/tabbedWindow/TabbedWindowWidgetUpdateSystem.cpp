@@ -10,27 +10,26 @@
 // out
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp;
-using namespace ::pd::ecs::cmp::tab;
+
+namespace pd::ecs::sys::tabbedWindow
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		DirtyTabbedWindowComponent,
-		TabbedWindowComponent,
-		TabbedWindowWidgetComponent,
-		Widget,
+		::tabbedWindow::RequestWidgetUpdate,
+		::tabbedWindow::Component,
+		::tabbedWindow::Widget,
+		tabsHeader::Widget,
 		tabbedWindowControl::Widget>();
 
 	for (auto entity : view)
 	{
-		auto& window = view.get<TabbedWindowComponent>(entity);
-		auto& widget = view.get<TabbedWindowWidgetComponent>(entity);
-		auto& tabsHeaderWidget = view.get<Widget>(entity);
+		auto& window = view.get<::tabbedWindow::Component>(entity);
+		auto& widget = view.get<::tabbedWindow::Widget>(entity);
+		auto& tabsHeaderWidget = view.get<tabsHeader::Widget>(entity);
 		auto& controlWidget = view.get<tabbedWindowControl::Widget>(entity);
 
 		widget.window->setPos(window.position);
@@ -38,9 +37,9 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		widget.window->setTabsHeaderWidget(tabsHeaderWidget.getTabsHeaderWidget());
 		widget.window->setControlWidget(controlWidget.widget->getWidget());
 
-		if (auto* activeTabCmp = registry.try_get<ActiveTab>(entity))
+		if (auto* activeTabCmp = registry.try_get<tabsHeader::ActiveTab>(entity))
 		{
-			if (auto* tabContentCmp = registry.try_get<TabContentComponent>(activeTabCmp->activeTab))
+			if (auto* tabContentCmp = registry.try_get<tab::TabContentComponent>(activeTabCmp->activeTab))
 				widget.window->setContentWidget(tabContentCmp->contentWidget);
 			else
 				widget.window->setContentWidget(nullptr);
@@ -48,6 +47,8 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		else
 			widget.window->setContentWidget(nullptr);
 
-		registry.remove<DirtyTabbedWindowComponent>(entity);
+		registry.remove<::tabbedWindow::RequestWidgetUpdate>(entity);
 	}
+}
+
 }

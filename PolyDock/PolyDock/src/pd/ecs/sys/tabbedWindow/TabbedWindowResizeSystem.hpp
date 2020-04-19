@@ -5,15 +5,15 @@
 namespace pd::ecs::sys::tabbedWindow
 {
 	// Required
-	// 1. TabbedWindowResizeRequestComponent
-	// 2. TabbedWindowComponent
+	// 1. ResizeRequest
+	// 2. Component
 	// 
 	// Added
-	// 1. DirtyTabbedWindowComponent
+	// 1. RequestWidgetUpdate
 	// Modified
-	// 1. TabbedWindowComponent
+	// 1. Component
 	// Removed
-	// 1. TabbedWindowResizeRequestComponent
+	// 1. ResizeRequest
 	// ---------------------------------------------------------------------------------------------------------
 	class TabbedWindowResizeSystem : public SystemBase
 	{

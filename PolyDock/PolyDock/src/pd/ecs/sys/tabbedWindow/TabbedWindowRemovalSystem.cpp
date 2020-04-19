@@ -16,7 +16,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowRemovalSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowRemoveRequestComponent>();
+	auto view = registry.view<RemoveRequest>();
 
 	if (auto* wiodgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
 	{

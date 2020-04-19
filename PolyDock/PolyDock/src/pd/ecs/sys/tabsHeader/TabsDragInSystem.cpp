@@ -42,7 +42,7 @@ void TabsDragInSystem::update(entt::registry& registry, entt::entity root) const
 			registry.get_or_assign<TabsMovementActive>(entity, request.cursorInTabSpacePosition);
 
 			registry.get_or_assign<WidgetUpdateRequest>(entity);
-			registry.assign<TabbedWindowRemoveRequestComponent>(request.source);
+			registry.assign<RemoveRequest>(request.source);
 			registry.remove<TabsDragInRequest>(entity);
 		}
 	}

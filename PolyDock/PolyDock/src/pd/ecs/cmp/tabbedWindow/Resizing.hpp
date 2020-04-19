@@ -5,7 +5,7 @@
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowResizeHoverComponent
+	class ResizeHover
 	{
 	public:
 		enum class eVertical { TOP, MIDDLE, BOTTOM };
@@ -16,15 +16,15 @@ namespace pd::ecs::cmp::tabbedWindow
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowResizeActiveComponent
+	class ResizeActive
 	{
 	public:
-		TabbedWindowResizeHoverComponent::eVertical vertical = TabbedWindowResizeHoverComponent::eVertical::MIDDLE;
-		TabbedWindowResizeHoverComponent::eHorizontal horizontal = TabbedWindowResizeHoverComponent::eHorizontal::MIDDLE;
+		ResizeHover::eVertical vertical = ResizeHover::eVertical::MIDDLE;
+		ResizeHover::eHorizontal horizontal = ResizeHover::eHorizontal::MIDDLE;
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowResizeRequestComponent
+	class ResizeRequest
 	{
 	public:
 		Eigen::Vector2i newWindowSize;

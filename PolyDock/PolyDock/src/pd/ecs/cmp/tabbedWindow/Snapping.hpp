@@ -3,28 +3,28 @@
 namespace pd::ecs::cmp::tabbedWindow
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowMaximizeRequestComponent
+	class MaximizeRequest
 	{
 	public:
 
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowMinimizeRequestComponent
+	class MinimizeRequest
 	{
 	public:
 
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowRestoreRequestComponent
+	class RestoreRequest
 	{
 	public:
 
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class TabbedWindowSnapRequestComponent
+	class SnapRequest
 	{
 	public:
 		enum class ePosition

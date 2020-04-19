@@ -17,11 +17,11 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto srcView = registry.view<TabbedWindowMovementActiveComponent, HoveredTab>();
+	auto srcView = registry.view<MovementActive, HoveredTab>();
 	auto dstView = registry.view<
 		Widget,
 		Component
-			>(entt::exclude<TabbedWindowMovementActiveComponent>);
+			>(entt::exclude<MovementActive>);
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -29,7 +29,7 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 		{
 			for (auto destination : dstView)
 			{
-				const auto& movementCmp = srcView.get<TabbedWindowMovementActiveComponent>(source);
+				const auto& movementCmp = srcView.get<MovementActive>(source);
 				const auto& dstWidget = dstView.get<Widget>(destination);
 				const auto& dstHeader = dstView.get<Component>(destination);
 				int dstPos = dstWidget.getTabIdxFromPosition(inputComponent->getCursorPos());

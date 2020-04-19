@@ -3,30 +3,31 @@
 
 // in
 #include <pd/ecs/cmp/root/WidgetsOwnerComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 // out
-#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidgetComponent.hpp>
-#include <pd/ecs/cmp/tabbedWindow/DirtyTabbedWindowComponent.hpp>
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
 
-using namespace ::pd::ecs::sys::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabbedWindow;
-using namespace ::pd::ecs::cmp::tabsHeader;
-using namespace ::pd::ecs::cmp::root;
+using namespace ::pd::ecs::cmp;
+
+namespace pd::ecs::sys::tabbedWindow
+{
 
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowWidgetInitializationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<TabbedWindowComponent>(entt::exclude<TabbedWindowWidgetComponent>);
+	auto view = registry.view<::tabbedWindow::Component>(entt::exclude<::tabbedWindow::Widget>);
 
-	if (auto* widgetsOwner = registry.try_get<WidgetsOwnerComponent>(root))
+	if (auto* widgetsOwner = registry.try_get<root::WidgetsOwnerComponent>(root))
 	{
 		for (auto entity : view)
 		{
-			DefaultTabbedWindowWidget* widget = new DefaultTabbedWindowWidget();
+			::tabbedWindow::DefaultTabbedWindowWidget* widget = new ::tabbedWindow::DefaultTabbedWindowWidget();
 			widgetsOwner->windows.insert({ entity, widget });
 
-			registry.assign<TabbedWindowWidgetComponent>(entity, widget);
-			registry.get_or_assign<DirtyTabbedWindowComponent>(entity);
+			registry.assign<::tabbedWindow::Widget>(entity, widget);
+			registry.get_or_assign<::tabbedWindow::RequestWidgetUpdate>(entity);
 		}
 	}
 }
+
+} // namespace pd::ecs::sys::tabbedWindow

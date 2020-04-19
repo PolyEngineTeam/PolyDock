@@ -15,8 +15,8 @@ using namespace ::Eigen;
 void TabbedWindowResizeDetectionSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<
-		TabbedWindowComponent, 
-		TabbedWindowResizeActiveComponent>();
+		Component, 
+		ResizeActive>();
 
 	if (const auto* inputComponent = registry.try_get<InputComponent>(root))
 	{
@@ -25,13 +25,13 @@ void TabbedWindowResizeDetectionSystem::update(entt::registry& registry, entt::e
 		{
 			for (auto entity : view)
 			{
-				using eVertical = TabbedWindowResizeHoverComponent::eVertical;
-				using eHorizontal = TabbedWindowResizeHoverComponent::eHorizontal;
+				using eVertical = ResizeHover::eVertical;
+				using eHorizontal = ResizeHover::eHorizontal;
 
-				const auto& windowCmp = registry.get_or_assign<TabbedWindowComponent>(entity);
-				const auto& activeCmp = registry.get_or_assign<TabbedWindowResizeActiveComponent>(entity);
-				auto& resizeRequestCmp = registry.get_or_assign<TabbedWindowResizeRequestComponent>(entity);
-				auto& movementRequestCmp = registry.get_or_assign<TabbedWindowMovementRequestComponent>(entity);
+				const auto& windowCmp = registry.get_or_assign<Component>(entity);
+				const auto& activeCmp = registry.get_or_assign<ResizeActive>(entity);
+				auto& resizeRequestCmp = registry.get_or_assign<ResizeRequest>(entity);
+				auto& movementRequestCmp = registry.get_or_assign<MovementRequest>(entity);
 
 				resizeRequestCmp.newWindowSize = windowCmp.size;
 				movementRequestCmp.newWindowPos = windowCmp.position;
