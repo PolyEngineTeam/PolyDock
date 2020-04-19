@@ -186,7 +186,7 @@ DockWidgetHandle pd::PolyDockRegistry::createDockWidget()
 	auto dockEntity = m_registry.create();
 	auto window = DockWidgetHandle(m_registry, dockEntity);
 
-	m_registry.assign<ecs::cmp::dock::DockComponent>(dockEntity);
+	m_registry.assign<ecs::cmp::dock::Component>(dockEntity);
 
 	update();
 

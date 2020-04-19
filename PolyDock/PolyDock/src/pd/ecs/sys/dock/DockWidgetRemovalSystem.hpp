@@ -7,12 +7,12 @@ namespace pd::ecs::sys::dock
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
 	// 1. WidgetsOwner
-	// 2. DockWidgetComponent
+	// 2. Widget
 	// Banned
-	// 1. DockComponent
+	// 1. Component
 	//
 	// Removed
-	// 1. DockWidgetComponent
+	// 1. Widget
 	// Modified
 	// 1. WidgetsOwner
 	class DockWidgetRemovalSystem: public SystemBase

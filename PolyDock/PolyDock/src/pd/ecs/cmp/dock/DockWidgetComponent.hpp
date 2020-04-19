@@ -12,7 +12,7 @@ namespace pd::ecs::cmp::dock
 	};
 
 	// ---------------------------------------------------------------------------------------------------------
-	class DockWidgetComponent final
+	class Widget final
 	{
 	public:
 		DockWidget* widget = nullptr;

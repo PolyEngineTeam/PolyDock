@@ -6,7 +6,7 @@
 namespace pd::ecs::cmp::dock
 {
 	// ---------------------------------------------------------------------------------------------------------
-	class DockRequestComponent final
+	class DockRequest final
 	{
 	public:
 		entt::entity dock;
@@ -14,7 +14,7 @@ namespace pd::ecs::cmp::dock
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
-	class UndockRequestComponent final
+	class UndockRequest final
 	{
 	public:
 		entt::entity dock;

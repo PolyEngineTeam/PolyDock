@@ -6,13 +6,13 @@ namespace pd::ecs::sys::dock
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. DockComponent
-	// 2. DockRequestComponent
+	// 1. Component
+	// 2. DockRequest
 	//
 	// Added
-	// 1. UpdateDockWidgetRequestComponent
+	// 1. WidgetUpdateRequest
 	// Removed
-	// 1. DockRequestComponent
+	// 1. DockRequest
 	class DockSystem : public SystemBase
 	{
 	public:

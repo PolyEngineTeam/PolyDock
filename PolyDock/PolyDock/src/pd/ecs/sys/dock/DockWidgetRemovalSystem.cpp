@@ -12,7 +12,7 @@ using namespace ::pd::ecs::cmp::root;
 // ---------------------------------------------------------------------------------------------------------
 void DockWidgetRemovalSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<DockComponent>(entt::exclude<DockWidgetComponent>);
+	auto view = registry.view<Component>(entt::exclude<Widget>);
 
 	if (auto* widgetsOwner = registry.try_get<WidgetsOwner>(root))
 	{
