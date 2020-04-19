@@ -18,4 +18,11 @@ namespace pd::ecs::sys
 	public:
 		void update(entt::registry& registry, entt::entity root) const final;
 	};
+	
+	// ---------------------------------------------------------------------------------------------------------
+	class UndockSystem : public SystemBase
+	{
+	public:
+		void update(entt::registry& registry, entt::entity root) const final;
+	};
 }
