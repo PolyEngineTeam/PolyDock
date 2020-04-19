@@ -1,13 +1,13 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapping.hpp>
 
 #include <pd/ecs/cmp/root/Desktop.hpp>
-#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
-#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
-
+#include <pd/ecs/cmp/tabbedWindow/TabbedWindowWidget.hpp>
+#include <pd/ecs/cmp/tabbedWindow/Snapping.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Movement.hpp>
 #include <pd/ecs/cmp/tabbedWindow/Resizing.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 
 using namespace ::Eigen;
 using namespace ::pd::ecs::cmp;
@@ -16,9 +16,75 @@ namespace pd::ecs::sys
 {
 
 // ---------------------------------------------------------------------------------------------------------
+void TabbedWindowMinimizeSystem::update(entt::registry& registry, entt::entity root) const
+{
+	auto view = registry.view<
+		tabbedWindow::Component,
+		tabbedWindow::Widget,
+		tabbedWindow::MinimizeRequest,
+		tabbedWindowControl::Component>();
+
+	for (auto entity : view)
+	{
+		auto& widgetCmp = view.get<tabbedWindow::Widget>(entity);
+		auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
+
+		widgetCmp.window->getWidget()->showMinimized();
+		controlCmp.maximized = false;
+
+		registry.remove<tabbedWindow::MinimizeRequest>(entity);
+	}
+}
+
+// ---------------------------------------------------------------------------------------------------------
+void TabbedWindowRestoreSystem::update(entt::registry& registry, entt::entity root) const
+{
+	auto view = registry.view<
+		tabbedWindow::Component,
+		tabbedWindow::Widget,
+		tabbedWindow::RestoreRequest,
+		tabbedWindowControl::Component>();
+
+	for (auto entity : view)
+	{
+		auto& widgetCmp = view.get<tabbedWindow::Widget>(entity);
+		auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
+
+		widgetCmp.window->getWidget()->showNormal();
+		controlCmp.maximized = false;
+
+		registry.remove<tabbedWindow::RestoreRequest>(entity);
+	}
+}
+
+// ---------------------------------------------------------------------------------------------------------
+void TabbedWindowMaximizeSystem::update(entt::registry& registry, entt::entity root) const
+{
+	auto view = registry.view<
+		tabbedWindow::Component,
+		tabbedWindow::Widget,
+		tabbedWindow::MaximizeRequest,
+		tabbedWindowControl::Component>();
+
+	for (auto entity : view)
+	{
+		auto& widgetCmp = view.get<tabbedWindow::Widget>(entity);
+		auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
+
+		widgetCmp.window->getWidget()->showMaximized();
+		controlCmp.maximized = true;
+
+		registry.remove<tabbedWindow::MaximizeRequest>(entity);
+	}
+}
+
+// ---------------------------------------------------------------------------------------------------------
 void TabbedWindowSnapSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<tabbedWindow::Component, tabbedWindowControl::Component, tabbedWindow::SnapRequest>();
+	auto view = registry.view<
+		tabbedWindow::Component, 
+		tabbedWindowControl::Component, 
+		tabbedWindow::SnapRequest>();
 
 	if (const auto* desktopCmp = registry.try_get<root::Desktop>(root))
 	{

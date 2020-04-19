@@ -1,5 +1,5 @@
 #include <pd/pch/PCH.h>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdate.hpp>
 
 // in
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>

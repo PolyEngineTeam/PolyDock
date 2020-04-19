@@ -12,22 +12,12 @@
 // tabbed window control no mode
 #include <pd/ecs/sys/tabbedWindowControl/TabbedWindowControl.hpp>
 // tabbed window focus
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowFocusSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindow.hpp>
 // tabbed window resize
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowRestoreSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMinimizeSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMaximizeSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeHoverSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeStartSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeDetectionSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeEndSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizeSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowSnapping.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowResizing.hpp>
 // tabbed window movement
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementStartSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementDetectionSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementEndSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowMovementSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowMovement.hpp>
 // tabs movement
 #include <pd/ecs/sys/tabsHeader/TabsMovement.hpp>
 // tabs drag in
@@ -39,11 +29,10 @@
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetInitialization.hpp>
 #include <pd/ecs/sys/tabsHeader/TabsHeaderWidgetUpdate.hpp>
 // tabbed window widget support
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowCloseSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowRemovalSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowCreationSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitializationSystem.hpp>
-#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdateSystem.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowClosing.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowOpening.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetInitialization.hpp>
+#include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdate.hpp>
 // tab adding support
 #include <pd/ecs/sys/tabsHeader/TabsAdding.hpp>
 // tab removing support
