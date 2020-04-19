@@ -22,13 +22,13 @@ void TabbedWindowRestoreSystem::update(entt::registry& registry, entt::entity ro
 
 	for (auto entity : view)
 	{
-		auto& widgetCmp = view.get<::tabbedWindow::Widget>(entity);
+		auto& widgetCmp = view.get<tabbedWindow::Widget>(entity);
 		auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
 
 		widgetCmp.window->getWidget()->showNormal();
 		controlCmp.maximized = false;
 
-		registry.remove<::tabbedWindow::RestoreRequest>(entity);
+		registry.remove<tabbedWindow::RestoreRequest>(entity);
 	}
 }
 

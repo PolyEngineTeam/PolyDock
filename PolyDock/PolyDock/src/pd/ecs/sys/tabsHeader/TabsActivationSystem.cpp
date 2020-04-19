@@ -15,7 +15,7 @@ namespace pd::ecs::sys
 // ---------------------------------------------------------------------------------------------------------
 void TabsActivationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<::tabsHeader::HoveredTab>();
+	auto view = registry.view<tabsHeader::HoveredTab>();
 
 	if (auto* inputComponent = registry.try_get<root::Input>(root))
 	{
@@ -24,10 +24,10 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
 			for (auto entity : view)
 			{
-				auto& hovered = view.get<::tabsHeader::HoveredTab>(entity);
+				auto& hovered = view.get<tabsHeader::HoveredTab>(entity);
 
-				registry.get_or_assign<::tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
-				registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+				registry.get_or_assign<tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
+				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 				registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
 			}
 		}

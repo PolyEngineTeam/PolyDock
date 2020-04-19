@@ -30,18 +30,18 @@ void TabbedWindowMovementDetectionSystem::update(entt::registry& registry, entt:
 		{
 			for (auto entity : view)
 			{
-				const auto& window = view.get<::tabbedWindow::Component>(entity);
+				const auto& window = view.get<tabbedWindow::Component>(entity);
 				const auto controlCmp = view.get<tabbedWindowControl::Component>(entity);
 
 				if (controlCmp.maximized)
 				{
-					registry.get_or_assign<::tabbedWindow::RestoreRequest>(entity);
-					registry.get_or_assign<::tabbedWindow::MovementRequest>(
+					registry.get_or_assign<tabbedWindow::RestoreRequest>(entity);
+					registry.get_or_assign<tabbedWindow::MovementRequest>(
 						entity, inputComponent->getCursorPos() - Vector2i{window.size.x() / 2, 20} );
 				}
 				else
 				{
-					registry.get_or_assign<::tabbedWindow::MovementRequest>(
+					registry.get_or_assign<tabbedWindow::MovementRequest>(
 						entity, window.position + inputComponent->getCursorDiff());
 				}
 			}

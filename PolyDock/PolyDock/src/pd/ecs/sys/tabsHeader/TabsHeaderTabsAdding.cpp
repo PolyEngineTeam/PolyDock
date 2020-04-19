@@ -17,26 +17,26 @@ void AddButtonHoverSystem::update(entt::registry& registry, entt::entity root) c
 {
 	if (const auto* inputComponent = registry.try_get<root::Input>(root))
 	{
-		auto view = registry.view<::tabsHeader::Widget>();
+		auto view = registry.view<tabsHeader::Widget>();
 
 		for (auto entity : view)
 		{
-			const auto& widget = view.get<::tabsHeader::Widget>(entity);
+			const auto& widget = view.get<tabsHeader::Widget>(entity);
 
-			if (registry.has<::tabsHeader::AddButtonHovered>(entity))
+			if (registry.has<tabsHeader::AddButtonHovered>(entity))
 			{
 				if (!widget.hoversAddButton(inputComponent->getCursorPos()))
 				{
-					registry.remove<::tabsHeader::AddButtonHovered>(entity);
-					registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+					registry.remove<tabsHeader::AddButtonHovered>(entity);
+					registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 				}
 			}
 			else
 			{
 				if (widget.hoversAddButton(inputComponent->getCursorPos()))
 				{
-					registry.assign<::tabsHeader::AddButtonHovered>(entity);
-					registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+					registry.assign<tabsHeader::AddButtonHovered>(entity);
+					registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 				}
 			}
 		}
@@ -48,26 +48,26 @@ void AddButtonPressSystem::update(entt::registry& registry, entt::entity root) c
 {
 	if (const auto* inputComponent = registry.try_get<root::Input>(root))
 	{
-		auto hoveredViews = registry.view<::tabsHeader::AddButtonHovered>();
-		auto pressedViews = registry.view<::tabsHeader::AddButtonPressed>();
+		auto hoveredViews = registry.view<tabsHeader::AddButtonHovered>();
+		auto pressedViews = registry.view<tabsHeader::AddButtonPressed>();
 
 		if (inputComponent->wasJustPressed(root::Input::eMouseButton::LEFT))
 		{
 			for (auto entity : hoveredViews)
 			{
-				registry.assign<::tabsHeader::AddButtonPressed>(entity);
-				registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+				registry.assign<tabsHeader::AddButtonPressed>(entity);
+				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			}
 		}
 		else if (inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT))
 		{
 			for (auto entity : pressedViews)
 			{
-				registry.remove<::tabsHeader::AddButtonPressed>(entity);
-				registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+				registry.remove<tabsHeader::AddButtonPressed>(entity);
+				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 
-				if (registry.has<::tabsHeader::AddButtonHovered>(entity))
-					registry.get_or_assign<::tabsHeader::AddTabRequest>(entity).requests.push_back({ false, {}, {} });
+				if (registry.has<tabsHeader::AddButtonHovered>(entity))
+					registry.get_or_assign<tabsHeader::AddTabRequest>(entity).requests.push_back({ false, {}, {} });
 			}
 		}
 	}
@@ -76,12 +76,12 @@ void AddButtonPressSystem::update(entt::registry& registry, entt::entity root) c
 // ---------------------------------------------------------------------------------------------------------
 void TabsCreationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<::tabsHeader::Component, ::tabsHeader::AddTabRequest>();
+	auto view = registry.view<tabsHeader::Component, tabsHeader::AddTabRequest>();
 
 	for (auto entity : view)
 	{
-		const auto& requestCmp = registry.get<::tabsHeader::AddTabRequest>(entity);
-		auto& headerCmp = registry.get<::tabsHeader::Component>(entity);
+		const auto& requestCmp = registry.get<tabsHeader::AddTabRequest>(entity);
+		auto& headerCmp = registry.get<tabsHeader::Component>(entity);
 		
 		for (const auto&[focus, index, ent] : requestCmp.requests)
 		{
@@ -97,8 +97,8 @@ void TabsCreationSystem::update(entt::registry& registry, entt::entity root) con
 
 			if (focus)
 			{
-				registry.get_or_assign<::tabsHeader::ActiveTab>(entity).activeTab = newTab;
-				registry.get_or_assign<::tabsHeader::SelectedTabs>(entity).selectedTabs = { newTab };
+				registry.get_or_assign<tabsHeader::ActiveTab>(entity).activeTab = newTab;
+				registry.get_or_assign<tabsHeader::SelectedTabs>(entity).selectedTabs = { newTab };
 			}
 
 			if (index.has_value())
@@ -107,8 +107,8 @@ void TabsCreationSystem::update(entt::registry& registry, entt::entity root) con
 				headerCmp.appendTab(newTab);
 		}
 
-		registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
-		registry.remove<::tabsHeader::AddTabRequest>(entity);
+		registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
+		registry.remove<tabsHeader::AddTabRequest>(entity);
 	}
 }
 

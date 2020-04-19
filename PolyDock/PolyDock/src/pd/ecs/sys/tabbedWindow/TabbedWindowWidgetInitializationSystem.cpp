@@ -15,7 +15,7 @@ namespace pd::ecs::sys
 // ---------------------------------------------------------------------------------------------------------
 void TabbedWindowWidgetInitializationSystem::update(entt::registry& registry, entt::entity root) const
 {
-	auto view = registry.view<::tabbedWindow::Component>(entt::exclude<::tabbedWindow::Widget>);
+	auto view = registry.view<tabbedWindow::Component>(entt::exclude<tabbedWindow::Widget>);
 
 	if (auto* widgetsOwner = registry.try_get<root::WidgetsOwner>(root))
 	{
@@ -24,8 +24,8 @@ void TabbedWindowWidgetInitializationSystem::update(entt::registry& registry, en
 			::tabbedWindow::DefaultTabbedWindowWidget* widget = new ::tabbedWindow::DefaultTabbedWindowWidget();
 			widgetsOwner->windows.insert({ entity, widget });
 
-			registry.assign<::tabbedWindow::Widget>(entity, widget);
-			registry.get_or_assign<::tabbedWindow::RequestWidgetUpdate>(entity);
+			registry.assign<tabbedWindow::Widget>(entity, widget);
+			registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
 		}
 	}
 }

@@ -29,10 +29,10 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 	{
 		for (auto entity : view)
 		{
-			auto& header = view.get<::tabsHeader::Component>(entity);
-			auto& selected = view.get<::tabsHeader::SelectedTabs>(entity);
-			auto& active = view.get<::tabsHeader::ActiveTab>(entity);
-			const auto& tabsMovement = view.get<::tabsHeader::TabsMovementActive>(entity);
+			auto& header = view.get<tabsHeader::Component>(entity);
+			auto& selected = view.get<tabsHeader::SelectedTabs>(entity);
+			auto& active = view.get<tabsHeader::ActiveTab>(entity);
+			const auto& tabsMovement = view.get<tabsHeader::TabsMovementActive>(entity);
 
 			const Vector2i windowPos = inputComponent->getCursorPos() - tabsMovement.cursorInTabSpacePosition;
 			const size_t activeTabIdx = std::distance(header.tabs().begin(),
@@ -48,10 +48,10 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 
 			active.activeTab = header.tabs().at(std::min(activeTabIdx, header.tabs().size() - 1));
 			selected.selectedTabs = { active.activeTab };
-			registry.get_or_assign<::tabsHeader::WidgetUpdateRequest>(entity);
+			registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
-			registry.remove<::tabsHeader::TabsDragOutRequest>(entity);
-			registry.remove<::tabsHeader::TabsMovementActive>(entity);
+			registry.remove<tabsHeader::TabsDragOutRequest>(entity);
+			registry.remove<tabsHeader::TabsMovementActive>(entity);
 		}
 	}
 }

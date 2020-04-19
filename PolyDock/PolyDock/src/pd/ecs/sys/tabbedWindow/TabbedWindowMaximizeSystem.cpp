@@ -22,13 +22,13 @@ void TabbedWindowMaximizeSystem::update(entt::registry& registry, entt::entity r
 
 	for (auto entity : view)
 	{
-		auto& widgetCmp = view.get<::tabbedWindow::Widget>(entity);
+		auto& widgetCmp = view.get<tabbedWindow::Widget>(entity);
 		auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
 
 		widgetCmp.window->getWidget()->showMaximized();
 		controlCmp.maximized = true;
 
-		registry.remove<::tabbedWindow::MaximizeRequest>(entity);
+		registry.remove<tabbedWindow::MaximizeRequest>(entity);
 	}
 }
 

@@ -27,8 +27,8 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 
 	for (auto entity : view)
 	{
-		auto& window = view.get<::tabbedWindow::Component>(entity);
-		auto& widget = view.get<::tabbedWindow::Widget>(entity);
+		auto& window = view.get<tabbedWindow::Component>(entity);
+		auto& widget = view.get<tabbedWindow::Widget>(entity);
 		auto& tabsHeaderWidget = view.get<tabsHeader::Widget>(entity);
 		auto& controlWidget = view.get<tabbedWindowControl::Widget>(entity);
 
@@ -47,7 +47,7 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		else
 			widget.window->setContentWidget(nullptr);
 
-		registry.remove<::tabbedWindow::RequestWidgetUpdate>(entity);
+		registry.remove<tabbedWindow::RequestWidgetUpdate>(entity);
 	}
 }
 

@@ -29,8 +29,8 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 
 			if (inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT))
 			{
-				const auto& cmp = view.get<::tabbedWindowControl::Component>(entity);
-				const auto& hoverCmp = view.get<::tabbedWindowControl::Hover>(entity);
+				const auto& cmp = view.get<tabbedWindowControl::Component>(entity);
+				const auto& hoverCmp = view.get<tabbedWindowControl::Hover>(entity);
 				switch (hoverCmp.hovered)
 				{
 					case ::tabbedWindowControl::IWidget::eButton::MINIMIZE:
