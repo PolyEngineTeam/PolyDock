@@ -1,5 +1,6 @@
 #pragma once
 
+#include <tuple>
 #include <Eigen/Dense>
 
 namespace pd::ecs::cmp::root
@@ -8,7 +9,7 @@ namespace pd::ecs::cmp::root
 	class Input
 	{
 	public:
-		enum class eMouseButton
+		enum class eMouse
 		{
 			LEFT = 0,
 			MIDDLE,
@@ -17,30 +18,40 @@ namespace pd::ecs::cmp::root
 			COUNT
 		};
 
-		using ButtonStateArrayType = std::array<bool, static_cast<int>(eMouseButton::COUNT)>;
-
-		bool isPressed(eMouseButton button) const { return m_currentButtonState[static_cast<int>(button)]; }
-
-		bool wasJustPressed(eMouseButton button) const
+		enum class eKeyboard
 		{
-			return m_currentButtonState[static_cast<int>(button)] == true
-				&& m_lastButtonState[static_cast<int>(button)] == false;
+			CTRL = 0,
+
+			COUNT
+		};
+
+		template <typename E>
+		class KeyStateContainer : public std::array<bool, static_cast<int>(E::COUNT)>
+		{
+		public:
+			KeyStateContainer() : array{ false } {}
+		};
+
+		template <typename E>
+		bool isPressed(E key) const { return getCurrent(key); }
+
+		template <typename E>
+		bool wasJustPressed(E key) const { return getCurrent(key) == true && getLast(key) == false; }
+
+		template <typename E>
+		bool wasJustReleased(E key) const { return getCurrent(key) == false && getLast(key) == true; }
+
+		template <typename E>
+		void setNewKeysState(KeyStateContainer<E> newState)
+		{ 
+			auto& current = std::get<KeyStateContainer<E>>(m_currentKeyStates);
+			std::get<KeyStateContainer<E>>(m_lastKeyStates) = std::move(current);
+			current = std::move(newState);
 		}
 
-		bool wasJustReleased(eMouseButton button) const
-		{
-			return m_currentButtonState[static_cast<int>(button)] == false
-				&& m_lastButtonState[static_cast<int>(button)] == true;
-		}
-
+		// mouse cursor
 		Eigen::Vector2i getCursorPos() const { return m_cursorPos; }
 		Eigen::Vector2i getCursorDiff() const { return m_cursorDiff; }
-
-		void setNewButtonState(ButtonStateArrayType newState) 
-		{ 
-			m_lastButtonState = std::move(m_currentButtonState); 
-			m_currentButtonState = std::move(newState); 
-		}
 
 		void setNewCursorPos(Eigen::Vector2i newCursorPos)
 		{
@@ -48,9 +59,16 @@ namespace pd::ecs::cmp::root
 			m_cursorPos = std::move(newCursorPos);
 		}
 
+
 	private:
-		ButtonStateArrayType m_currentButtonState = { false };
-		ButtonStateArrayType m_lastButtonState = { false };
+		template <typename E>
+		bool getCurrent(E key) const { return std::get<KeyStateContainer<E>>(m_currentKeyStates)[static_cast<int>(key)]; }
+
+		template <typename E>
+		bool getLast(E key) const { return std::get<KeyStateContainer<E>>(m_lastKeyStates)[static_cast<int>(key)]; }
+
+		std::tuple<KeyStateContainer<eMouse>, KeyStateContainer<eKeyboard>> m_currentKeyStates;
+		std::tuple<KeyStateContainer<eMouse>, KeyStateContainer<eKeyboard>> m_lastKeyStates;
 
 		Eigen::Vector2i m_cursorPos;
 		Eigen::Vector2i m_cursorDiff;

@@ -33,7 +33,7 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 				registry.get_or_assign<tabsHeader::HoveredHeader>(entity);
 				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 
-				if (inputCmp->wasJustReleased(root::Input::eMouseButton::MIDDLE))
+				if (inputCmp->wasJustReleased(root::Input::eMouse::MIDDLE))
 				{
 					registry.get_or_assign<tabsHeader::TabsRemovalRequest>(entity, hoveredTab);
 					registry.remove<tabsHeader::HoveredTab>(entity);
@@ -60,7 +60,7 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 void TabsActivationSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp 
-		&& inputCmp->wasJustPressed(cmp::root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustPressed(cmp::root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<tabsHeader::HoveredTab>();
 
@@ -80,7 +80,7 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustPressed(root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<tabsHeader::HoveredTab>();
 
