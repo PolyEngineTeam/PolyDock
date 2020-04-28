@@ -2,11 +2,11 @@
 
 #include <pd/ecs/sys/SystemBase.hpp>
 
-namespace pd::ecs::sys::root
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Modified
-	// 1. DesktopComponent
+	// 1. Desktop
 	class DesktopSystem : public SystemBase
 	{
 	public:
