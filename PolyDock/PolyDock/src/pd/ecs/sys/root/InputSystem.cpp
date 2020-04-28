@@ -18,6 +18,7 @@ void InputSystem::update(entt::registry& registry, entt::entity root) const
 
 		updateCursorPos(cmp);
 		updateMouseButtonState(cmp);
+		updateKeyboardKeysState(cmp);
 	}
 }
 

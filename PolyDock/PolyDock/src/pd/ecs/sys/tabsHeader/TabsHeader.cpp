@@ -86,9 +86,19 @@ void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) co
 
 		for (auto entity : view)
 		{
-			registry.get_or_assign<tabsHeader::SelectedTabs>(entity).selectedTabs =
-			{ view.get<tabsHeader::HoveredTab>(entity).hoveredTab };
-				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
+			auto& selectedCmp = registry.get_or_assign<tabsHeader::SelectedTabs>(entity);
+			if (inputCmp->isPressed(root::Input::eKeyboard::CTRL))
+			{
+				if (std::find(selectedCmp.selectedTabs.begin(), selectedCmp.selectedTabs.end(),
+					view.get<tabsHeader::HoveredTab>(entity).hoveredTab) == selectedCmp.selectedTabs.end())
+				{
+					selectedCmp.selectedTabs.push_back(view.get<tabsHeader::HoveredTab>(entity).hoveredTab);
+				}
+			}
+			else
+				selectedCmp.selectedTabs = { view.get<tabsHeader::HoveredTab>(entity).hoveredTab };
+			
+			registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 		}
 	}
 }
