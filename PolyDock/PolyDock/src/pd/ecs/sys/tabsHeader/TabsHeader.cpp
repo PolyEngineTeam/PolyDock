@@ -79,26 +79,26 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 // ---------------------------------------------------------------------------------------------------------
 void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) const
 {
-	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
+	if (auto* inputCmp = registry.try_get<root::Input>(root))
 	{
 		auto view = registry.view<tabsHeader::HoveredTab>();
 
 		for (auto entity : view)
 		{
+			const auto& hoveredCmp = view.get<tabsHeader::HoveredTab>(entity);
 			auto& selectedCmp = registry.get_or_assign<tabsHeader::SelectedTabs>(entity);
-			if (inputCmp->isPressed(root::Input::eKeyboard::CTRL))
+			const bool hoveredIsAlreadySelected = std::find(selectedCmp.selectedTabs.begin(), 
+				selectedCmp.selectedTabs.end(), hoveredCmp.hoveredTab) != selectedCmp.selectedTabs.end();
+
+			if (inputCmp->wasJustPressed(root::Input::eMouse::LEFT) && !hoveredIsAlreadySelected)
 			{
-				if (std::find(selectedCmp.selectedTabs.begin(), selectedCmp.selectedTabs.end(),
-					view.get<tabsHeader::HoveredTab>(entity).hoveredTab) == selectedCmp.selectedTabs.end())
-				{
-					selectedCmp.selectedTabs.push_back(view.get<tabsHeader::HoveredTab>(entity).hoveredTab);
-				}
+				if (inputCmp->isPressed(root::Input::eKeyboard::CTRL))
+					selectedCmp.selectedTabs.push_back(hoveredCmp.hoveredTab);
+				else
+					selectedCmp.selectedTabs = { hoveredCmp.hoveredTab };
+
+				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			}
-			else
-				selectedCmp.selectedTabs = { view.get<tabsHeader::HoveredTab>(entity).hoveredTab };
-			
-			registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 		}
 	}
 }
