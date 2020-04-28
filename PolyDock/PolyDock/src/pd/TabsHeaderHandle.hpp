@@ -15,6 +15,7 @@ namespace pd
 		{
 		public:
 			virtual bool onTabAdded() = 0;
+			virtual bool onTabClosed() = 0;
 		};
 
 		TabsHeaderHandle(entt::registry& reg, entt::entity ent) : m_registry(reg), m_entity(ent) {}

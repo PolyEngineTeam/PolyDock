@@ -2,9 +2,9 @@
 
 #include <pd/ecs/sys/SystemBase.hpp>
 
-namespace pd::ecs::cmp::root { class InputComponent; }
+namespace pd::ecs::cmp::root { class Input; }
 
-namespace pd::ecs::sys::root
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	class WidgetsOwnerSystem : public SystemBase

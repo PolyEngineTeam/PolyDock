@@ -4,7 +4,7 @@
 // sys
 #include <pd/ecs/sys/tabsHeader/TabsSelectionSystem.hpp>
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
@@ -12,7 +12,7 @@
 // misc
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 
-using namespace ::pd::ecs::sys::tabsHeader;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp::tab;
 using namespace ::pd::ecs::cmp::root;

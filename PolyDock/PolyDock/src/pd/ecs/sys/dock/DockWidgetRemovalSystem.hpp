@@ -2,19 +2,19 @@
 
 #include <pd/ecs/sys/SystemBase.hpp>
 
-namespace pd::ecs::sys::dock
+namespace pd::ecs::sys
 {
 	// ---------------------------------------------------------------------------------------------------------
 	// Required
-	// 1. WidgetsOwnerComponent
-	// 2. DockWidgetComponent
+	// 1. WidgetsOwner
+	// 2. Widget
 	// Banned
-	// 1. DockComponent
+	// 1. Component
 	//
 	// Removed
-	// 1. DockWidgetComponent
+	// 1. Widget
 	// Modified
-	// 1. WidgetsOwnerComponent
+	// 1. WidgetsOwner
 	class DockWidgetRemovalSystem: public SystemBase
 	{
 	public:

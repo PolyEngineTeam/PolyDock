@@ -4,7 +4,7 @@
 // sys
 #include <pd/ecs/sys/tabsHeader/TabsMovementStartSystem.hpp>
 // in
-#include <pd/ecs/cmp/root/InputComponent.hpp>
+#include <pd/ecs/cmp/root/Input.hpp>
 #include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
@@ -16,7 +16,7 @@
 #include <mocks/MockTabsHeaderWidget.hpp>
 
 using namespace ::Eigen;
-using namespace ::pd::ecs::sys::tabsHeader;
+using namespace ::pd::ecs::sys;
 using namespace ::pd::ecs::cmp::tabsHeader;
 using namespace ::pd::ecs::cmp::tab;
 using namespace ::pd::ecs::cmp::root;
