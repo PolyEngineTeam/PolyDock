@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-18.04]
 
    steps:
-   - uses: actions/checkout@v1
+   - uses: actions/checkout@v2
 
    - name: Install (Linux)
      run: |
@@ -24,9 +24,9 @@ jobs:
         sudo apt-get install -y -qq gcc g++ cmake qt514base mesa-common-dev libgl1-mesa-dev
         
    - name: config
-     run: mkdir build && cd build && cmake ../PolyDock
+     run: mkdir Build && cd Build && cmake ../PolyDock
    - name: build
-     run: cd build && make
+     run: cd Build && make
    - name: clang-tidy check
      uses: muxee/clang-tidy-action@0.0.1-rc1
    # Tests commented out for now - not needed yet.
