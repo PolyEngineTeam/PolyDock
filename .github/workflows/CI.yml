@@ -24,7 +24,7 @@ jobs:
         sudo apt-get install -y -qq gcc g++ cmake qt514base mesa-common-dev libgl1-mesa-dev
         
    - name: config
-     run: mkdir build && cd cbuild && cmake ../PolyDock
+     run: mkdir build && cd build && cmake ../PolyDock
    - name: build
      run: cd build && make
    - name: clang-tidy check
