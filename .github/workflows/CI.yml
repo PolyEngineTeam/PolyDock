@@ -1,0 +1,38 @@
+name: CI
+# This workflow is triggered on pushes to the repository.
+on: push
+
+jobs:
+  ci:
+   name: ${{ matrix.name }}
+   runs-on: ${{ matrix.os }}
+  
+
+   strategy:
+    matrix:
+        os: [ubuntu-18.04]
+
+   steps:
+   - uses: actions/checkout@v1
+
+   - name: Install (Linux)
+     run: |
+        apt-get update
+        apt-get install -y software-properties-common
+        add-apt-repository -y ppa:beineri/opt-qt-5.14.0-bionic
+        apt-get update -qq
+        apt-get install -y -qq gcc g++ cmake qt514base mesa-common-dev libgl1-mesa-dev
+        
+   - name: config
+     run: mkdir build && d cbuild && cmake ../PolyDock
+   - name: build
+     run: cd build && make
+   - name: tests
+     run: ./Dist/Tests
+
+#  build_macos:
+#   runs-on: [macos-latest]
+  
+ # build_windows:
+  #  runs-on: [windows-latest]
+
