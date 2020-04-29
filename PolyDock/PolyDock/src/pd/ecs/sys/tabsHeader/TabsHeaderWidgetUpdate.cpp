@@ -4,6 +4,7 @@
 // in
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsAdding.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsClosing.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 // out
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
@@ -29,6 +30,8 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 		std::vector<int> selectedTabs;
 		int hoveredTab = -1;
 		int activeTab = -1;
+		ITabsHeaderWidget::eAddButtonState addButtonState = ITabsHeaderWidget::eAddButtonState::IDLE;
+		int hoveredCloseButton = -1;
 
 		// gather tabs names and icons
 		for (const entt::entity& ent : tabsHeader.tabs())
@@ -69,14 +72,28 @@ void TabsHeaderWidgetUpdateSystem::update(entt::registry& registry, entt::entity
 			activeTab = std::distance(tabsHeader.tabs().begin(), it);
 		}
 
-		ITabsHeaderWidget::eAddButtonState addButtonState = ITabsHeaderWidget::eAddButtonState::IDLE;
+		// add button state
 		if (registry.has<AddButtonHovered>(entity))
 			addButtonState = ITabsHeaderWidget::eAddButtonState::HOVERED;
 		else if (registry.has<AddButtonPressed>(entity))
 			addButtonState = ITabsHeaderWidget::eAddButtonState::PRESSED;
 
+		// hovered close button
+		if (auto* cmp = registry.try_get<CloseButtonHovered>(entity))
+		{
+			auto it = std::find(tabsHeader.tabs().begin(), tabsHeader.tabs().end(), cmp->tab);
+			hoveredCloseButton = std::distance(tabsHeader.tabs().begin(), it);
+		}
+
 		// update widget
-		widget.update(std::move(tabsNames), std::move(tabsIcons), std::move(selectedTabs), hoveredTab, activeTab, addButtonState);
+		widget.update({
+			std::move(tabsNames),
+			std::move(tabsIcons),
+			std::move(selectedTabs),
+			hoveredTab,
+			activeTab,
+			addButtonState,
+			hoveredCloseButton });
 
 		// remove dirty flag component
 		registry.remove<WidgetUpdateRequest>(entity);

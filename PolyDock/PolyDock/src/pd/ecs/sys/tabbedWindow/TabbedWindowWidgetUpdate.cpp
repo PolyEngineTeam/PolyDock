@@ -5,6 +5,7 @@
 #include <pd/ecs/cmp/tabbedWindow/TabbedWindow.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 #include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
+#include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControl.hpp>
 #include <pd/ecs/cmp/tabbedWindowControl/TabbedWindowControlWidget.hpp>
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 // out
@@ -23,7 +24,8 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		::tabbedWindow::Component,
 		::tabbedWindow::Widget,
 		tabsHeader::Widget,
-		tabbedWindowControl::Widget>();
+		tabbedWindowControl::Widget,
+		tabbedWindowControl::Component>();
 
 	for (auto entity : view)
 	{
@@ -31,9 +33,13 @@ void TabbedWindowWidgetUpdateSystem::update(entt::registry& registry, entt::enti
 		auto& widget = view.get<tabbedWindow::Widget>(entity);
 		auto& tabsHeaderWidget = view.get<tabsHeader::Widget>(entity);
 		auto& controlWidget = view.get<tabbedWindowControl::Widget>(entity);
+		auto& controlCmp = view.get<tabbedWindowControl::Component>(entity);
 
-		widget.window->setPos(window.position);
-		widget.window->setSize(window.size);
+		if (!controlCmp.maximized)
+		{
+			widget.window->setPos(window.position);
+			widget.window->setSize(window.size);
+		}
 		widget.window->setTabsHeaderWidget(tabsHeaderWidget.getTabsHeaderWidget());
 		widget.window->setControlWidget(controlWidget.widget->getWidget());
 

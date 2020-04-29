@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <entt/entt.hpp>
 
 namespace pd::ecs::cmp::tabsHeader
@@ -8,6 +9,6 @@ namespace pd::ecs::cmp::tabsHeader
 	class TabsRemovalRequest
 	{
 	public:
-		entt::entity tabToRemove;
+		std::vector<entt::entity> tabsToRemove;
 	};
 }

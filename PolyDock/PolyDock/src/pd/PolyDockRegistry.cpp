@@ -35,6 +35,8 @@
 #include <pd/ecs/sys/tabbedWindow/TabbedWindowWidgetUpdate.hpp>
 // tab adding support
 #include <pd/ecs/sys/tabsHeader/TabsAdding.hpp>
+// tab closing support
+#include <pd/ecs/sys/tabsHeader/TabsClosing.hpp>
 // tab removing support
 #include <pd/ecs/sys/tabsHeader/TabsRemoving.hpp>
 
@@ -110,6 +112,10 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::make_unique<ecs::sys::AddButtonHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::AddButtonPressSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::TabsCreationSystem>());
+	// tab closing
+	m_systems.push_back(std::make_unique<ecs::sys::CloseButtonHoverSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::CloseButtonPressSystem>());
+	m_systems.push_back(std::make_unique<ecs::sys::TabCloseSystem>());
 	// tabbed window control widget support
 	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlWidgetInitializationSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlWidgetUpdateSystem>());

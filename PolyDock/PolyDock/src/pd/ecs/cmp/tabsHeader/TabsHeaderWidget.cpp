@@ -9,21 +9,20 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 // ---------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------
-void DefaultTabsHeaderWidget::update(std::vector<std::string> names, 
-	std::vector<std::optional<QIcon>> icons, std::vector<int> selected, int hovered, int active, 
-	eAddButtonState addButtonState)
+void DefaultTabsHeaderWidget::update(UpdateParams params)
 {
-	Expects(names.size() == icons.size());
-	Expects(selected.size() <= names.size());
-	Expects(hovered < static_cast<int>(names.size()));
-	Expects(active < static_cast<int>(names.size()));
+	Expects(params.names.size() == params.icons.size());
+	Expects(params.selected.size() <= params.names.size());
+	Expects(params.hovered < static_cast<int>(params.names.size()));
+	Expects(params.active < static_cast<int>(params.names.size()));
 
-	m_names = std::move(names);
-	m_icons = std::move(icons);
-	m_selected = std::move(selected);
-	m_hovered = hovered;
-	m_active = active;
-	m_addButtonState = addButtonState;
+	m_names = std::move(params.names);
+	m_icons = std::move(params.icons);
+	m_selected = std::move(params.selected);
+	m_hovered = params.hovered;
+	m_active = params.active;
+	m_addButtonState = params.addButtonState;
+	m_hoveredCloseButton = params.hoveredCloseButton;
 
 	QWidget::update();
 }
@@ -54,10 +53,21 @@ bool DefaultTabsHeaderWidget::isPositionOnTheRightOfLastTab(const Vector2i& pos)
 }
 
 // ---------------------------------------------------------------------------------------------------------
-bool DefaultTabsHeaderWidget::hoversAddButton(const Eigen::Vector2i& pos) const
+bool DefaultTabsHeaderWidget::hoversAddButton(const Vector2i& pos) const
 {
 	const QPoint fromGlobal = QWidget::mapFromGlobal({ pos.x(), pos.y() });
 	return getAddButtonRect().contains(Vector2i{ fromGlobal.x(), fromGlobal.y() });
+}
+
+// ---------------------------------------------------------------------------------------------------------
+int DefaultTabsHeaderWidget::getHoveredCloseButtonIdx(const Vector2i& pos) const
+{
+	const QPoint fromGlobal = QWidget::mapFromGlobal({ pos.x(), pos.y() });
+	const int idx = getTabIdxFromPosition(pos);
+	if (getCloseButtonRectAtIdx(idx).contains(Vector2i{ fromGlobal.x(), fromGlobal.y() }))
+		return idx;
+	else
+		return -1;
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -174,6 +184,20 @@ void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 			const AlignedBox2i rect = getTextRectAtIdx(i);
 			painter.drawText(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), 0, QString::fromStdString(m_names[i]));
 		}
+
+		// draw tab close button
+		{
+			const AlignedBox2i rect = getCloseButtonRectAtIdx(i);
+			if (i == m_hoveredCloseButton)
+				painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), QColor(lightest, lightest, lightest));
+
+			QPainterPath path;
+			path.moveTo(rect.min().x() + 6, rect.min().y() + 6);
+			path.lineTo(rect.max().x() - 6, rect.max().y() - 6);
+			path.moveTo(rect.min().x() + 6, rect.max().y() - 6);
+			path.lineTo(rect.max().x() - 6, rect.min().y() + 6);
+			painter.drawPath(path);
+		}
 	}
 
 	const AlignedBox2i rect = getAddButtonRect();
@@ -224,6 +248,20 @@ AlignedBox2i DefaultTabsHeaderWidget::getTextRectAtIdx(int idx) const
 	return AlignedBox2i(
 		Vector2i{ left, top }, 
 		Vector2i{ right + left, bottom + top });
+}
+
+// ---------------------------------------------------------------------------------------------------------
+AlignedBox2i DefaultTabsHeaderWidget::getCloseButtonRectAtIdx(int idx) const
+{
+	const AlignedBox2i tabRect = getTabRectAtIdx(idx);
+	const int top = tabRect.min().y() + 8;
+	const int right = tabRect.max().x() - 8;
+	const int bottom = tabRect.max().y() - 8;
+	const int left = right - (bottom - top);
+
+	return AlignedBox2i(
+		Vector2i{ left, top }, 
+		Vector2i{ right, bottom });
 }
 
 // ---------------------------------------------------------------------------------------------------------

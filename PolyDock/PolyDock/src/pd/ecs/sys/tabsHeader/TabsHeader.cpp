@@ -35,7 +35,8 @@ void TabsHeaderHoverSystem::update(entt::registry& registry, entt::entity root) 
 
 				if (inputCmp->wasJustReleased(root::Input::eMouseButton::MIDDLE))
 				{
-					registry.get_or_assign<tabsHeader::TabsRemovalRequest>(entity, hoveredTab);
+					registry.get_or_assign<tabsHeader::TabsRemovalRequest>(entity)
+						.tabsToRemove.push_back(hoveredTab);
 					registry.remove<tabsHeader::HoveredTab>(entity);
 				}
 			}
