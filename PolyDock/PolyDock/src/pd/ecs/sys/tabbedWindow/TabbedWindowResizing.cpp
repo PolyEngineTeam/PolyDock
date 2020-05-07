@@ -93,7 +93,7 @@ void TabbedWindowResizeHoverSystem::update(entt::registry& registry, entt::entit
 void TabbedWindowResizeStartSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (const auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustPressed(root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<tabbedWindow::ResizeHover>();
 
@@ -111,7 +111,7 @@ void TabbedWindowResizeStartSystem::update(entt::registry& registry, entt::entit
 void TabbedWindowResizeEndSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (const auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustReleased(root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustReleased(root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<tabbedWindow::ResizeActive>();
 

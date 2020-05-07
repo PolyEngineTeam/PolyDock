@@ -51,11 +51,11 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 	{
 		for (auto entity : view)
 		{
-			bool isPressed = inputComponent->isPressed(root::Input::eMouseButton::LEFT);
-			bool wasJustPressed = inputComponent->wasJustPressed(root::Input::eMouseButton::LEFT);
-			bool wasJustReleased = inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT);
+			bool isPressed = inputComponent->isPressed(root::Input::eMouse::LEFT);
+			bool wasJustPressed = inputComponent->wasJustPressed(root::Input::eMouse::LEFT);
+			bool wasJustReleased = inputComponent->wasJustReleased(root::Input::eMouse::LEFT);
 
-			if (inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT))
+			if (inputComponent->wasJustReleased(root::Input::eMouse::LEFT))
 			{
 				const auto& cmp = view.get<tabbedWindowControl::Component>(entity);
 				const auto& hoverCmp = view.get<tabbedWindowControl::Hover>(entity);
@@ -97,7 +97,7 @@ void TabbedWindowControlPressSystem::update(entt::registry& registry, entt::enti
 		for (auto entity : view)
 		{
 			if (registry.has<tabbedWindowControl::Hover>(entity)
-				&& inputComponent->isPressed(root::Input::eMouseButton::LEFT))
+				&& inputComponent->isPressed(root::Input::eMouse::LEFT))
 			{
 				registry.get_or_assign<tabbedWindowControl::Press>(entity);
 				registry.get_or_assign<tabbedWindowControl::WidgetUpdateRequest>(entity);

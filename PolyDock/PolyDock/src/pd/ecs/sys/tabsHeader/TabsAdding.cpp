@@ -51,7 +51,7 @@ void AddButtonPressSystem::update(entt::registry& registry, entt::entity root) c
 		auto hoveredViews = registry.view<tabsHeader::AddButtonHovered>();
 		auto pressedViews = registry.view<tabsHeader::AddButtonPressed>();
 
-		if (inputComponent->wasJustPressed(root::Input::eMouseButton::LEFT))
+		if (inputComponent->wasJustPressed(root::Input::eMouse::LEFT))
 		{
 			for (auto entity : hoveredViews)
 			{
@@ -59,7 +59,7 @@ void AddButtonPressSystem::update(entt::registry& registry, entt::entity root) c
 				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			}
 		}
-		else if (inputComponent->wasJustReleased(root::Input::eMouseButton::LEFT))
+		else if (inputComponent->wasJustReleased(root::Input::eMouse::LEFT))
 		{
 			for (auto entity : pressedViews)
 			{

@@ -157,7 +157,7 @@ void DefaultTabsHeaderWidget::paintEvent(QPaintEvent* event)
 		}
 		else
 		{
-			if (i == m_hovered)
+			if (i == m_hovered || std::find(m_selected.begin(), m_selected.end(), i) != m_selected.end())
 			{
 				const AlignedBox2i rect = getTabRectAtIdx(i);
 				painter.fillRect(QRect(rect.min().x(), rect.min().y(), rect.sizes().x(), rect.sizes().y()), m_hoveredTabGradient);

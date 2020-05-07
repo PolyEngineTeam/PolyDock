@@ -18,7 +18,19 @@ void InputSystem::update(entt::registry& registry, entt::entity root) const
 
 		updateCursorPos(cmp);
 		updateMouseButtonState(cmp);
+		updateKeyboardKeysState(cmp);
 	}
+}
+
+// ---------------------------------------------------------------------------------------------------------
+bool InputSystem::eventFilter(QObject* watched, QEvent* event)
+{
+	if (event->type() == QEvent::KeyPress)
+		m_pressedKeys.insert(static_cast<Qt::Key>(static_cast<QKeyEvent*>(event)->key()));
+	if (event->type() == QEvent::KeyRelease)
+		m_pressedKeys.erase(static_cast<Qt::Key>(static_cast<QKeyEvent*>(event)->key()));
+
+	return false;
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -33,14 +45,25 @@ void InputSystem::updateMouseButtonState(Input& cmp) const
 {
 	Qt::MouseButtons buttons = QApplication::mouseButtons();
 
-	Input::ButtonStateArrayType buttonsState = { false };
+	Input::KeyStateContainer<Input::eMouse> buttonsState;
 
 	if (buttons.testFlag(Qt::MouseButton::LeftButton))
-		buttonsState[static_cast<int>(Input::eMouseButton::LEFT)] = true;
+		buttonsState[static_cast<int>(Input::eMouse::LEFT)] = true;
 	if (buttons.testFlag(Qt::MouseButton::MiddleButton))
-		buttonsState[static_cast<int>(Input::eMouseButton::MIDDLE)] = true;
+		buttonsState[static_cast<int>(Input::eMouse::MIDDLE)] = true;
 	if (buttons.testFlag(Qt::MouseButton::RightButton))
-		buttonsState[static_cast<int>(Input::eMouseButton::RIGHT)] = true;
+		buttonsState[static_cast<int>(Input::eMouse::RIGHT)] = true;
 
-	cmp.setNewButtonState(std::move(buttonsState));
+	cmp.setNewKeysState(std::move(buttonsState));
+}
+
+// ---------------------------------------------------------------------------------------------------------
+void InputSystem::updateKeyboardKeysState(Input& cmp) const
+{
+	Input::KeyStateContainer<Input::eKeyboard> keyboardState;
+
+	if (m_pressedKeys.find(Qt::Key_Control) != m_pressedKeys.end())
+		keyboardState[static_cast<int>(Input::eKeyboard::CTRL)] = true;
+
+	cmp.setNewKeysState(std::move(keyboardState));
 }
