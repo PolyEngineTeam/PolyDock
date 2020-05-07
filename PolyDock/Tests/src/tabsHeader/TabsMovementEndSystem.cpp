@@ -2,13 +2,12 @@
 #include <gmock/gmock.h>
 
 // sys
-#include <pd/ecs/sys/tabsHeader/TabsSelectionSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeader.hpp>
 // in
 #include <pd/ecs/cmp/root/Input.hpp>
-#include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
 // out
-#include <pd/ecs/cmp/tabsHeader/SelectedTabsComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // misc
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 
@@ -32,18 +31,18 @@ public:
 	// ---------------------------------------------------------------------------------------------------------
 	void setupInput()
 	{
-		auto& input = reg.assign<InputComponent>(root);
+		auto& input = reg.assign<Input>(root);
 
 		input.setNewCursorPos({ 0, 0 });
-		InputComponent::ButtonStateArrayType buttonsState = { false };
-		buttonsState[static_cast<int>(InputComponent::eMouseButton::LEFT)] = true;
+		Input::ButtonStateArrayType buttonsState = { false };
+		buttonsState[static_cast<int>(Input::eMouseButton::LEFT)] = true;
 		input.setNewButtonState(std::move(buttonsState));
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
 	void setupHoveredTab()
 	{
-		auto& hoveredCmp = reg.assign<HoveredTabComponent>(header);
+		auto& hoveredCmp = reg.assign<HoveredTab>(header);
 		tab0 = reg.create();
 		hoveredCmp.hoveredTab = tab0;
 	}
@@ -68,8 +67,8 @@ private:
 //
 //	sys.update(reg, root);
 //
-//	ASSERT_TRUE(reg.has<SelectedTabsComponent>(header));
-//	EXPECT_TRUE(reg.has<DirtyTabsHeaderComponent>(header));
-//	EXPECT_EQ(reg.get<SelectedTabsComponent>(header).selectedTabs.size(), 1);
-//	EXPECT_EQ(reg.get<SelectedTabsComponent>(header).selectedTabs.at(0), tab0);
+//	ASSERT_TRUE(reg.has<SelectedTabs>(header));
+//	EXPECT_TRUE(reg.has<WidgetUpdateRequest>(header));
+//	EXPECT_EQ(reg.get<SelectedTabs>(header).selectedTabs.size(), 1);
+//	EXPECT_EQ(reg.get<SelectedTabs>(header).selectedTabs.at(0), tab0);
 //}
