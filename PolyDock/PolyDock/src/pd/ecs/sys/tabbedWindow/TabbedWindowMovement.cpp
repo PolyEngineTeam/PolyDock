@@ -21,7 +21,7 @@ namespace pd::ecs::sys
 void TabbedWindowMovementStartSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (const auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustPressed(root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<
 			tabsHeader::Widget,
@@ -59,7 +59,7 @@ void TabbedWindowMovementEndSystem::update(entt::registry& registry, entt::entit
 	const auto* inputCmp = registry.try_get<root::Input>(root);
 	const auto* desktopCmp = registry.try_get<root::Desktop>(root);
 
-	if (inputCmp && desktopCmp && inputCmp->wasJustReleased(root::Input::eMouseButton::LEFT))
+	if (inputCmp && desktopCmp && inputCmp->wasJustReleased(root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<tabbedWindow::MovementActive, tabbedWindowControl::Component>();
 

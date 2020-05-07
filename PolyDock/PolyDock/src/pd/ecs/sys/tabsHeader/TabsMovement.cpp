@@ -15,7 +15,7 @@ namespace pd::ecs::sys
 void TabsMovementStartSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustPressed(root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<
 			tabsHeader::Component,
@@ -44,7 +44,7 @@ void TabsMovementStartSystem::update(entt::registry& registry, entt::entity root
 void TabsMovementEndSystem::update(entt::registry& registry, entt::entity root) const
 {
 	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp
-		&& inputCmp->wasJustReleased(cmp::root::Input::eMouseButton::LEFT))
+		&& inputCmp->wasJustReleased(cmp::root::Input::eMouse::LEFT))
 	{
 		auto view = registry.view<tabsHeader::TabsMovementActive>();
 
@@ -83,7 +83,7 @@ void TabsMovementDetectionSystem::update(entt::registry& registry, entt::entity 
 			const int maxIdxForFirstSelectedTab 
 				= static_cast<int>(header.tabs().size() - selected.selectedTabs.size());
 			const int newFirstSelectedTabIdx 
-				= std::min(newActiveTabIdx - activeIdxInSelected, maxIdxForFirstSelectedTab);
+				= std::max(0, std::min(newActiveTabIdx - activeIdxInSelected, maxIdxForFirstSelectedTab));
 
 			registry.assign<tabsHeader::TabsMovementRequest>(entity, newFirstSelectedTabIdx);
 		}

@@ -67,8 +67,10 @@ PolyDockRegistry::PolyDockRegistry()
 	m_registry.assign<ecs::cmp::root::Input>(m_root);
 	m_registry.assign<ecs::cmp::root::WidgetsOwner>(m_root);
 
-	// input
-	m_systems.push_back(std::make_unique<ecs::sys::InputSystem>());
+	// root
+	auto inputSystem = std::make_unique<ecs::sys::InputSystem>();
+	qApp->installEventFilter(inputSystem.get());
+	m_systems.push_back(std::move(inputSystem));
 	m_systems.push_back(std::make_unique<ecs::sys::DesktopSystem>());
 	// tabs header - no mode
 	m_systems.push_back(std::make_unique<ecs::sys::TabsSelectionSystem>());
