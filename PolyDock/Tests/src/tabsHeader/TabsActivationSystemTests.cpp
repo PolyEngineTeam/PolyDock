@@ -36,9 +36,9 @@ public:
 		auto& input = reg.assign<Input>(root);
 
 		input.setNewCursorPos({ 0, 0 });
-		Input::ButtonStateArrayType buttonsState = { false };
-		buttonsState[static_cast<int>(Input::eMouseButton::LEFT)] = true;
-		input.setNewButtonState(std::move(buttonsState));
+		Input::KeyStateContainer<Input::eMouse> buttonsState = { false };
+		buttonsState[static_cast<int>(Input::eMouse::LEFT)] = true;
+		input.setNewKeysState(std::move(buttonsState));
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
