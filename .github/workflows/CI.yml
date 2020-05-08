@@ -38,10 +38,13 @@ jobs:
      shell: bash
    - name: Build
      run: cmake --build .
-     working-directory: ${{ runner.workspace }}/PolyDock/Build     
-   - name: Test
-     run: ./Tests
-     working-directory: ${{ runner.workspace }}/PolyDock/Dist    
+     working-directory: ${{ runner.workspace }}/PolyDock/Build
+     if: matrix.os == 'windows-latest'
+   - run: ./${{ runner.workspace }}/PolyDock/Dist/Debug/Tests.exe
+     name: Test (Windows)
+     if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
+   - run: ./${{ runner.workspace }}/PolyDock/Dist/Tests
+     name: Test (Linux & macOS)
    - name: Check with clang-tidy
      if: matrix.os == 'ubuntu-latest' # only works for ubuntu
      uses: muxee/clang-tidy-action@0.0.1-rc1
