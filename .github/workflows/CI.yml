@@ -39,10 +39,10 @@ jobs:
    - name: Build
      run: cmake --build .
      working-directory: ${{ runner.workspace }}/PolyDock/Build
-   - run: ./${{ runner.workspace }}/PolyDock/Dist/Debug/Tests.exe
+   - run: ${{ runner.workspace }}/PolyDock/Dist/Debug/Tests.exe
      name: Test (Windows)
      if: matrix.os == 'windows-latest'
-   - run: ./${{ runner.workspace }}/PolyDock/Dist/Tests
+   - run: ${{ runner.workspace }}/PolyDock/Dist/Tests
      name: Test (Linux & macOS)
      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
    - name: Check with clang-tidy
