@@ -32,8 +32,9 @@ jobs:
        submodules: 'true'        
    - name: Setup CMake
      run: |
-        mkdir "${{ runner.workspace }}/Build" 
-        cd "${{ runner.workspace }}/Build" 
+        tree ${{ runner.workspace }}
+        mkdir "${{ runner.workspace }}/PolyDock/Build" 
+        cd "${{ runner.workspace }}/PolyDock/Build" 
         cmake ../PolyDock
      shell: bash
    - name: Build
