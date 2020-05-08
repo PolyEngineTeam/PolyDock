@@ -4,7 +4,6 @@ on: [push, pull_request]
 
 jobs:
   ci:
-   name: ${{ matrix.name }}  
    runs-on: ${{ matrix.os }}
    
    strategy:
@@ -26,7 +25,7 @@ jobs:
      if: matrix.os == 'macOS-latest'     
    - name: Install Dependencies (Windows)
      run: |
-          choco update && choco install pkgconfig qt5 cmake
+          choco install pkgconfig qt5 cmake
      if: matrix.os == 'windows-latest'   
    - name: Get Sources
      uses: actions/checkout@v2
