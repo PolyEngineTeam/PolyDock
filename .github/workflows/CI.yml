@@ -44,3 +44,4 @@ jobs:
      working-directory: ${{ runner.workspace }}/PolyDock/Dist    
    - name: Check with clang-tidy
      uses: muxee/clang-tidy-action@0.0.1-rc1
+     if: matrix-os == 'ubuntu-latest' # only works for ubuntu
