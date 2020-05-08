@@ -4,40 +4,43 @@ on: [push, pull_request]
 
 jobs:
   ci:
-   name: ${{ matrix.name }}
    runs-on: ${{ matrix.os }}
-  
-
+   
    strategy:
     matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest, macOS-latest, windows-latest] ## add different compilers
 
    steps:
-   - uses: actions/checkout@v2
-     with:
-       submodules: 'true'
-
-   - name: Install (Linux)
+   - name: Install Dependencies (Linux)
      run: |
-        sudo apt-get update
-        sudo apt-get install -y software-properties-common
-        sudo add-apt-repository -y ppa:beineri/opt-qt-5.14.0-bionic
-        sudo apt-get update -qq
-        sudo apt-get install -y -qq gcc g++ cmake qt514base mesa-common-dev libgl1-mesa-dev
-        
-   - name: config
-     run: mkdir Build && cd Build && cmake ../PolyDock
-   - name: build
-     run: cd Build && make
-   - name: clang-tidy check
+          sudo apt-get update
+          sudo apt-get install -y -qq software-properties-common gcc g++ cmake mesa-common-dev libgl1-mesa-dev
+     if: matrix.os == 'ubuntu-latest'    
+   - name: Install Dependencies (macOS)
+     run: |
+          brew update && brew install pkgconfig cmake
+     if: matrix.os == 'macOS-latest'     
+   - name: Install Dependencies (Windows)
+     run: |
+          choco install pkgconfiglite cmake
+     if: matrix.os == 'windows-latest'
+   - name: Install Qt
+     uses: jurplel/install-qt-action@v2
+   - name: Get Sources
+     uses: actions/checkout@v2
+     with:
+       submodules: 'true'        
+   - name: Setup CMake
+     run: |
+        mkdir "${{ runner.workspace }}/PolyDock/Build" 
+        cd "${{ runner.workspace }}/PolyDock/Build" 
+        cmake ../PolyDock
+     shell: bash
+   - name: Build
+     run: cmake --build .
+     working-directory: ${{ runner.workspace }}/PolyDock/Build     
+   - name: Test
+     run: ./Tests
+     working-directory: ${{ runner.workspace }}/PolyDock/Dist    
+   - name: Check with clang-tidy
      uses: muxee/clang-tidy-action@0.0.1-rc1
-   # Tests commented out for now - not needed yet.
-   #- name: tests
-   #  run: ./Dist/Tests
-
-#  build_macos:
-#   runs-on: [macos-latest]
-  
- # build_windows:
-  #  runs-on: [windows-latest]
-
