@@ -34,7 +34,7 @@ jobs:
      run: |
         mkdir "${{ runner.workspace }}/Build" 
         cd "${{ runner.workspace }}/Build" 
-        cmake ${{ runner.workspace }}/../PolyDock
+        cmake ../PolyDock
      shell: bash
    - name: Build
      run: cmake --build .
