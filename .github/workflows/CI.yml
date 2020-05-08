@@ -32,16 +32,15 @@ jobs:
        submodules: 'true'        
    - name: Setup CMake
      run: |
-        ls ${{ runner.workspace }}
         mkdir "${{ runner.workspace }}/PolyDock/Build" 
         cd "${{ runner.workspace }}/PolyDock/Build" 
         cmake ../PolyDock
      shell: bash
    - name: Build
      run: cmake --build .
-     working-directory: ${{ runner.workspace }}/Build     
+     working-directory: ${{ runner.workspace }}/PolyDock/Build     
    - name: Test
      run: ./Tests
-     working-directory: ${{ runner.workspace }}/Dist    
+     working-directory: ${{ runner.workspace }}/PolyDock/Dist    
    - name: Check with clang-tidy
      uses: muxee/clang-tidy-action@0.0.1-rc1
