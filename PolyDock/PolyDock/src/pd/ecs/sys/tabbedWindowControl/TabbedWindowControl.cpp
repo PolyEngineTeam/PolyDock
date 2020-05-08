@@ -81,6 +81,9 @@ void TabbedWindowControlReleaseSystem::update(entt::registry& registry, entt::en
 						registry.get_or_assign<tabbedWindow::CloseRequest>(entity);
 					}
 					break;
+
+					default:
+						break;
 				}
 			}
 		}

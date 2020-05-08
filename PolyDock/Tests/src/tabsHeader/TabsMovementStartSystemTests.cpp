@@ -68,6 +68,7 @@ public:
 private:
 };
 
+/*
 // ---------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------
@@ -85,3 +86,4 @@ TEST_F(TabsMovementStartSystemTest, UpdateActiveTab_OnMousePressWithHoveredTab)
 	ASSERT_TRUE(reg.has<TabsMovementActive>(header));
 	EXPECT_EQ(reg.get<TabsMovementActive>(header).cursorInTabSpacePosition, cursorPosInTabSpace);
 }
+*/
