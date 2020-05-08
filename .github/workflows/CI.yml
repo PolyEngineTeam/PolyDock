@@ -14,19 +14,18 @@ jobs:
    - name: Install Dependencies (Linux)
      run: |
           sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo add-apt-repository -y ppa:beineri/opt-qt-5.14.0-bionic
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq gcc g++ cmake qt514base mesa-common-dev libgl1-mesa-dev
+          sudo apt-get install -y -qq software-properties-common gcc g++ cmake mesa-common-dev libgl1-mesa-dev
      if: matrix.os == 'ubuntu-latest'    
    - name: Install Dependencies (macOS)
      run: |
-          brew update && brew install pkgconfig qt5 cmake
+          brew update && brew install pkgconfig cmake
      if: matrix.os == 'macOS-latest'     
    - name: Install Dependencies (Windows)
      run: |
-          choco install pkgconfig qt5 cmake
-     if: matrix.os == 'windows-latest'   
+          choco install pkgconfiglite cmake
+     if: matrix.os == 'windows-latest'
+   - name: Install Qt
+     uses: jurplel/install-qt-action@v2
    - name: Get Sources
      uses: actions/checkout@v2
      with:
