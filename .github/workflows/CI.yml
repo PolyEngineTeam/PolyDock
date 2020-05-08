@@ -32,7 +32,7 @@ jobs:
        submodules: 'true'        
    - name: Setup CMake
      run: |
-        tree ${{ runner.workspace }}
+        ls ${{ runner.workspace }}
         mkdir "${{ runner.workspace }}/PolyDock/Build" 
         cd "${{ runner.workspace }}/PolyDock/Build" 
         cmake ../PolyDock
