@@ -38,6 +38,11 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${FULL_DIST_DIR})
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# For CI MSVC need additional flag
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "$(CMAKE_CXX_FLAGS) /std:c++17")
+endif(MSVC)
+
 # Find externals
 # Qt
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
