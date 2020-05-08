@@ -29,7 +29,7 @@ jobs:
           choco update && choco install pkgconfig qt5 cmake
      if: matrix.os == 'windows-latest'   
    - name: Get Sources
-   - uses: actions/checkout@v2
+     uses: actions/checkout@v2
      with:
        submodules: 'true'        
    - name: Setup CMake
