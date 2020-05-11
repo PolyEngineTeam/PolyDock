@@ -2,15 +2,11 @@
 #include <gmock/gmock.h>
 
 // sys
-#include <pd/ecs/sys/tabsHeader/TabsHeaderHoverSystem.hpp>
+#include <pd/ecs/sys/tabsHeader/TabsHeader.hpp>
 // in
 #include <pd/ecs/cmp/root/Input.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidgetComponent.hpp>
-// out
-#include <pd/ecs/cmp/tabsHeader/HoveredTabComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/HoveredTabsHeaderComponent.hpp>
-#include <pd/ecs/cmp/tabsHeader/DirtyTabsHeaderComponent.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeader.hpp>
+#include <pd/ecs/cmp/tabsHeader/TabsHeaderWidget.hpp>
 // misc
 #include <pd/ecs/cmp/tab/TabComponent.hpp>
 // mock
@@ -41,7 +37,7 @@ public:
 	// ---------------------------------------------------------------------------------------------------------
 	void setupInput()
 	{
-		auto& input = reg.assign<InputComponent>(root);
+		auto& input = reg.assign<Input>(root);
 
 		input.setNewCursorPos({ 0, 0 });
 	}
@@ -49,13 +45,13 @@ public:
 	// ---------------------------------------------------------------------------------------------------------
 	void setupTabsHeader()
 	{
-		auto& headerCmp = reg.assign<TabsHeaderComponent>(header, std::vector<entt::entity>{ tab0, tab1 });
+		auto& headerCmp = reg.assign<::pd::ecs::cmp::tabsHeader::Component>(header, std::vector<entt::entity>{ tab0, tab1 });
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
 	void setupTabsHeaderWidget()
 	{
-		reg.assign<TabsHeaderWidgetComponent>(header, &mock);
+		reg.assign<Widget>(header, &mock);
 	}
 
 	TabsHeaderHoverSystem sys;
@@ -81,10 +77,10 @@ TEST_F(TabsHeaderHoverSystemTest, SetHover_WithMouseOverFirstTab)
 
 	sys.update(reg, root);
 
-	ASSERT_TRUE(reg.has<HoveredTabComponent>(header));
-	EXPECT_TRUE(reg.has<HoveredTabsHeaderComponent>(header));
-	EXPECT_TRUE(reg.has<DirtyTabsHeaderComponent>(header));
-	EXPECT_EQ(reg.get<HoveredTabComponent>(header).hoveredTab, tab0);
+	ASSERT_TRUE(reg.has<HoveredTab>(header));
+	EXPECT_TRUE(reg.has<HoveredHeader>(header));
+	EXPECT_TRUE(reg.has<WidgetUpdateRequest>(header));
+	EXPECT_EQ(reg.get<HoveredTab>(header).hoveredTab, tab0);
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -98,10 +94,10 @@ TEST_F(TabsHeaderHoverSystemTest, SetHover_WithMouseOverSecondTab)
 
 	sys.update(reg, root);
 
-	ASSERT_TRUE(reg.has<HoveredTabComponent>(header));
-	EXPECT_TRUE(reg.has<HoveredTabsHeaderComponent>(header));
-	EXPECT_TRUE(reg.has<DirtyTabsHeaderComponent>(header));
-	EXPECT_EQ(reg.get<HoveredTabComponent>(header).hoveredTab, tab1);
+	ASSERT_TRUE(reg.has<HoveredTab>(header));
+	EXPECT_TRUE(reg.has<HoveredHeader>(header));
+	EXPECT_TRUE(reg.has<WidgetUpdateRequest>(header));
+	EXPECT_EQ(reg.get<HoveredTab>(header).hoveredTab, tab1);
 }
 
 // ---------------------------------------------------------------------------------------------------------
@@ -116,7 +112,7 @@ TEST_F(TabsHeaderHoverSystemTest, SetHover_WithMouseOverJustTabsHeader)
 
 	sys.update(reg, root);
 
-	EXPECT_TRUE(reg.has<HoveredTabsHeaderComponent>(header));
-	EXPECT_FALSE(reg.has<HoveredTabComponent>(header));
-	EXPECT_FALSE(reg.has<DirtyTabsHeaderComponent>(header));
+	EXPECT_TRUE(reg.has<HoveredHeader>(header));
+	EXPECT_FALSE(reg.has<HoveredTab>(header));
+	EXPECT_FALSE(reg.has<WidgetUpdateRequest>(header));
 }
