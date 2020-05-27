@@ -11,7 +11,7 @@ using namespace ::Eigen;
 void DesktopSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<Desktop>();
-	Expects(view.size() == 1);
+	assert(view.size() == 1);
 
 	for (auto entity : view)
 	{

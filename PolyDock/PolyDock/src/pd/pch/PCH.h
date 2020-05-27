@@ -2,9 +2,7 @@
 
 // std
 #include <optional>
-
-// GSL
-#include <gsl/gsl_assert>
+#include <cassert>
 
 // EnTT
 #include <entt/entt.hpp>

@@ -28,5 +28,4 @@ target_include_directories(${POLYDOCK_TARGET} PUBLIC ${POLYDOCK_INCLUDE})
 # Link externals
 target_link_libraries(${POLYDOCK_TARGET} Qt5::Widgets Qt5::Core)
 target_link_libraries(${POLYDOCK_TARGET} EnTT)
-target_link_libraries(${POLYDOCK_TARGET} eigen)
-target_link_libraries(${POLYDOCK_TARGET} GSL)
+target_link_libraries(${POLYDOCK_TARGET} Eigen3::Eigen)

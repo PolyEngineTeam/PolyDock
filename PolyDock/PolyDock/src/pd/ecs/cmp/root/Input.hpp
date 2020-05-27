@@ -28,6 +28,8 @@ namespace pd::ecs::cmp::root
 		template <typename E>
 		class KeyStateContainer : public std::array<bool, static_cast<int>(E::COUNT)>
 		{
+		public:
+			KeyStateContainer() : array{ false } {}
 		};
 
 		template <typename E>
