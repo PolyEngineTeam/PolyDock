@@ -73,9 +73,9 @@ PolyDockRegistry::PolyDockRegistry()
 	m_systems.push_back(std::move(inputSystem));
 	m_systems.push_back(std::make_unique<ecs::sys::DesktopSystem>());
 	// tabs header - no mode
+	m_systems.push_back(std::make_unique<ecs::sys::TabsHeaderHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::TabsSelectionSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::TabsActivationSystem>());
-	m_systems.push_back(std::make_unique<ecs::sys::TabsHeaderHoverSystem>());
 	// tabbed window control no mode
 	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlHoverSystem>());
 	m_systems.push_back(std::make_unique<ecs::sys::TabbedWindowControlReleaseSystem>());

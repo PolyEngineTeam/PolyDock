@@ -62,19 +62,16 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp 
 		&& inputCmp->wasJustPressed(cmp::root::Input::eMouse::LEFT))
 	{
-		if (!inputCmp->isPressed(root::Input::eKeyboard::CTRL))
+		auto view = registry.view<tabsHeader::HoveredTab>();
+
+		// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
+		for (auto entity : view)
 		{
-			auto view = registry.view<tabsHeader::HoveredTab>();
+			auto& hovered = view.get<tabsHeader::HoveredTab>(entity);
 
-			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
-			for (auto entity : view)
-			{
-				auto& hovered = view.get<tabsHeader::HoveredTab>(entity);
-
-				registry.get_or_assign<tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
-				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
-				registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
-			}
+			registry.get_or_assign<tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
+			registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
+			registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
 		}
 	}
 }
@@ -105,8 +102,8 @@ void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) co
 				} 
 				else
 					selectedCmp.selectedTabs = { hoveredCmp.hoveredTab };
-
 				// selecting a new tab without control, unselects all except the newly hovered tab
+
 				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			}
 		}
