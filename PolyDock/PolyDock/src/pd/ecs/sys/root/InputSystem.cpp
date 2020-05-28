@@ -49,10 +49,18 @@ void InputSystem::updateMouseButtonState(Input& cmp) const
 
 	if (buttons.testFlag(Qt::MouseButton::LeftButton))
 		buttonsState[static_cast<int>(Input::eMouse::LEFT)] = true;
+	else
+		buttonsState[static_cast<int>(Input::eMouse::LEFT)] = false;
+
 	if (buttons.testFlag(Qt::MouseButton::MiddleButton))
 		buttonsState[static_cast<int>(Input::eMouse::MIDDLE)] = true;
+	else
+		buttonsState[static_cast<int>(Input::eMouse::MIDDLE)] = false;
+
 	if (buttons.testFlag(Qt::MouseButton::RightButton))
 		buttonsState[static_cast<int>(Input::eMouse::RIGHT)] = true;
+	else
+		buttonsState[static_cast<int>(Input::eMouse::RIGHT)] = false;
 
 	cmp.setNewKeysState(std::move(buttonsState));
 }

@@ -62,16 +62,19 @@ void TabsActivationSystem::update(entt::registry& registry, entt::entity root) c
 	if (auto* inputCmp = registry.try_get<root::Input>(root); inputCmp 
 		&& inputCmp->wasJustPressed(cmp::root::Input::eMouse::LEFT))
 	{
-		auto view = registry.view<tabsHeader::HoveredTab>();
-
-		// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
-		for (auto entity : view)
+		if (!inputCmp->isPressed(root::Input::eKeyboard::CTRL))
 		{
-			auto& hovered = view.get<tabsHeader::HoveredTab>(entity);
+			auto view = registry.view<tabsHeader::HoveredTab>();
 
-			registry.get_or_assign<tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
-			registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
-			registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
+			// @todo(squares): sort entities by depth (or maybe disable hovering anything other than top window)
+			for (auto entity : view)
+			{
+				auto& hovered = view.get<tabsHeader::HoveredTab>(entity);
+
+				registry.get_or_assign<tabsHeader::ActiveTab>(entity).activeTab = hovered.hoveredTab;
+				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
+				registry.get_or_assign<tabbedWindow::RequestWidgetUpdate>(entity);
+			}
 		}
 	}
 }
@@ -90,13 +93,20 @@ void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) co
 			const bool hoveredIsAlreadySelected = std::find(selectedCmp.selectedTabs.begin(), 
 				selectedCmp.selectedTabs.end(), hoveredCmp.hoveredTab) != selectedCmp.selectedTabs.end();
 
-			if (inputCmp->wasJustPressed(root::Input::eMouse::LEFT) && !hoveredIsAlreadySelected)
+			if (inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
 			{
+				// CTRL toggles selection
 				if (inputCmp->isPressed(root::Input::eKeyboard::CTRL))
-					selectedCmp.selectedTabs.push_back(hoveredCmp.hoveredTab);
+				{
+					if (hoveredIsAlreadySelected)
+						selectedCmp.selectedTabs.erase(std::remove(selectedCmp.selectedTabs.begin(), selectedCmp.selectedTabs.end(), hoveredCmp.hoveredTab));
+					else
+						selectedCmp.selectedTabs.push_back(hoveredCmp.hoveredTab);
+				} 
 				else
 					selectedCmp.selectedTabs = { hoveredCmp.hoveredTab };
 
+				// selecting a new tab without control, unselects all except the newly hovered tab
 				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			}
 		}
