@@ -101,6 +101,7 @@ void TabsDragInSystem::update(entt::registry& registry, entt::entity root) const
 
 			registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			registry.assign<tabbedWindow::RemoveRequest>(request.source);
+			registry.assign<tabbedWindow::RequestWidgetUpdate>(entity);
 			registry.remove<tabsHeader::TabsDragInRequest>(entity);
 		}
 	}
