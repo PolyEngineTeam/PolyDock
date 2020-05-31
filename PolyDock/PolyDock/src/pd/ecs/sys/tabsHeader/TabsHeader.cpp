@@ -90,12 +90,19 @@ void TabsSelectionSystem::update(entt::registry& registry, entt::entity root) co
 			const bool hoveredIsAlreadySelected = std::find(selectedCmp.selectedTabs.begin(), 
 				selectedCmp.selectedTabs.end(), hoveredCmp.hoveredTab) != selectedCmp.selectedTabs.end();
 
-			if (inputCmp->wasJustPressed(root::Input::eMouse::LEFT) && !hoveredIsAlreadySelected)
+			if (inputCmp->wasJustPressed(root::Input::eMouse::LEFT))
 			{
+				// CTRL toggles selection
 				if (inputCmp->isPressed(root::Input::eKeyboard::CTRL))
-					selectedCmp.selectedTabs.push_back(hoveredCmp.hoveredTab);
+				{
+					if (hoveredIsAlreadySelected)
+						selectedCmp.selectedTabs.erase(std::remove(selectedCmp.selectedTabs.begin(), selectedCmp.selectedTabs.end(), hoveredCmp.hoveredTab));
+					else
+						selectedCmp.selectedTabs.push_back(hoveredCmp.hoveredTab);
+				} 
 				else
 					selectedCmp.selectedTabs = { hoveredCmp.hoveredTab };
+				// selecting a new tab without control, unselects all except the newly hovered tab
 
 				registry.get_or_assign<tabsHeader::WidgetUpdateRequest>(entity);
 			}

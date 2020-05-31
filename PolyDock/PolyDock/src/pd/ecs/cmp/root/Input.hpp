@@ -65,8 +65,8 @@ namespace pd::ecs::cmp::root
 		template <typename E>
 		bool getLast(E key) const { return std::get<KeyStateContainer<E>>(m_lastKeyStates)[static_cast<int>(key)]; }
 
-		std::tuple<KeyStateContainer<eMouse>, KeyStateContainer<eKeyboard>> m_currentKeyStates;
-		std::tuple<KeyStateContainer<eMouse>, KeyStateContainer<eKeyboard>> m_lastKeyStates;
+		std::tuple<KeyStateContainer<eMouse>, KeyStateContainer<eKeyboard>> m_currentKeyStates = { { false }, { false } };
+		std::tuple<KeyStateContainer<eMouse>, KeyStateContainer<eKeyboard>> m_lastKeyStates = { { false }, { false } };
 
 		Eigen::Vector2i m_cursorPos;
 		Eigen::Vector2i m_cursorDiff;
