@@ -45,22 +45,14 @@ void InputSystem::updateMouseButtonState(Input& cmp) const
 {
 	Qt::MouseButtons buttons = QApplication::mouseButtons();
 
-	Input::KeyStateContainer<Input::eMouse> buttonsState;
+	Input::KeyStateContainer<Input::eMouse> buttonsState = { false };
 
 	if (buttons.testFlag(Qt::MouseButton::LeftButton))
 		buttonsState[static_cast<int>(Input::eMouse::LEFT)] = true;
-	else
-		buttonsState[static_cast<int>(Input::eMouse::LEFT)] = false;
-
 	if (buttons.testFlag(Qt::MouseButton::MiddleButton))
 		buttonsState[static_cast<int>(Input::eMouse::MIDDLE)] = true;
-	else
-		buttonsState[static_cast<int>(Input::eMouse::MIDDLE)] = false;
-
 	if (buttons.testFlag(Qt::MouseButton::RightButton))
 		buttonsState[static_cast<int>(Input::eMouse::RIGHT)] = true;
-	else
-		buttonsState[static_cast<int>(Input::eMouse::RIGHT)] = false;
 
 	cmp.setNewKeysState(std::move(buttonsState));
 }
@@ -68,7 +60,7 @@ void InputSystem::updateMouseButtonState(Input& cmp) const
 // ---------------------------------------------------------------------------------------------------------
 void InputSystem::updateKeyboardKeysState(Input& cmp) const
 {
-	Input::KeyStateContainer<Input::eKeyboard> keyboardState;
+	Input::KeyStateContainer<Input::eKeyboard> keyboardState = { false };
 
 	if (m_pressedKeys.find(Qt::Key_Control) != m_pressedKeys.end())
 		keyboardState[static_cast<int>(Input::eKeyboard::CTRL)] = true;
