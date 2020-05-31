@@ -17,7 +17,7 @@ endfunction()
 ##
 # Start
 ##
-project(PolyDock)
+project(PolyDock VERSION "1.0.0")
 
 set(POLYDOCK_ROOT_DIR ${CMAKE_SOURCE_DIR})
 set(DIST_DIR "${POLYDOCK_ROOT_DIR}/../Dist")
@@ -74,3 +74,27 @@ set(TESTS_TARGET Tests)
 add_subdirectory(PolyDock)
 add_subdirectory(TestApp)
 add_subdirectory(Tests)
+
+#################################################
+# installation instructions
+#################################################
+install(TARGETS ${POLYDOCK_TARGET}
+    EXPORT ${POLYDOCK_TARGET}_Targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file("${POLYDOCK_TARGET}ConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion)
+
+install(EXPORT ${POLYDOCK_TARGET}_Targets
+    FILE ${POLYDOCK_TARGET}Targets.cmake
+    NAMESPACE ${POLYDOCK_TARGET}::
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${POLYDOCK_TARGET}/cmake)
+
+install(FILES "${PROJECT_BINARY_DIR}/${POLYDOCK_TARGET}ConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${POLYDOCK_TARGET}/cmake)
+
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/PolyDock/src/pd DESTINATION include)
