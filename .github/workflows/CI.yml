@@ -18,7 +18,7 @@ jobs:
      if: matrix.os == 'ubuntu-latest'    
    - name: Install Dependencies (macOS)
      run: |
-          brew update && brew install pkgconfig cmake
+          brew update && brew install pkgconfig
      if: matrix.os == 'macOS-latest'     
    - name: Install Dependencies (Windows)
      run: |
