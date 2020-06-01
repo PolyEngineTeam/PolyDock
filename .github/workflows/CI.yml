@@ -58,7 +58,6 @@ jobs:
    - name: Build
      run: cmake --build .
      working-directory: ${{ runner.workspace }}/PolyDock/Build
-     if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
    - name: Check with clang-tidy
      if: matrix.os == 'ubuntu-latest' && github.event_name == 'pull_request' # only works for ubuntu and PR's
      uses: muxee/clang-tidy-action@0.0.1-rc1
