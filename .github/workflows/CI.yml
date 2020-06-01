@@ -30,7 +30,7 @@ jobs:
      run: |
           git clone https://github.com/skypjack/entt
           cd entt && git checkout 043f9a5
-          cd entt/build
+          cd build
           cmake ..
           sudo make install
      working-directory: ${{ runner.workspace }}
