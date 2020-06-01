@@ -29,7 +29,7 @@ jobs:
           git clone https://gitlab.com/libeigen/eigen
           mkdir eigen/build && cd eigen/build
           cmake ..
-          sudo make install
+          cmake --install .
      if: matrix.os == 'windows-latest'
    - name: Install Qt
      uses: jurplel/install-qt-action@v2
@@ -39,7 +39,7 @@ jobs:
           cd entt && git checkout 043f9a5
           cd build
           cmake ..
-          sudo make install
+          cmake --install .
      working-directory: ${{ runner.workspace }}
    - name: Get Sources
      uses: actions/checkout@v2
