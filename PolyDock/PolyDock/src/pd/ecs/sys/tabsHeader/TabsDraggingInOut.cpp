@@ -21,10 +21,11 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 {
 	if (const auto* inputCmp = registry.try_get<root::Input>(root))
 	{
-		auto srcView = registry.view<tabbedWindow::MovementActive, tabsHeader::HoveredTab>();
+		auto srcView = registry.view<tabbedWindow::MovementActive, tabbedWindow::Component, tabsHeader::HoveredTab>();
 		auto dstView = registry.view<
 			tabsHeader::Widget,
-			tabsHeader::Component
+			tabsHeader::Component,
+			tabbedWindow::Component
 		>(entt::exclude<tabbedWindow::MovementActive>);
 
 		for (auto source : srcView)
@@ -32,8 +33,10 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 			for (auto destination : dstView)
 			{
 				const auto& movementCmp = srcView.get<tabbedWindow::MovementActive>(source);
+				const auto& srcWindow = srcView.get<tabbedWindow::Component>(source);
 				const auto& dstWidget = dstView.get<tabsHeader::Widget>(destination);
 				const auto& dstHeader = dstView.get<tabsHeader::Component>(destination);
+				const auto& dstWindow = dstView.get<tabbedWindow::Component>(destination);
 				int dstPos = dstWidget.getTabIdxFromPosition(inputCmp->getCursorPos());
 
 				if (dstPos == -1 && dstWidget.isPositionOnTheRightOfLastTab(inputCmp->getCursorPos()))
@@ -41,8 +44,9 @@ void TabsDragInDetectionSystem::update(entt::registry& registry, entt::entity ro
 
 				if (dstPos != -1 && dstWidget.getWidgetRect().contains(inputCmp->getCursorPos()))
 				{
-					registry.assign<tabsHeader::TabsDragInRequest>(destination, source, dstPos,
-						movementCmp.cursorInTabSpacePosition);
+					if (srcWindow.layerUuid == dstWindow.layerUuid)
+						registry.assign<tabsHeader::TabsDragInRequest>(destination, source, dstPos,
+							movementCmp.cursorInTabSpacePosition);
 				}
 			}
 		}
@@ -117,7 +121,8 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 			tabsHeader::Component,
 			tabsHeader::SelectedTabs,
 			tabsHeader::ActiveTab,
-			tabsHeader::TabsMovementActive>();
+			tabsHeader::TabsMovementActive,
+			tabbedWindow::Component>();
 
 		for (auto entity : view)
 		{
@@ -125,6 +130,7 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 			auto& selected = view.get<tabsHeader::SelectedTabs>(entity);
 			auto& active = view.get<tabsHeader::ActiveTab>(entity);
 			const auto& tabsMovement = view.get<tabsHeader::TabsMovementActive>(entity);
+			const auto& window = view.get<tabbedWindow::Component>(entity);
 
 			const Vector2i windowPos = inputCmp->getCursorPos() - tabsMovement.cursorInTabSpacePosition;
 			const size_t activeTabIdx = std::distance(header.tabs().begin(),
@@ -136,7 +142,7 @@ void TabsDragOutSystem::update(entt::registry& registry, entt::entity root) cons
 			auto newWindow = registry.create();
 			registry.assign<tabbedWindow::CreateRequest>(newWindow, selected.selectedTabs, std::move(selected.selectedTabs),
 				active.activeTab, windowPos, Vector2i{ 500, 500 }, tabbedWindow::CreateRequest::eWindowMovementState::ACTIVE,
-				tabsMovement.cursorInTabSpacePosition);
+				tabsMovement.cursorInTabSpacePosition, window.layerUuid);
 
 			active.activeTab = header.tabs().at(std::min(activeTabIdx, header.tabs().size() - 1));
 			selected.selectedTabs = { active.activeTab };

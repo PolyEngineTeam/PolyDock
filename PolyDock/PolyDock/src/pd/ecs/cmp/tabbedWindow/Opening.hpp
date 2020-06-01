@@ -23,5 +23,6 @@ namespace pd::ecs::cmp::tabbedWindow
 		Eigen::Vector2i size;
 		eWindowMovementState windowMovementState = eWindowMovementState::INACTIVE;
 		Eigen::Vector2i cursorInTabSpacePosition = { 0, 0 };
+		std::optional<QUuid> layerUuid;
 	};
 }

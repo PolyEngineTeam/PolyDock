@@ -21,7 +21,12 @@ void TabbedWindowCreationSystem::update(entt::registry& registry, entt::entity r
 	{
 		const auto& request = view.get<tabbedWindow::CreateRequest>(entity);
 
-		registry.assign<tabbedWindow::Component>(entity, request.position, request.size);
+		auto& windowComponent = registry.assign<tabbedWindow::Component>(entity, request.position, request.size);
+		if (request.layerUuid.has_value())
+			windowComponent.layerUuid = request.layerUuid.value();
+		else
+			windowComponent.layerUuid = QUuid::createUuid();
+
 		registry.assign<tabsHeader::Component>(entity, request.tabs);
 		registry.assign<tabbedWindowControl::Component>(entity);
 		registry.assign<tabsHeader::SelectedTabs>(entity, request.selectedTabs);
