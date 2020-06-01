@@ -11,25 +11,44 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest] ## add different compilers
 
    steps:
+   - name: Set up root privilleges (Linux && macOS)
+     run: echo ::set-env name=SUDO::sudo
+     if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+   - name: Set up root privilleges (Windows)
+     run: echo ::set-env name=SUDO::$()
+     if: matrix.os == 'windows-latest'
    - name: Install Dependencies (Linux)
      run: |
           sudo apt-get update
-          sudo apt-get install -y -qq software-properties-common gcc g++ cmake mesa-common-dev libgl1-mesa-dev
+          sudo apt-get install -y -qq software-properties-common gcc g++ cmake mesa-common-dev libgl1-mesa-dev libeigen3-dev
      if: matrix.os == 'ubuntu-latest'    
    - name: Install Dependencies (macOS)
      run: |
-          brew update && brew install pkgconfig
+          brew update && brew install pkgconfig eigen
      if: matrix.os == 'macOS-latest'     
    - name: Install Dependencies (Windows)
      run: |
           choco install pkgconfiglite cmake
      if: matrix.os == 'windows-latest'
+   - name: Install Eigen3 (Windows)
+     run: |
+          git clone https://gitlab.com/libeigen/eigen
+          mkdir eigen/build && cd eigen/build
+          cmake ..
+          ${{ env.SUDO }} cmake --install .
+     if: matrix.os == 'windows-latest'
    - name: Install Qt
      uses: jurplel/install-qt-action@v2
+   - name: Install EnTT
+     run: |
+          git clone https://github.com/skypjack/entt
+          cd entt && git checkout 043f9a5
+          cd build
+          cmake ..
+          ${{ env.SUDO }} cmake --install .
+     working-directory: ${{ runner.workspace }}
    - name: Get Sources
      uses: actions/checkout@v2
-     with:
-       submodules: 'true'        
    - name: Setup CMake
      run: |
         mkdir "${{ runner.workspace }}/PolyDock/Build" 
@@ -39,12 +58,6 @@ jobs:
    - name: Build
      run: cmake --build .
      working-directory: ${{ runner.workspace }}/PolyDock/Build
-   - run: ${{ runner.workspace }}/PolyDock/Dist/Debug/Tests.exe
-     name: Test (Windows)
-     if: matrix.os == 'windows-latest'
-   - run: ${{ runner.workspace }}/PolyDock/Dist/Tests
-     name: Test (Linux & macOS)
-     if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
    - name: Check with clang-tidy
      if: matrix.os == 'ubuntu-latest' && github.event_name == 'pull_request' # only works for ubuntu and PR's
      uses: muxee/clang-tidy-action@0.0.1-rc1
