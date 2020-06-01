@@ -31,7 +31,7 @@ jobs:
           git clone https://github.com/skypjack/entt
           cd ${{ runner.workspace}}/entt/build
           cmake ..
-          make install
+          sudo make install
      working-directory: ${{ runner.workspace }}
    - name: Get Sources
      uses: actions/checkout@v2
