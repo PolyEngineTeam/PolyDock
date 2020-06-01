@@ -39,11 +39,6 @@ jobs:
    - name: Build
      run: cmake --build .
      working-directory: ${{ runner.workspace }}/PolyDock/Build
-   - run: ${{ runner.workspace }}/PolyDock/Dist/Debug/Tests.exe
-     name: Test (Windows)
-     if: matrix.os == 'windows-latest'
-   - run: ${{ runner.workspace }}/PolyDock/Dist/Tests
-     name: Test (Linux & macOS)
      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
    - name: Check with clang-tidy
      if: matrix.os == 'ubuntu-latest' && github.event_name == 'pull_request' # only works for ubuntu and PR's
