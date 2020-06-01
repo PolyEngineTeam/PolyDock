@@ -11,6 +11,12 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest] ## add different compilers
 
    steps:
+   - name: Set up root privilleges (Linux && macOS)
+     run: echo ::set-env name=SUDO::sudo
+     if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+   - name: Set up root privilleges (Windows)
+     run: echo ::set-env name=SUDO::
+     if: matrix.os == 'windows-latest'
    - name: Install Dependencies (Linux)
      run: |
           sudo apt-get update
@@ -29,7 +35,7 @@ jobs:
           git clone https://gitlab.com/libeigen/eigen
           mkdir eigen/build && cd eigen/build
           cmake ..
-          cmake --install .
+          ${{ env.SUDO }} cmake --install .
      if: matrix.os == 'windows-latest'
    - name: Install Qt
      uses: jurplel/install-qt-action@v2
@@ -39,7 +45,7 @@ jobs:
           cd entt && git checkout 043f9a5
           cd build
           cmake ..
-          cmake --install .
+          ${{ env.SUDO }} cmake --install .
      working-directory: ${{ runner.workspace }}
    - name: Get Sources
      uses: actions/checkout@v2
