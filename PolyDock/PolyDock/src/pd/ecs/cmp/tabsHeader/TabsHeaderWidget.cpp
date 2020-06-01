@@ -13,10 +13,10 @@ void DefaultTabsHeaderWidget::update(std::vector<std::string> names,
 	std::vector<std::optional<QIcon>> icons, std::vector<int> selected, int hovered, int active, 
 	eAddButtonState addButtonState)
 {
-	Expects(names.size() == icons.size());
-	Expects(selected.size() <= names.size());
-	Expects(hovered < static_cast<int>(names.size()));
-	Expects(active < static_cast<int>(names.size()));
+	assert(names.size() == icons.size());
+	assert(selected.size() <= names.size());
+	assert(hovered < static_cast<int>(names.size()));
+	assert(active < static_cast<int>(names.size()));
 
 	m_names = std::move(names);
 	m_icons = std::move(icons);
