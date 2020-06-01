@@ -28,8 +28,9 @@ jobs:
      uses: jurplel/install-qt-action@v2
    - name: Install EnTT
      run: |
+          pwd
           git clone https://github.com/skypjack/entt
-          cd build
+          cd ${{ runner.workspace}}/build
           cmake ..
           make install
      working-directory: ${{ runner.workspace }}
