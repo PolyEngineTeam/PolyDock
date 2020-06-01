@@ -44,36 +44,16 @@ if(MSVC)
 endif(MSVC)
 
 # Find externals
-# Qt
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-
-# EnTT
-add_subdirectory(ThirdParty/entt)
-set_target_properties (entt_aob PROPERTIES FOLDER "ThirdParty/entt")
-
-# GSL
-add_subdirectory(ThirdParty/eigen)
-set_target_properties (uninstall PROPERTIES FOLDER "ThirdParty/eigen")
-
-# GSL
-add_subdirectory(ThirdParty/gsl)
-
-# gtest & gmock
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-add_subdirectory(ThirdParty/gtest)
-set_target_properties (gtest PROPERTIES FOLDER "ThirdParty/gtest")
-set_target_properties (gtest_main PROPERTIES FOLDER "ThirdParty/gtest")
-set_target_properties (gmock PROPERTIES FOLDER "ThirdParty/gtest")
-set_target_properties (gmock_main PROPERTIES FOLDER "ThirdParty/gtest")
+find_package(EnTT 3.3 REQUIRED)
+find_package(Eigen3 3.3 REQUIRED)
 
 # Add our targets
 set(POLYDOCK_TARGET PolyDock)
 set(TEST_APP_TARGET TestApp)
-set(TESTS_TARGET Tests)
 
 add_subdirectory(PolyDock)
 add_subdirectory(TestApp)
-add_subdirectory(Tests)
 
 #################################################
 # installation instructions

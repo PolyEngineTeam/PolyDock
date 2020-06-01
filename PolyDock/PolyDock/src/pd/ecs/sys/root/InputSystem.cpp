@@ -10,7 +10,7 @@ using namespace ::pd::ecs::cmp::root;
 void InputSystem::update(entt::registry& registry, entt::entity root) const
 {
 	auto view = registry.view<Input>();
-	Expects(view.size() == 1);
+	assert(view.size() == 1);
 
 	for (auto entity : view)
 	{

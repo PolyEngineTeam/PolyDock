@@ -8,7 +8,7 @@ using namespace ::pd;
 // ---------------------------------------------------------------------------------------------------------
 void WindowTabHandle::setName(std::string name)
 {
-	Expects(valid());
+	assert(valid());
 
 	m_registry.get_or_assign<ecs::cmp::tab::Component>(m_entity).name = std::move(name);
 	m_registry.get_or_assign<ecs::cmp::tab::RefreshTab>(m_entity);
@@ -17,13 +17,13 @@ void WindowTabHandle::setName(std::string name)
 // ---------------------------------------------------------------------------------------------------------
 void WindowTabHandle::setIcon(std::optional<QIcon> newIcon)
 {
-	Expects(valid());
+	assert(valid());
 }
 
 // ---------------------------------------------------------------------------------------------------------
 void WindowTabHandle::setTabContent(QWidget* widget)
 {
-	Expects(valid());
+	assert(valid());
 	if (widget)
 		m_registry.get_or_assign<ecs::cmp::tab::Content>(m_entity).contentWidget = widget;
 	else
@@ -35,5 +35,5 @@ void WindowTabHandle::setTabContent(QWidget* widget)
 // ---------------------------------------------------------------------------------------------------------
 void WindowTabHandle::close()
 {
-	Expects(valid());
+	assert(valid());
 }

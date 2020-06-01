@@ -11,7 +11,7 @@ using namespace ::pd::ecs::cmp::tabsHeader;
 // ---------------------------------------------------------------------------------------------------------
 WindowTabHandle TabsHeaderHandle::addTab()
 {
-	Expects(valid());
+	assert(valid());
 
 	auto tabEntity = m_registry.create();
 	m_registry.get_or_assign<AddTabRequest>(m_entity).requests.push_back({ false, {}, tabEntity });
