@@ -22,7 +22,14 @@ jobs:
      if: matrix.os == 'macOS-latest'     
    - name: Install Dependencies (Windows)
      run: |
-          choco install pkgconfiglite cmake eigen
+          choco install pkgconfiglite cmake
+     if: matrix.os == 'windows-latest'
+   - name: Install Eigen3 (Windows)
+     run: |
+          git clone https://gitlab.com/libeigen/eigen
+          mkdir eigen/build && cd eigen/build
+          cmake ..
+          sudo make install
      if: matrix.os == 'windows-latest'
    - name: Install Qt
      uses: jurplel/install-qt-action@v2
