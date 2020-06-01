@@ -29,9 +29,10 @@ jobs:
    - name: Install EnTT
      run: |
           git clone https://github.com/skypjack/entt
-          cd "${{ runner.workspace }}/entt/build"
+          cd build
           cmake ..
           make install
+     working-directory: ${{ runner.workspace }}
    - name: Get Sources
      uses: actions/checkout@v2
    - name: Setup CMake
