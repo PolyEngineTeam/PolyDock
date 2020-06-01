@@ -14,22 +14,26 @@ jobs:
    - name: Install Dependencies (Linux)
      run: |
           sudo apt-get update
-          sudo apt-get install -y -qq software-properties-common gcc g++ cmake mesa-common-dev libgl1-mesa-dev
+          sudo apt-get install -y -qq software-properties-common gcc g++ cmake mesa-common-dev libgl1-mesa-dev eigen
      if: matrix.os == 'ubuntu-latest'    
    - name: Install Dependencies (macOS)
      run: |
-          brew update && brew install pkgconfig
+          brew update && brew install pkgconfig eigen
      if: matrix.os == 'macOS-latest'     
    - name: Install Dependencies (Windows)
      run: |
-          choco install pkgconfiglite cmake
+          choco install pkgconfiglite cmake eigen
      if: matrix.os == 'windows-latest'
    - name: Install Qt
      uses: jurplel/install-qt-action@v2
+   - name: Install EnTT
+     run: |
+          git clone https://github.com/skypjack/entt
+          cd "${{ runner.workspace }}/entt/build"
+          cmake ..
+          make install
    - name: Get Sources
      uses: actions/checkout@v2
-     with:
-       submodules: 'true'        
    - name: Setup CMake
      run: |
         mkdir "${{ runner.workspace }}/PolyDock/Build" 
