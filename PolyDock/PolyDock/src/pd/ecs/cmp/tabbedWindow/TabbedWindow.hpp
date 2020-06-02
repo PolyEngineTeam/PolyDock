@@ -12,6 +12,7 @@ namespace pd::ecs::cmp::tabbedWindow
 	public:
 		Eigen::Vector2i position;
 		Eigen::Vector2i size;
+		QUuid layerUuid;
 	};
 	
 	// ---------------------------------------------------------------------------------------------------------
